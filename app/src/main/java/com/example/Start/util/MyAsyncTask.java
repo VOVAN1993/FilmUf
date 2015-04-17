@@ -1,9 +1,9 @@
-package com.example.Start;
+package com.example.Start.util;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
-class MyAsyncTask extends AsyncTask<String, Void, String> {
+public class MyAsyncTask extends AsyncTask<String, Void, String> {
 
     private Exception exception;
 
