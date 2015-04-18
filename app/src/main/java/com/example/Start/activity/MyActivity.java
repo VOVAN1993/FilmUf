@@ -53,15 +53,6 @@ public class MyActivity extends Activity {
         fPoster = (ImageView) findViewById(R.id.fPoster);
 
 
-        Intent intent = getIntent();
-        //if null -> not found + exception
-        if(intent.getStringExtra("Result").equals("Success")) {
-            twRusName.setText(intent.getStringExtra("name_rus"));
-            twEngName.setText(intent.getStringExtra("name"));
-        }else{
-            finishActivity(1);
-        }
-
         Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new Button.OnClickListener() {
 
