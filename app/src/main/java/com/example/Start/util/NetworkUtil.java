@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.example.Start.R;
 import com.example.Start.util.asyncTasks.DownloadImageTask;
+import com.example.Start.util.asyncTasks.MyAsyncTask;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -16,9 +17,25 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.concurrent.ExecutionException;
 
 public class NetworkUtil {
+
+    public static ArrayList<Map<String,String>> requestToMyServer(String url){
+        MyAsyncTask myAsyncTask = new MyAsyncTask();
+        myAsyncTask.execute(url);
+        try {
+            String s = myAsyncTask.get();
+            ArrayList<Film> films = BasicUtil.jsonToFilm(s);
+            return BasicUtil.filmsToMaps(films);
+        } catch (ExecutionException | InterruptedException e) {
+            Log.e(BasicUtil.LOG_TAG, "Error when requestToMyServer. " + e.toString());
+            return null;
+        }
+    }
 
     public static String connectToServer(String s) throws IOException {
         HttpClient client = new DefaultHttpClient();

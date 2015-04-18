@@ -2,44 +2,68 @@ package com.example.Start.activity;
 
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.Start.R;
+import com.example.Start.adapter.LazyAdapter;
 import com.example.Start.util.BasicUtil;
+import com.example.Start.util.Film;
 
-public class ListFilmsActivity extends ListActivity{
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.TreeMap;
 
-    public void onCreate(Bundle icicle) {
-        super.onCreate(icicle);
-        String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
-                "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-                "Linux", "OS/2" ,"1111", "22222","33333","4444", "5555"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, values);
-        setListAdapter(adapter);
-    }
+public class ListFilmsActivity extends Activity {
+    public static final String KEY_NAME = "name";
+    public static final String KEY_DIRECTOR = "artist";
+    public static final String KEY_DURATION = "duration";
+    public static final String KEY_THUMB_URL = "thumb_url";
+
+    ListView list;
+    LazyAdapter adapter;
 
     @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-        String item = (String) getListAdapter().getItem(position);
-        Toast.makeText(this, item + " selected", Toast.LENGTH_LONG).show();
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.list_films_activity);
+
+        Intent intent = getIntent();
+        //if null -> not found + exception
+        ArrayList<Map<String, String>> extra = new ArrayList<>();
+        if(intent.getStringExtra("Result").equals("Success")) {
+             extra = (ArrayList<Map<String, String>>)intent.getSerializableExtra("map");
+            System.out.println("asd");
+
+        }else{
+            Log.d(BasicUtil.LOG_TAG, "Finish ListFilmsActivity with bad code");
+            intent.putExtra("result", "Bad");
+            setResult(RESULT_CANCELED);
+            finish();
+        }
+//
+        list = (ListView) findViewById(R.id.list);
+
+        // Getting adapter by passing xml data ArrayList
+        adapter = new LazyAdapter(this, extra);
+        list.setAdapter(adapter);
+
+
+        // Click event for single list row
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                Log.d("my", "click");
+            }
+        });
     }
-
-
-
-
-
-    private TextView twRusName;
-    private TextView twEngName;
 
 //    @Override
 //    public void onCreate(Bundle savedInstanceState) {

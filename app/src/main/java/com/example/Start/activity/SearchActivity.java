@@ -21,6 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.concurrent.ExecutionException;
@@ -56,27 +57,8 @@ public class SearchActivity extends Activity {
 
     }
 
-    private Map<String, String> search(Map<String, String> map){
-        MyAsyncTask myAsyncTask = new MyAsyncTask();
-        Map<String,String> resultForIntent = new TreeMap<>();
-        myAsyncTask.execute(createURI(map));
-        try {
-            String response = myAsyncTask.get();
-            if(response==null) throw new ExecutionException(new NetworkErrorException("NetworkException"));
-            JSONObject jsonObject = new JSONArray(response).getJSONObject(0).getJSONObject("fields");
-            BasicUtil.putIfNotNull(resultForIntent, "name_rus", !jsonObject.isNull("name_rus") ? jsonObject.get("name_rus").toString() : null);
-            BasicUtil.putIfNotNull(resultForIntent, "name", !jsonObject.isNull("name") ? jsonObject.get("name").toString() : null);
-
-            if(resultForIntent.size()>0){
-                resultForIntent.put("Result","Success");
-            }
-            return resultForIntent;
-        } catch (InterruptedException |ExecutionException | JSONException e) {
-            Log.d(BasicUtil.LOG_TAG, e.toString());
-            resultForIntent.clear();
-            resultForIntent.put("Result","Error");
-        }
-        return resultForIntent;
+    private ArrayList<Map<String, String>> search(Map<String, String> map){
+        return NetworkUtil.requestToMyServer("http://109.234.36.127:8000/dasha/getFilmByCountry/USA");
     }
 
     private String createURI(Map<String,String> map){
@@ -85,15 +67,18 @@ public class SearchActivity extends Activity {
     }
 
     public void onClick(View view) {
-        image.setImageBitmap(NetworkUtil.getImage("http://ia.media-imdb.com/images/M/MV5BMTc2NjMzOTE3Ml5BMl5BanBnXkFtZTcwMDE0OTc5Mw@@._V1_SX300.jpg",this));
-//        if (view.getId() == R.id.search){
-//            Map<String, String> search = search(null);
-//            Intent intent = new Intent(this, ListFilmsActivity.class);
-//            for(Map.Entry<String, String> entry:search.entrySet()){
-//                intent.putExtra(entry.getKey(),entry.getValue());
-//            }
-//            startActivityForResult(intent, 1);
-//        }
+//        image.setImageBitmap(NetworkUtil.getImage("http://ia.media-imdb.com/images/M/MV5BMTc2NjMzOTE3Ml5BMl5BanBnXkFtZTcwMDE0OTc5Mw@@._V1_SX300.jpg",this));
+        if (view.getId() == R.id.search){
+            ArrayList<Map<String, String>> search = search(null);
+            Intent intent = new Intent(this, ListFilmsActivity.class);
+            if(search.size()>0) {
+                intent.putExtra("map", search);
+                intent.putExtra("Result", "Success");
+            }else{
+                intent.putExtra("Result", "Bad");
+            }
+            startActivityForResult(intent, 1);
+        }
     }
 
     @Override
