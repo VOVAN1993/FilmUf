@@ -1,6 +1,7 @@
 package com.example.Start.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.Start.R;
-import com.example.Start.util.MyAsyncTask;
+import com.example.Start.util.asyncTasks.MyAsyncTask;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,6 +52,15 @@ public class MyActivity extends Activity {
         twTitleRus = (TextView) findViewById(R.id.twTitleRus);
         fPoster = (ImageView) findViewById(R.id.fPoster);
 
+
+        Intent intent = getIntent();
+        //if null -> not found + exception
+        if(intent.getStringExtra("Result").equals("Success")) {
+            twRusName.setText(intent.getStringExtra("name_rus"));
+            twEngName.setText(intent.getStringExtra("name"));
+        }else{
+            finishActivity(1);
+        }
 
         Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new Button.OnClickListener() {
