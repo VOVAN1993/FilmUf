@@ -1,17 +1,21 @@
-package com.example.Start.util;
+package com.example.Start.util.asyncTasks;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class MyAsyncTask extends AsyncTask<String, Void, String> {
+import com.example.Start.util.BasicUtil;
+import com.example.Start.util.NetworkUtil;
 
-    private Exception exception;
+import java.util.IllegalFormatCodePointException;
+import java.util.concurrent.ExecutionException;
+
+public class MyAsyncTask extends AsyncTask<String, Void, String> {
 
     protected String doInBackground(String... urls) {
         try {
-            Log.d("my","Start");
+            Log.d(BasicUtil.LOG_TAG,"Start");
             String s = NetworkUtil.connectToServer(urls[0]);
-            Log.d("my", "End");
+            Log.d(BasicUtil.LOG_TAG, "End");
             return s;
 
         } catch (Exception e) {

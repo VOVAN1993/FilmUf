@@ -1,136 +1,104 @@
 package com.example.Start.activity;
 
+import android.accounts.NetworkErrorException;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.CheckedTextView;
 import android.widget.ExpandableListView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
+import android.widget.ImageView;
 import android.widget.SimpleExpandableListAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.Start.R;
+import com.example.Start.adapter.AdapterHelper;
+import com.example.Start.util.BasicUtil;
+import com.example.Start.util.NetworkUtil;
+import com.example.Start.util.asyncTasks.MyAsyncTask;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Map;
+import java.util.TreeMap;
+import java.util.concurrent.ExecutionException;
 
-public class SearchActivity extends Activity implements View.OnClickListener {
+public class SearchActivity extends Activity {
 
-    // названия компаний (групп)
-    String[] groups = new String[]{"HTC", "Samsung", "LG"};
-
-    // названия телефонов (элементов)
-    String[] phonesHTC = new String[]{"Sensation", "Desire", "Wildfire", "Hero"};
-    String[] phonesSams = new String[]{"Galaxy S II", "Galaxy Nexus", "Wave"};
-    String[] phonesLG = new String[]{"Optimus", "Optimus Link", "Optimus Black", "Optimus One"};
-
-    // коллекция для групп
-    ArrayList<Map<String, String>> groupData;
-
-    // коллекция для элементов одной группы
-    ArrayList<Map<String, String>> childDataItem;
-
-    // общая коллекция для коллекций элементов
-    ArrayList<ArrayList<Map<String, String>>> childData;
-    // в итоге получится childData = ArrayList<childDataItem>
-
-    // список аттрибутов группы или элемента
-    Map<String, String> m;
 
     ExpandableListView elvMain;
-
-
-    /**
-     * Called when the activity is first created.
-     */
+    AdapterHelper ah;
+    SimpleExpandableListAdapter adapter;
+    ImageView image;
+    /** Called when the activity is first created. */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_activity);
 
-        // заполняем коллекцию групп из массива с названиями групп
-        groupData = new ArrayList<Map<String, String>>();
-        for (String group : groups) {
-            // заполняем список аттрибутов для каждой группы
-            m = new HashMap<String, String>();
-            m.put("groupName", group); // имя компании
-            groupData.add(m);
-        }
+        // создаем адаптер
+        ah = new AdapterHelper(this);
+        adapter = ah.getAdapter();
 
-        // список аттрибутов групп для чтения
-        String groupFrom[] = new String[]{"groupName"};
-        // список ID view-элементов, в которые будет помещены аттрибуты групп
-        int groupTo[] = new int[]{android.R.id.text1};
-
-
-        // создаем коллекцию для коллекций элементов
-        childData = new ArrayList<ArrayList<Map<String, String>>>();
-
-        // создаем коллекцию элементов для первой группы
-        childDataItem = new ArrayList<Map<String, String>>();
-        // заполняем список аттрибутов для каждого элемента
-        for (String phone : phonesHTC) {
-            m = new HashMap<String, String>();
-            m.put("phoneName", phone); // название телефона
-            childDataItem.add(m);
-        }
-        // добавляем в коллекцию коллекций
-        childData.add(childDataItem);
-
-        // создаем коллекцию элементов для второй группы
-        childDataItem = new ArrayList<Map<String, String>>();
-        for (String phone : phonesSams) {
-            m = new HashMap<String, String>();
-            m.put("phoneName", phone);
-            childDataItem.add(m);
-        }
-        childData.add(childDataItem);
-
-        // создаем коллекцию элементов для третьей группы
-        childDataItem = new ArrayList<Map<String, String>>();
-        for (String phone : phonesLG) {
-            m = new HashMap<String, String>();
-            m.put("phoneName", phone);
-            childDataItem.add(m);
-        }
-        childData.add(childDataItem);
-
-        // список аттрибутов элементов для чтения
-        String childFrom[] = new String[]{"phoneName"};
-        // список ID view-элементов, в которые будет помещены аттрибуты элементов
-        int childTo[] = new int[]{R.id.label};
-
-        SimpleExpandableListAdapter adapter = new SimpleExpandableListAdapter(
-                this,
-                groupData,
-                android.R.layout.simple_expandable_list_item_1,
-                groupFrom,
-                groupTo,
-                childData,
-                R.layout.cell_template,
-                childFrom,
-                childTo);
-
+        image = (ImageView) findViewById(R.id.iv);
         elvMain = (ExpandableListView) findViewById(R.id.elvMain);
-        elvMain.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        elvMain.setChoiceMode(ExpandableListView.CHOICE_MODE_MULTIPLE);
+        elvMain.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i2, long l) {
+                CheckedTextView view1 = (CheckedTextView) view;
+                view1.setChecked(true);
+                return false;
+            }
+        });
         elvMain.setAdapter(adapter);
+
     }
 
-    public void onClick(View arg0) {
-        // пишем в лог выделенные элементы
-        LinearLayout parent = (LinearLayout) arg0.getParent();
-        ExpandableListView parent1 = (ExpandableListView) parent.getParent();
-        for (int i = 0; i < parent1.getChildCount(); i++) {
-            if (parent1.getChildAt(i).equals(parent)) {
-                LinearLayout childAt = (LinearLayout) parent1.getChildAt(i);
-                String text = ((TextView) (childAt).findViewById(R.id.label)).getText().toString();
-                Object group = elvMain.getExpandableListAdapter().getGroup(i);
-                String groupName = ((HashMap<String, String>) group).get("groupName");
+    private Map<String, String> search(Map<String, String> map){
+        MyAsyncTask myAsyncTask = new MyAsyncTask();
+        Map<String,String> resultForIntent = new TreeMap<>();
+        myAsyncTask.execute(createURI(map));
+        try {
+            String response = myAsyncTask.get();
+            if(response==null) throw new ExecutionException(new NetworkErrorException("NetworkException"));
+            JSONObject jsonObject = new JSONArray(response).getJSONObject(0).getJSONObject("fields");
+            BasicUtil.putIfNotNull(resultForIntent, "name_rus", !jsonObject.isNull("name_rus") ? jsonObject.get("name_rus").toString() : null);
+            BasicUtil.putIfNotNull(resultForIntent, "name", !jsonObject.isNull("name") ? jsonObject.get("name").toString() : null);
 
-                Toast.makeText(this, groupName, Toast.LENGTH_LONG).show();
-                break;
+            if(resultForIntent.size()>0){
+                resultForIntent.put("Result","Success");
             }
+            return resultForIntent;
+        } catch (InterruptedException |ExecutionException | JSONException e) {
+            Log.d(BasicUtil.LOG_TAG, e.toString());
+            resultForIntent.clear();
+            resultForIntent.put("Result","Error");
         }
+        return resultForIntent;
+    }
+
+    private String createURI(Map<String,String> map){
+        String addr = "http://109.234.36.127:8000/dasha/getFilm/127%20hours";
+        return addr;
+    }
+
+    public void onClick(View view) {
+        image.setImageBitmap(NetworkUtil.getImage("http://ia.media-imdb.com/images/M/MV5BMTc2NjMzOTE3Ml5BMl5BanBnXkFtZTcwMDE0OTc5Mw@@._V1_SX300.jpg",this));
+//        if (view.getId() == R.id.search){
+//            Map<String, String> search = search(null);
+//            Intent intent = new Intent(this, ListFilmsActivity.class);
+//            for(Map.Entry<String, String> entry:search.entrySet()){
+//                intent.putExtra(entry.getKey(),entry.getValue());
+//            }
+//            startActivityForResult(intent, 1);
+//        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (data == null || !data.getStringExtra("result").equals("Success")) {return;}
+        Log.d(BasicUtil.LOG_TAG, "Show " + data.getStringExtra("film") + "film");
     }
 }

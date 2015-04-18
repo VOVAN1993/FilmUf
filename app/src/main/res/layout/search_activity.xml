@@ -9,4 +9,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </ExpandableListView>
+
+
+    <Button
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="@string/search_button"/>
+
+
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher" />
 </LinearLayout>
