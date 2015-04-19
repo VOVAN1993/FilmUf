@@ -3,12 +3,14 @@ package com.example.Start.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.Start.R;
+import com.example.Start.util.BasicUtil;
 import com.example.Start.util.asyncTasks.MyAsyncTask;
 
 import org.json.JSONArray;
@@ -40,7 +42,7 @@ public class MyActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-
+        Log.d(BasicUtil.LOG_TAG,"remove me");
         twRusName = (TextView) findViewById(R.id.twRusName);
         twEngName = (TextView) findViewById(R.id.twEngName);
         twYear = (TextView) findViewById(R.id.twYear);
