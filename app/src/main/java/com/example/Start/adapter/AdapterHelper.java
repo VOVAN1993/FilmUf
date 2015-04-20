@@ -51,7 +51,7 @@ public class AdapterHelper {
         for (String group : groups) {
             // заполняем список аттрибутов для каждой группы
             m = new HashMap<String, String>();
-            m.put(ATTR_GROUP_NAME, group); // имя компании
+            m.put(ATTR_GROUP_NAME, group); // имя категории
             groupData.add(m);
         }
 
@@ -67,9 +67,9 @@ public class AdapterHelper {
         // создаем коллекцию элементов для первой группы
         childDataItem = new ArrayList<Map<String, String>>();
         // заполняем список аттрибутов для каждого элемента
-        for (String phone : genres) {
+        for (String genre : genres) {
             m = new HashMap<String, String>();
-            m.put(ATTR_CHILD_NAME, phone); // название телефона
+            m.put(ATTR_CHILD_NAME, genre); // название жанра
             childDataItem.add(m);
         }
         // добавляем в коллекцию коллекций
@@ -77,9 +77,9 @@ public class AdapterHelper {
 
         // создаем коллекцию элементов для второй группы
         childDataItem = new ArrayList<Map<String, String>>();
-        for (String phone : countries) {
+        for (String country : countries) {
             m = new HashMap<String, String>();
-            m.put(ATTR_CHILD_NAME, phone);
+            m.put(ATTR_CHILD_NAME, country);
             childDataItem.add(m);
         }
         childData.add(childDataItem);

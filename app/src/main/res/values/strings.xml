@@ -2,4 +2,6 @@
 <resources>
     <string name="app_name">Start</string>
     <string name="search_button">Search</string>
+    <string name="demo_min_label">1920</string>
+    <string name="demo_max_label">2015</string>
 </resources>
