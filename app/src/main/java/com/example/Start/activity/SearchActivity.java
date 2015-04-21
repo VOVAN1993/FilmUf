@@ -6,15 +6,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckedTextView;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SimpleExpandableListAdapter;
 
 import com.example.Start.R;
 import com.example.Start.adapter.AdapterHelper;
 import com.example.Start.util.BasicUtil;
 import com.example.Start.util.NetworkUtil;
+import com.example.Start.util.RangeSeekBar;
 import com.example.Start.util.asyncTasks.MyAsyncTask;
 
 import org.json.JSONArray;
@@ -32,7 +35,6 @@ public class SearchActivity extends Activity {
     ExpandableListView elvMain;
     AdapterHelper ah;
     SimpleExpandableListAdapter adapter;
-    ImageView image;
     /** Called when the activity is first created. */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +44,7 @@ public class SearchActivity extends Activity {
         ah = new AdapterHelper(this);
         adapter = ah.getAdapter();
 
-        image = (ImageView) findViewById(R.id.iv);
+//        linearGroup
         elvMain = (ExpandableListView) findViewById(R.id.elvMain);
         elvMain.setChoiceMode(ExpandableListView.CHOICE_MODE_MULTIPLE);
         elvMain.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
@@ -67,7 +69,6 @@ public class SearchActivity extends Activity {
     }
 
     public void onClick(View view) {
-//        image.setImageBitmap(NetworkUtil.getImage("http://ia.media-imdb.com/images/M/MV5BMTc2NjMzOTE3Ml5BMl5BanBnXkFtZTcwMDE0OTc5Mw@@._V1_SX300.jpg",this));
         if (view.getId() == R.id.search){
             ArrayList<Map<String, String>> search = search(null);
             Intent intent = new Intent(this, ListFilmsActivity.class);
@@ -78,6 +79,12 @@ public class SearchActivity extends Activity {
                 intent.putExtra("Result", "Bad");
             }
             startActivityForResult(intent, 1);
+        }
+        if(view.getId() == R.id.tmp){
+            ViewGroup layout2 = ((ViewGroup) findViewById(R.id.linearGroupChild));
+            RangeSeekBar<Integer> bar = new RangeSeekBar<Integer>(this);
+            layout2.addView(bar,0);
+            Log.d(BasicUtil.LOG_TAG, " asdasdasd!!!!");
         }
     }
 
