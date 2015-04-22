@@ -9,11 +9,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></ExpandableListView>
 
+    <!--this layout for range seek bar-->
     <RelativeLayout
         android:id="@+id/tmp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onClick">
+        >
 
         <LinearLayout
             android:id="@+id/linearGroup"
@@ -22,17 +23,25 @@
 
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/arr" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hello man!" />
+            <LinearLayout
+                android:id="@+id/imgPlusTV"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/listPreferredItemHeight"
+                android:onClick="onClick"
+                android:orientation="horizontal">
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/arr" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hello man!" />
+
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -42,6 +51,7 @@
             android:layout_below="@id/linearGroup"
             android:orientation="horizontal" />
     </RelativeLayout>
+
 
     <Button
         android:id="@+id/search"

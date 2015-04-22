@@ -35,6 +35,8 @@ public class SearchActivity extends Activity {
     ExpandableListView elvMain;
     AdapterHelper ah;
     SimpleExpandableListAdapter adapter;
+    private int minValueRangeBar, maxValueRangeBar;
+    private RangeSeekBar<Integer> bar;
     /** Called when the activity is first created. */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,11 +82,29 @@ public class SearchActivity extends Activity {
             }
             startActivityForResult(intent, 1);
         }
-        if(view.getId() == R.id.tmp){
+        if(view.getId() == R.id.imgPlusTV){
             ViewGroup layout2 = ((ViewGroup) findViewById(R.id.linearGroupChild));
-            RangeSeekBar<Integer> bar = new RangeSeekBar<Integer>(this);
-            layout2.addView(bar,0);
-            Log.d(BasicUtil.LOG_TAG, " asdasdasd!!!!");
+            if (layout2.findViewById(R.id.twYear) != null ){
+                layout2.removeAllViews();
+                Log.d(BasicUtil.LOG_TAG, "Remove bar");
+            }else {
+                bar = getRangeBar();
+                layout2.addView(bar, 0);
+                Log.d(BasicUtil.LOG_TAG, "Add bar");
+            }
+        }
+    }
+
+    private RangeSeekBar<Integer> getRangeBar(){
+        if(bar!=null){
+            return bar;
+        }else {
+            bar = new RangeSeekBar<Integer>(this);
+            bar.setId(R.id.twYear);
+            bar.setRangeValues(1920, 2015);
+            bar.setSelectedMinValue(1990);
+            bar.setSelectedMaxValue(2010);
+            return bar;
         }
     }
 
