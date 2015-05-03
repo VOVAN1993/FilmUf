@@ -1,7 +1,6 @@
 package com.example.Start.activity;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,7 +18,7 @@ import org.json.JSONObject;
 
 import java.util.concurrent.ExecutionException;
 
-public class MyActivity extends Activity {
+public class FilmPageActivity extends Activity {
     /**
      * Called when the activity is first created.
      */
@@ -41,7 +40,7 @@ public class MyActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.film_page_activity);
         Log.d(BasicUtil.LOG_TAG,"remove me");
         twRusName = (TextView) findViewById(R.id.twRusName);
         twEngName = (TextView) findViewById(R.id.twEngName);

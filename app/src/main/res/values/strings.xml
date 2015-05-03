@@ -4,4 +4,12 @@
     <string name="search_button">Search</string>
     <string name="demo_min_label">1920</string>
     <string name="demo_max_label">2015</string>
+
+    <string name="search_hint">Find film</string>
+    <string name="more_search">Расширенный поиск</string>
+
+    <color name="white">#FFFFFF</color>
+    <color name="material_blue_grey_800">#ff37474f</color>
+    <color name="star_color">#ffffe061</color>
+
 </resources>

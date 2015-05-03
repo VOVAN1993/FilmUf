@@ -68,7 +68,7 @@ public class ListFilmsActivity extends Activity {
 //    @Override
 //    public void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.main);
+//        setContentView(R.layout.film_page_activity);
 //
 //        twRusName = (TextView) findViewById(R.id.twRusName);
 //        twEngName = (TextView) findViewById(R.id.twEngName);

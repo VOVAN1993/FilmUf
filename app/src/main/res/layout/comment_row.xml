@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="50dp"
+    android:paddingTop="50dp"
+    android:layout_margin="20dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/cPoster"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:maxWidth="150dp"
+            android:src="@drawable/blank_wanted_poster" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toRightOf="@id/cPoster"
+            android:layout_marginLeft="10dp">
+
+            <TextView
+                android:id="@+id/twRusName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="127 часов"
+                android:textSize="@dimen/font_size" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/twRusName">
+
+                <TextView
+                    android:id="@+id/twEngName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="127 Hours"
+                    android:textSize="@dimen/font_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="("/>
+
+                <TextView
+                    android:id="@+id/twYear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2007"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text=")"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:background="#000000" />
+
+            <TextView
+                android:id="@+id/twTitleRus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Неудержимый скалолаз и любитель спрятанных в каньонах пещер в очередной раз в одиночестве едет в горы и оказывается в смертельной ловушке. 127 часов без еды, без питья и практически без надежды выжить. Тут-то и проявляется сила характера…"/>
+
+        </LinearLayout>
+
+        </RelativeLayout>
+
+    <View
+        android:id="@+id/line2"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
+        android:background="#000000"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/cAvatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:maxHeight="100dp"
+            android:maxWidth="100dp"
+            android:src="@drawable/blank_wanted_poster"
+            android:layout_alignParentLeft="true"/>
+
+        <LinearLayout
+            android:id="@+id/cAbout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toRightOf="@id/cAvatar"
+            android:layout_marginLeft="10dp">
+
+            <TextView
+                android:id="@+id/cUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Movie_Shark"/>
+
+            <TextView
+                android:id="@+id/cTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15:32"/>
+
+            <TextView
+                android:id="@+id/cDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10 марта 2015"/>
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:id="@+id/cDislikeNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/cAvatar"
+            android:layout_alignParentRight="true" />
+
+        <ImageView
+            android:id="@+id/cDislike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toLeftOf="@id/cDislikeNum"
+            android:clickable="true"
+            android:src="@drawable/bookmark48"
+            android:tint="#000000" />
+
+        <TextView
+            android:id="@+id/cLikeNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toLeftOf="@id/cDislike" />
+
+        <ImageView
+            android:id="@+id/cLike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toLeftOf="@id/cLikeNum"
+            android:clickable="true"
+            android:src="@drawable/bookmark48"
+            android:tint="#000000" />
+
+        <TextView
+            android:id="@+id/cCommentNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toLeftOf="@id/cLike" />
+
+        <ImageView
+            android:id="@+id/cComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toLeftOf="@id/cCommentNum"
+            android:clickable="true"
+            android:src="@drawable/bookmark48"
+            android:tint="#000000" />
+
+        </RelativeLayout>
+
+
+
+
+</LinearLayout>

@@ -22,3 +22,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
     }
 }
+dependencies {
+    compile 'com.google.android.gms:play-services:4.2.42'
+    compile 'com.android.support:appcompat-v7:19.+'
+}

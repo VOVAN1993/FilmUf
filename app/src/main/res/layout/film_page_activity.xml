@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--android:background="@android:color/background_light">-->
+
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="30dp"
@@ -32,8 +37,8 @@
             android:layout_alignParentRight="true"
             android:layout_marginLeft="10dp"
             android:clickable="true"
-            android:src="@drawable/bookmark48"
-            android:tint="#ffffff"/>
+            android:src="@drawable/ic_bookmark"
+            android:tint="#505050"/>
 
         <ImageView
             android:id="@+id/fHeart"
@@ -41,8 +46,8 @@
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/fBookmark"
             android:clickable="true"
-            android:src="@drawable/favorite22"
-            android:tint="#ffffff"/>
+            android:src="@drawable/ic_favorites"
+            android:tint="#505050"/>
 
     </RelativeLayout>
 
@@ -118,7 +123,7 @@
         android:layout_height="2dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
-        android:background="#ffffff" />
+        android:background="#000000" />
 
     <TextView
         android:id="@+id/twTitleRus"
@@ -130,7 +135,7 @@
         android:layout_height="2dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
-        android:background="#ffffffff" />
+        android:background="#000000" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -186,3 +191,4 @@
 
 
 </LinearLayout>
+</FrameLayout>
