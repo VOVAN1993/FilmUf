@@ -3,13 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="50dp"
-    android:paddingTop="50dp"
-    android:layout_margin="20dp">
+    android:layout_marginBottom="50dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
         <ImageView
             android:id="@+id/cPoster"
@@ -64,7 +63,7 @@
 
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="2dp"
+                android:layout_height="1dp"
                 android:layout_marginBottom="15dp"
                 android:layout_marginTop="15dp"
                 android:background="#000000" />
@@ -82,7 +81,7 @@
     <View
         android:id="@+id/line2"
         android:layout_width="fill_parent"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:layout_marginBottom="15dp"
         android:layout_marginTop="15dp"
         android:background="#000000"
@@ -99,7 +98,7 @@
             android:adjustViewBounds="true"
             android:maxHeight="100dp"
             android:maxWidth="100dp"
-            android:src="@drawable/blank_wanted_poster"
+            android:src="@drawable/av2"
             android:layout_alignParentLeft="true"/>
 
         <LinearLayout
@@ -130,73 +129,76 @@
 
         </LinearLayout>
 
-
-
-        <TextView
-            android:id="@+id/cDislikeNum"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/cAbout"
             android:layout_alignBottom="@id/cAvatar"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentRight="true">
 
-        <ImageView
-            android:id="@+id/cDislike"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxHeight="40dp"
-            android:maxWidth="40dp"
-            android:adjustViewBounds="true"
-            android:layout_marginTop="12dp"
-            android:layout_marginLeft="10dp"
-            android:layout_toLeftOf="@id/cDislikeNum"
-            android:clickable="true"
-            android:src="@drawable/ic_dislike"
-            android:tint="#000000" />
+            <TextView
+                android:id="@+id/cDislikeNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"/>
 
-        <TextView
-            android:id="@+id/cLikeNum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_toLeftOf="@id/cDislike" />
+            <ImageView
+                android:id="@+id/cDislike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxHeight="40dp"
+                android:maxWidth="40dp"
+                android:adjustViewBounds="true"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toLeftOf="@id/cDislikeNum"
+                android:clickable="true"
+                android:src="@drawable/ic_dislike"
+                android:tint="#000000" />
 
-        <ImageView
-            android:id="@+id/cLike"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxHeight="40dp"
-            android:maxWidth="40dp"
-            android:adjustViewBounds="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toLeftOf="@id/cLikeNum"
-            android:clickable="true"
-            android:src="@drawable/ic_like"
-            android:tint="#000000" />
+            <TextView
+                android:id="@+id/cLikeNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toLeftOf="@id/cDislike" />
 
-        <TextView
-            android:id="@+id/cCommentNum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_toLeftOf="@id/cLike" />
+            <ImageView
+                android:id="@+id/cLike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxHeight="40dp"
+                android:maxWidth="40dp"
+                android:adjustViewBounds="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toLeftOf="@id/cLikeNum"
+                android:clickable="true"
+                android:src="@drawable/ic_like"
+                android:tint="#000000" />
 
-        <ImageView
-            android:id="@+id/cComment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxHeight="38dp"
-            android:maxWidth="38dp"
-            android:adjustViewBounds="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toLeftOf="@id/cCommentNum"
-            android:layout_alignBottom="@id/cLike"
-            android:clickable="true"
-            android:src="@drawable/ic_comment2"
-            android:tint="#000000" />
+            <TextView
+                android:id="@+id/cCommentNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toLeftOf="@id/cLike" />
+
+            <ImageView
+                android:id="@+id/cComment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxHeight="38dp"
+                android:maxWidth="38dp"
+                android:adjustViewBounds="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toLeftOf="@id/cCommentNum"
+                android:layout_alignBottom="@id/cLike"
+                android:clickable="true"
+                android:src="@drawable/ic_comment2"
+                android:tint="#000000" />
+
+            </RelativeLayout>
 
         </RelativeLayout>
-
-
-
 
 </LinearLayout>
