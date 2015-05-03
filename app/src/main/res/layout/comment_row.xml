@@ -145,10 +145,14 @@
             android:id="@+id/cDislike"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxHeight="40dp"
+            android:maxWidth="40dp"
+            android:adjustViewBounds="true"
+            android:layout_marginTop="12dp"
             android:layout_marginLeft="10dp"
             android:layout_toLeftOf="@id/cDislikeNum"
             android:clickable="true"
-            android:src="@drawable/bookmark48"
+            android:src="@drawable/ic_dislike"
             android:tint="#000000" />
 
         <TextView
@@ -162,10 +166,13 @@
             android:id="@+id/cLike"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxHeight="40dp"
+            android:maxWidth="40dp"
+            android:adjustViewBounds="true"
             android:layout_marginLeft="10dp"
             android:layout_toLeftOf="@id/cLikeNum"
             android:clickable="true"
-            android:src="@drawable/bookmark48"
+            android:src="@drawable/ic_like"
             android:tint="#000000" />
 
         <TextView
@@ -179,10 +186,14 @@
             android:id="@+id/cComment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxHeight="38dp"
+            android:maxWidth="38dp"
+            android:adjustViewBounds="true"
             android:layout_marginLeft="10dp"
             android:layout_toLeftOf="@id/cCommentNum"
+            android:layout_alignBottom="@id/cLike"
             android:clickable="true"
-            android:src="@drawable/bookmark48"
+            android:src="@drawable/ic_comment2"
             android:tint="#000000" />
 
         </RelativeLayout>
