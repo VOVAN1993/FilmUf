@@ -25,6 +25,8 @@ public class MyAsyncTask extends AsyncTask<String, Void, String> {
 
     protected void onPostExecute(String feed) {
         // TODO: check this.exception
+        //org.apache.http.conn.HttpHostConnectException: Connection to http://127.0.0.1:8000 refused
         // TODO: do something with the feed
     }
 }
+

@@ -30,7 +30,6 @@
                 android:id="@+id/twRusName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="127 часов"
                 android:textSize="@dimen/font_size" />
 
             <LinearLayout
@@ -43,7 +42,6 @@
                     android:id="@+id/twEngName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="127 Hours"
                     android:textSize="@dimen/font_size" />
 
                 <TextView
@@ -55,7 +53,7 @@
                     android:id="@+id/twYear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2007"/>
+                    />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -75,7 +73,7 @@
                 android:id="@+id/twTitleRus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Неудержимый скалолаз и любитель спрятанных в каньонах пещер в очередной раз в одиночестве едет в горы и оказывается в смертельной ловушке. 127 часов без еды, без питья и практически без надежды выжить. Тут-то и проявляется сила характера…"/>
+                />
 
         </LinearLayout>
 
@@ -116,19 +114,19 @@
                 android:id="@+id/cUserName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Movie_Shark"/>
+                />
 
             <TextView
                 android:id="@+id/cTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="15:32"/>
+               />
 
             <TextView
                 android:id="@+id/cDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="10 марта 2015"/>
+                />
 
         </LinearLayout>
 

@@ -25,7 +25,14 @@ public class Film {
     public  String genres;
     public  String imbdRating;
 
+    public int pk;
+
     public Film(String name) {
+        this.name = name;
+    }
+
+    public Film(int pk, String name) {
+        this.pk = pk;
         this.name = name;
     }
 

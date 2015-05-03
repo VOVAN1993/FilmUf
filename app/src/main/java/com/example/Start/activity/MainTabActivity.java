@@ -43,7 +43,7 @@ public class MainTabActivity extends TabActivity {
         spec.setIndicator("", res.getDrawable(R.drawable.house32));
         tabs.addTab(spec);
 
-        tabs.setCurrentTab(3);
+        tabs.setCurrentTab(0);
 
         setContentView(tabs);
     }

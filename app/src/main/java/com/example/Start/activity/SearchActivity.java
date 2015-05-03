@@ -17,11 +17,16 @@ import android.widget.TextView;
 import com.example.Start.R;
 import com.example.Start.adapter.AdapterHelper;
 import com.example.Start.util.BasicUtil;
+import com.example.Start.util.Comment;
 import com.example.Start.util.NetworkUtil;
 import com.example.Start.util.RangeSeekBar;
+import com.example.Start.util.User;
+import com.example.Start.util.request.Request;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class SearchActivity extends Activity {
 
@@ -60,7 +65,7 @@ public class SearchActivity extends Activity {
 
 //        linearGroup
         elvMain = (ExpandableListView) findViewById(R.id.elvMain);
-        elvMain.setChoiceMode(ExpandableListView.CHOICE_MODE_MULTIPLE);
+        elvMain.setChoiceMode(ExpandableListView.CHOICE_MODE_MULTIPLE_MODAL);
         elvMain.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i2, long l) {
