@@ -70,8 +70,8 @@
 
             <TextView
                 android:id="@+id/invisibleTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
                 android:visibility="invisible"/>
 
             <TextView
@@ -160,8 +160,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_toLeftOf="@id/cDislikeNum"
                 android:clickable="true"
-                android:src="@drawable/ic_dislike"
-                android:tint="#000000" />
+                android:src="@drawable/ic_dislike" />
 
             <TextView
                 android:id="@+id/cLikeNum"
@@ -181,8 +180,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_toLeftOf="@id/cLikeNum"
                 android:clickable="true"
-                android:src="@drawable/ic_like"
-                android:tint="#000000" />
+                android:src="@drawable/ic_like" />
 
             <TextView
                 android:id="@+id/cCommentNum"
