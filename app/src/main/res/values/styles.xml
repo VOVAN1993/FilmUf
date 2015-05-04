@@ -3,7 +3,10 @@
 
     <!-- Activity themes -->
 
-    <style name="Theme.Base" parent="android:Theme.Light" />
+    <style name="Theme.White" parent="android:Theme.Holo.Light.DarkActionBar">
 
+    <item name="android:windowBackground">@color/white</item>
+
+    </style>
 
 </resources>

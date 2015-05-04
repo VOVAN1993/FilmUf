@@ -20,8 +20,6 @@ public class CommentActivity extends Activity {
 
     public static String TAG = "myLog";
     private String name = "vova";
-//    public TextView textView;
-//    public int a1 = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,6 +32,7 @@ public class CommentActivity extends Activity {
         for(Comment c : commentsByFriends){
             data.add(c.toMap());
         }
+
 
         String[] from = {Comment.COMMENT_ATTRIBUTE_COMMENT, Comment.COMMENT_ATTRIBUTE_DATE,
                 Comment.COMMENT_ATTRIBUTE_FILM,Comment.COMMENT_ATTRIBUTE_USER};

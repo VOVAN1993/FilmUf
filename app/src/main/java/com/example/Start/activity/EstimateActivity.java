@@ -3,52 +3,45 @@ package com.example.Start.activity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.example.Start.R;
+import com.example.Start.util.Estimate;
+import com.example.Start.util.User;
+import com.example.Start.util.request.Request;
+
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Set;
 
 public class EstimateActivity extends Activity {
-//    public TextView textView;
     public static String TAG = "myLog";
+    private String name = "vova";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "A2: onCreate()");
-        setContentView(R.layout.estimate_row);
-//        textView = (TextView) findViewById(R.id.textView);
-//        textView.setText("A2 : oncreate");
+        setContentView(R.layout.estimate_activity);
+
+        Set<Estimate> estimatesByFriends = Request.getEstimatesByFriends(new User(name));
+        ArrayList<Map<String,String>> data = new ArrayList<>();
+
+        for(Estimate e: estimatesByFriends){
+            data.add(e.toMap());
+        }
+
+        String[] from = {Estimate.ESTIMATE_ATTRIBUTE_ESTIMATE, Estimate.ESTIMATE_ATTRIBUTE_FILM,
+                Estimate.ESTIMATE_ATTRIBUTE_USER, Estimate.ESTIMATE_ATTRIBUTE_DATE};
+
+        int[] to = {R.id.esUserEstimate, R.id.esRusName, R.id.esUserName, R.id.esDate};
+
+        SimpleAdapter adapter = new SimpleAdapter(this, data, R.layout.estimate_row, from, to);
+        ListView lv = ((ListView) findViewById(R.id.lvSimple));
+        lv.setAdapter(adapter);
+
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d(TAG, "A2: onStart()");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-//        textView.setText("A2 onRESUME");
-        Log.d(TAG, "A2: onResume()");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d(TAG, "A2: onPause()");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d(TAG, "A2: onStop()");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d(TAG, "A2: onDestroy()");
-    }
 }

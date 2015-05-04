@@ -201,8 +201,7 @@
                 android:layout_toLeftOf="@id/cCommentNum"
                 android:layout_alignBottom="@id/cLike"
                 android:clickable="true"
-                android:src="@drawable/ic_comment2"
-                android:tint="#000000" />
+                android:src="@drawable/ic_comment2"/>
 
             </RelativeLayout>
 

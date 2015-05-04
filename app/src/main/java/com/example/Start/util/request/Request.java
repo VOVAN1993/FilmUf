@@ -2,6 +2,7 @@ package com.example.Start.util.request;
 
 
 import com.example.Start.util.Comment;
+import com.example.Start.util.Estimate;
 import com.example.Start.util.Film;
 import com.example.Start.util.User;
 import com.example.Start.util.asyncTasks.MyAsyncTask;
@@ -49,5 +50,46 @@ public class Request {
         }
 
         return ret;
+    }
+
+    public static Set<Estimate> getEstimatesByFriends(User user){
+        SortedSet<Estimate> ret = new TreeSet<Estimate>(new Comparator() {
+            @Override
+            public int compare(Object o, Object o2) {
+                return ((Estimate) o).date.after(((Estimate) o2).date) ? 1 : -1;
+            }
+        });
+        String str = "http://109.234.36.127:8000/dasha/getAllEstimatesByFriends?user=" + user.name;
+        MyAsyncTask myAsyncTask = new MyAsyncTask();
+        myAsyncTask.execute(str);
+        try {
+            String response = myAsyncTask.get();
+            JSONArray jsonArray = new JSONArray(response);
+
+
+
+
+
+
+
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONArray item = jsonArray.getJSONArray(i);
+                for (int j = 0; j < item.length(); j++) {
+                    JSONObject obj = item.getJSONObject(j);
+                    Estimate c = new Estimate(obj.getString("estimate"),
+                            new User(obj.getString("users")),
+                            new Film(obj.getInt("film_id"), obj.getString("film")),
+                            new Date(obj.getLong("timestamp")));
+                    ret.add(c);
+                }
+            }
+        } catch (InterruptedException |ExecutionException| JSONException e) {
+            //TODO:?????? handle exceptions
+            e.printStackTrace();
+        }
+
+        return ret;
+
     }
 }
