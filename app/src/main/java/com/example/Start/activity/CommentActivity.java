@@ -88,13 +88,13 @@ public class CommentActivity extends Activity {
 
     private void updateLikeNum(int diff, LinearLayout view){
         TextView tvLike = (TextView) view.findViewById(R.id.cLikeNum);
-        int i = Integer.parseInt(tvLike.getText().toString());
+        int i = tvLike.getText().toString().isEmpty() ? 0 : Integer.parseInt(tvLike.getText().toString());
         tvLike.setText(new Integer(i+diff).toString());
     }
 
     private void updateDisLikeNum(int diff, LinearLayout view){
         TextView tvLike = (TextView) view.findViewById(R.id.cDislikeNum);
-        int i = Integer.parseInt(tvLike.getText().toString());
+        int i = tvLike.getText().toString().isEmpty() ? 0 : Integer.parseInt(tvLike.getText().toString());
         tvLike.setText(new Integer(i+diff).toString());
     }
 

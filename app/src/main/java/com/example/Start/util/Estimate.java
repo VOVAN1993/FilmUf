@@ -1,5 +1,6 @@
 package com.example.Start.util;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
@@ -14,6 +15,7 @@ public class Estimate {
     public static String ESTIMATE_ATTRIBUTE_ESTIMATE = "estimateEstimate";
     public static String ESTIMATE_ATTRIBUTE_USER = "estimateUser";
     public static String ESTIMATE_ATTRIBUTE_DATE = "estimateDate";
+    private static SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
 
     public Estimate(String estimate, User user, Film film, Date date) {
         this.estimate = estimate;
@@ -27,7 +29,7 @@ public class Estimate {
         map.put(ESTIMATE_ATTRIBUTE_FILM,film.name);
         map.put(ESTIMATE_ATTRIBUTE_ESTIMATE,estimate);
         map.put(ESTIMATE_ATTRIBUTE_USER,user.name);
-        map.put(ESTIMATE_ATTRIBUTE_DATE,date.toString());
+        map.put(ESTIMATE_ATTRIBUTE_DATE,dateFormat.format(date));
 
         return map;
     }
