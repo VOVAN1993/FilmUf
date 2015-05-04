@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:layout_margin="20dp"
     android:paddingBottom="50dp"
-    android:paddingTop="50dp">
+    android:paddingTop="10dp">
 
     <ImageView
         android:id="@+id/esPoster"
@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@id/cPoster"
+        android:layout_toRightOf="@id/esPoster"
         android:orientation="vertical">
 
         <TextView
@@ -77,10 +77,10 @@
         <View
             android:id="@+id/line"
             android:layout_width="fill_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:layout_marginBottom="15dp"
             android:layout_marginTop="15dp"
-            android:background="#000000" />
+            android:background="@color/grey1"  />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -91,8 +91,8 @@
                 android:id="@+id/esUserEstimate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="8"
-                android:textSize="60sp" />
+                android:textSize="60sp"
+                android:layout_marginRight="10dp"/>
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -101,16 +101,18 @@
                 android:maxHeight="64dp"
                 android:maxWidth="64dp"
                 android:src="@drawable/star"
-                android:tint="@color/star_color" />
+                android:tint="@color/star_color"
+                android:layout_marginRight="10dp"/>
 
             <ImageView
                 android:id="@+id/esAvatar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:maxHeight="100dp"
-                android:maxWidth="100dp"
-                android:src="@drawable/blank_wanted_poster" />
+                android:maxHeight="70dp"
+                android:maxWidth="70dp"
+                android:src="@drawable/av2"
+                android:layout_marginRight="10dp"/>
 
             <LinearLayout
                 android:id="@+id/esAbout"

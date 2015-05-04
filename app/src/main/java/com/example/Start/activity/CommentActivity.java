@@ -43,8 +43,7 @@ public class CommentActivity extends Activity {
                 Comment.COMMENT_ATTRIBUTE_FILM,Comment.COMMENT_ATTRIBUTE_USER, Comment.COMMENT_ATTRIBUTE_PK,
                 Comment.COMMENT_ATTRIBUTE_LIKES,Comment.COMMENT_ATTRIBUTE_DISLIKES};
 
-        int[] to = {R.id.twTitleRus,R.id.cDate, R.id.twEngName, R.id.cUserName, R.id.invisibleTV,
-                    R.id.cLikeNum, R.id.cDislikeNum};
+        int[] to = {R.id.cTitleRus,R.id.cDate, R.id.cEngName, R.id.cUserName};
 
         CommentAdapter adapter = new CommentAdapter(Request.getAllLikeComment(new User("vova")), Request.getAllDislikeComment(new User("vova")),
                 this, data,R.layout.comment_row,from,to);
