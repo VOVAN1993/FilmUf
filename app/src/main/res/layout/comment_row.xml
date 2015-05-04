@@ -6,6 +6,7 @@
     android:layout_marginBottom="50dp">
 
     <RelativeLayout
+        android:id="@+id/cCommentInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
@@ -19,6 +20,7 @@
             android:src="@drawable/blank_wanted_poster" />
 
         <LinearLayout
+            android:id="@+id/cAboutComment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -94,6 +96,7 @@
         />
 
     <RelativeLayout
+        android:id="@+id/cUserInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -140,14 +143,15 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/cAbout"
             android:layout_alignBottom="@id/cAvatar"
-            android:layout_alignParentRight="true">
+            android:layout_alignParentRight="true"
+            android:id="@+id/vova">
 
             <TextView
                 android:id="@+id/cDislikeNum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="00"/>
+                />
 
             <ImageView
                 android:id="@+id/cDislike"
@@ -160,7 +164,9 @@
                 android:layout_marginLeft="10dp"
                 android:layout_toLeftOf="@id/cDislikeNum"
                 android:clickable="true"
-                android:src="@drawable/ic_dislike" />
+                android:src="@drawable/ic_dislike"
+                android:onClick="onClick"
+                />
 
             <TextView
                 android:id="@+id/cLikeNum"
@@ -168,7 +174,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_toLeftOf="@id/cDislike"
-                android:text="00"/>
+                />
 
             <ImageView
                 android:id="@+id/cLike"
@@ -180,6 +186,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_toLeftOf="@id/cLikeNum"
                 android:clickable="true"
+                android:onClick="onClick"
                 android:src="@drawable/ic_like" />
 
             <TextView
