@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="20dp"
-    android:paddingBottom="50dp"
     android:paddingTop="10dp">
 
     <ImageView
@@ -25,7 +24,6 @@
             android:id="@+id/esRusName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="127 часов"
             android:textSize="@dimen/font_size" />
 
         <LinearLayout
@@ -37,7 +35,6 @@
                 android:id="@+id/esEngName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="127 Hours"
                 android:textSize="@dimen/font_size" />
 
             <TextView
@@ -48,8 +45,7 @@
             <TextView
                 android:id="@+id/esYear"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2007" />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -70,8 +66,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="8,09" />
+                android:layout_height="match_parent"/>
         </LinearLayout>
 
         <View
@@ -124,20 +119,17 @@
                 <TextView
                     android:id="@+id/esUserName"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Movie_Shark" />
+                    android:layout_height="wrap_content"/>
 
                 <TextView
                     android:id="@+id/esTime"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="15:32" />
+                    android:layout_height="wrap_content"/>
 
                 <TextView
                     android:id="@+id/esDate"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="10 марта 2015" />
+                    android:layout_height="wrap_content"/>
 
             </LinearLayout>
 
