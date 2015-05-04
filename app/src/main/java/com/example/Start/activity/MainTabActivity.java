@@ -34,7 +34,7 @@ public class MainTabActivity extends TabActivity {
         tabs.addTab(spec);
 
         spec = tabs.newTabSpec("tag3");
-        spec.setContent(new Intent().setClass(this, SearchActivity.class));
+        spec.setContent(new Intent().setClass(this, ExpActivity.class));
         spec.setIndicator("", res.getDrawable(R.drawable.glass32));
         tabs.addTab(spec);
 
@@ -43,7 +43,7 @@ public class MainTabActivity extends TabActivity {
         spec.setIndicator("", res.getDrawable(R.drawable.house32));
         tabs.addTab(spec);
 
-        tabs.setCurrentTab(0);
+        tabs.setCurrentTab(2);
 
         setContentView(tabs);
     }

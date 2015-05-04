@@ -17,6 +17,7 @@
             android:singleLine="false"
             android:text="tetur"
             android:id="@+id/tw"
+            android:textColor="@color/grey1"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_weight="1" />
 

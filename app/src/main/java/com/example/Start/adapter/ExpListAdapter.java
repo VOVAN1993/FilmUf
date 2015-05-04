@@ -2,6 +2,7 @@ package com.example.Start.adapter;
 
 import android.content.Context;
 import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +16,15 @@ import com.example.Start.R;
 import com.example.Start.util.BasicUtil;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 public class ExpListAdapter extends BaseExpandableListAdapter {
 
-    private Map<Integer, Boolean> states = new TreeMap<>();
+    public Map<Integer, Boolean> states = new TreeMap<>();
+    public Map<String,Map<Integer,String>> result = new TreeMap<>();
+    public Map<Integer, String> mygroup = new TreeMap<>();
 
     private Integer generateKey(int x, int y) {
         return new Integer(10000 * x + y);
@@ -28,10 +32,12 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
 
     private ArrayList<ArrayList<String>> mGroups;
     private Context mContext;
+    private List<String> nameGroups;
 
-    public ExpListAdapter(Context context, ArrayList<ArrayList<String>> groups) {
+    public ExpListAdapter(Context context, ArrayList<ArrayList<String>> groups, List<String> nameGroups) {
         mContext = context;
         mGroups = groups;
+        this.nameGroups = nameGroups;
     }
 
     @Override
@@ -74,8 +80,8 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
                              ViewGroup parent) {
 
 //        if (convertView == null) {
-            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(android.R.layout.simple_expandable_list_item_1, null);
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        convertView = inflater.inflate(android.R.layout.simple_expandable_list_item_1, null);
 //        }
 
         if (isExpanded) {
@@ -96,8 +102,12 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
         }
 
         TextView textGroup = (TextView) convertView.findViewById(android.R.id.text1);
-        textGroup.setText("Group " + Integer.toString(groupPosition));
-
+        String id = nameGroups.get(groupPosition);
+        textGroup.setText(id);
+        if (!result.containsKey(id)){
+            mygroup.put(groupPosition, id);
+            result.put(id, new TreeMap<Integer, String>());
+        }
         return convertView;
 
     }
@@ -119,6 +129,7 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
             cb.setChecked(true);
         }
         tw.setText(mGroups.get(groupPosition).get(childPosition));
+        result.get(mygroup.get(groupPosition)).put(childPosition, mGroups.get(groupPosition).get(childPosition));
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -127,6 +138,7 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
                 CheckBox viewById = (CheckBox) view.findViewById(R.id.cb);
                 if(!viewById.isChecked()) {
                     viewById.setChecked(true);
+
                     Log.d(BasicUtil.LOG_TAG, "set group = " + groupPosition + "||||  child = " + childPosition);
                     states.put(generateKey(groupPosition, childPosition), true);
                 } else{
