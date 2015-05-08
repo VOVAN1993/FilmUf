@@ -6,13 +6,12 @@
     android:orientation="vertical"
     android:paddingBottom="50dp"
     android:paddingTop="50dp"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp">
+    >
     <ListView
         android:id="@+id/lvSimple"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="50dp">
+        android:divider="@color/grey1"
+        android:dividerHeight="1dp">
     </ListView>
 </LinearLayout>

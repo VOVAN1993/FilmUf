@@ -2,11 +2,13 @@ package com.example.Start.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -39,9 +41,13 @@ public class ExpActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main1);
 
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        int width = metrics.widthPixels;
+
         // Находим наш list
          listView = (ExpandableListView) findViewById(R.id.elvMain);
-
+        listView.setIndicatorBoundsRelative(width - GetPixelFromDips(100), width - GetPixelFromDips(40));
         //Создаем набор данных для адаптера
         ArrayList<ArrayList<String>> groups = new ArrayList<ArrayList<String>>();
         ArrayList<String> children1 = new ArrayList<String>(Arrays.asList(genres));
@@ -52,6 +58,13 @@ public class ExpActivity extends Activity {
         adapter = new ExpListAdapter(getApplicationContext(), groups,Arrays.asList(mygroups));
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         listView.setAdapter(adapter);
+    }
+
+    public int GetPixelFromDips(float pixels) {
+        // Get the screen's density scale
+        final float scale = getResources().getDisplayMetrics().density;
+        // Convert the dps to pixels, based on density scale
+        return (int) (pixels * scale + 0.5f);
     }
 
     public void onClick(View view){
@@ -81,10 +94,13 @@ public class ExpActivity extends Activity {
                 break;
             case R.id.imgPlusTV:
                 ViewGroup layout2 = ((ViewGroup) findViewById(R.id.linearGroupChild));
+                ImageView ivRangeArr = ((ImageView) findViewById(R.id.ivRangeParent));
                 if (layout2.findViewById(R.id.twYear) != null) {
                     layout2.removeAllViews();
+                    ivRangeArr.setImageResource(R.drawable.arr_down64);
                     Log.d(BasicUtil.LOG_TAG, "Remove bar");
                 } else {
+                    ivRangeArr.setImageResource(R.drawable.arr_up64);
                     bar = getRangeBar();
                     layout2.addView(bar, 0);
                     Log.d(BasicUtil.LOG_TAG, "Add bar");

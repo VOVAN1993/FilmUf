@@ -81,8 +81,9 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
 
 //        if (convertView == null) {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        convertView = inflater.inflate(android.R.layout.simple_expandable_list_item_1, null);
+        convertView = inflater.inflate(R.layout.my_parent_check, null);
 //        }
+
 
         if (isExpanded) {
 //            Log.d(BasicUtil.LOG_TAG, "isExpanded " + groupPosition);
