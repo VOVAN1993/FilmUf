@@ -1,6 +1,8 @@
 package com.example.Start.activity;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -19,6 +21,8 @@ import android.widget.TextView;
 import com.example.Start.R;
 import com.example.Start.adapter.ExpListAdapter;
 import com.example.Start.util.BasicUtil;
+import com.example.Start.util.Comment;
+import com.example.Start.util.NetworkUtil;
 import com.example.Start.util.NetworkUtil;
 import com.example.Start.util.RangeSeekBar;
 
@@ -43,6 +47,7 @@ public class ExpActivity extends Activity {
     String[] genres = new String[]{"Комедия", "Триллер", "Боевик", "Драма"};
     String[] countries = new String[]{"Россия", "США", "Япония"};
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,10 +92,6 @@ public class ExpActivity extends Activity {
         return (int) (pixels * scale + 0.5f);
     }
 
-    private ArrayList<Map<String, String>> search(Map<String, String> map) {
-        return NetworkUtil.requestToMyServer("http://109.234.36.127:8000/dasha/getFilmByCountry/USA");
-    }
-
     private String createURI(Map<String, String> map) {
         String addr = "http://109.234.36.127:8000/dasha/getFilm/127%20hours";
         return addr;
@@ -119,7 +120,10 @@ public class ExpActivity extends Activity {
                         ans.get(group).add(ap);
                     }
                 }
-                System.out.println();
+                ListFilmsActivity.map.clear();
+                ArrayList<Map<String, String>> search = search(null);
+                ListFilmsActivity.map.put("map", search);
+                MainTabActivity.tabs.setCurrentTab(4);
                 break;
             case R.id.imgPlusTV:
                 ViewGroup layout2 = ((ViewGroup) findViewById(R.id.linearGroupChild));
@@ -136,6 +140,10 @@ public class ExpActivity extends Activity {
                 }
                 break;
         }
+    }
+
+    private ArrayList<Map<String, String>> search(Map<String, String> map) {
+        return NetworkUtil.requestToMyServer("http://109.234.36.127:8000/dasha/getFilmByCountry/USA");
     }
 
     private RangeSeekBar<Integer> getRangeBar() {

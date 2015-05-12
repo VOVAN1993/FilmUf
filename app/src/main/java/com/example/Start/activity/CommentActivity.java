@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.Start.R;
 import com.example.Start.adapter.CommentAdapter;
+import com.example.Start.util.BasicUtil;
 import com.example.Start.util.Comment;
 import com.example.Start.util.User;
 import com.example.Start.util.request.Request;
@@ -20,11 +21,13 @@ import com.example.Start.util.request.Request;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 public class CommentActivity extends Activity {
 
-    public static String TAG = "myLog";
     private String name = "vova";
+
+    public static Map<String, Object> map = new TreeMap<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,46 @@ public class CommentActivity extends Activity {
                 this, data,R.layout.comment_row,from,to);
         ListView lv = ((ListView) findViewById(R.id.lvSimple));
         lv.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(BasicUtil.LOG_TAG,"CommentActivity onStart");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(BasicUtil.LOG_TAG,"CommentActivity onReStart");
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(BasicUtil.LOG_TAG,"CommentActivity onResume");
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(BasicUtil.LOG_TAG,"CommentActivity onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(BasicUtil.LOG_TAG,"CommentActivity onStop");
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(BasicUtil.LOG_TAG,"CommentActivity onDestroy");
+
     }
 
     public void onClick(View view) {

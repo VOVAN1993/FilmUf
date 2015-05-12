@@ -25,6 +25,7 @@ public class ListFilmsActivity extends Activity {
     public static final String KEY_DURATION = "duration";
     public static final String KEY_THUMB_URL = "thumb_url";
 
+    public static Map<String,Object> map = new TreeMap<>();
     ListView list;
     LazyAdapter adapter;
 
@@ -35,17 +36,17 @@ public class ListFilmsActivity extends Activity {
 
         Intent intent = getIntent();
         //if null -> not found + exception
-        ArrayList<Map<String, String>> extra = new ArrayList<>();
-        if(intent.getStringExtra("Result").equals("Success")) {
-             extra = (ArrayList<Map<String, String>>)intent.getSerializableExtra("map");
-            System.out.println("asd");
-
-        }else{
-            Log.d(BasicUtil.LOG_TAG, "Finish ListFilmsActivity with bad code");
-            intent.putExtra("result", "Bad");
-            setResult(RESULT_CANCELED);
-            finish();
-        }
+        ArrayList<Map<String, String>> extra = (ArrayList<Map<String, String>>) map.get("map");
+//        if(intent.getStringExtra("Result").equals("Success")) {
+//             extra = (ArrayList<Map<String, String>>)intent.getSerializableExtra("map");
+//            System.out.println("asd");
+//
+//        }else{
+//            Log.d(BasicUtil.LOG_TAG, "Finish ListFilmsActivity with bad code");
+//            intent.putExtra("result", "Bad");
+//            setResult(RESULT_CANCELED);
+//            finish();
+//        }
 //
         list = (ListView) findViewById(R.id.list);
 
@@ -65,39 +66,26 @@ public class ListFilmsActivity extends Activity {
         });
     }
 
+
 //    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.film_page_activity);
+//    protected void onResume() {
+//        super.onResume();
+//        ArrayList<Map<String, String>> extra = (ArrayList<Map<String, String>>) map.get("map");
+//        list = (ListView) findViewById(R.id.list);
 //
-//        twRusName = (TextView) findViewById(R.id.twRusName);
-//        twEngName = (TextView) findViewById(R.id.twEngName);
+//        // Getting adapter by passing xml data ArrayList
+//        adapter = new LazyAdapter(this, extra);
+//        list.setAdapter(adapter);
 //
-//        Intent intent = getIntent();
-//        //if null -> not found + exception
-//        if(intent.getStringExtra("Result").equals("Success")) {
-//            twRusName.setText(intent.getStringExtra("name_rus"));
-//            twEngName.setText(intent.getStringExtra("name"));
-//        }else{
-//            Log.d(BasicUtil.LOG_TAG, "Finish ListFilmsActivity with bad code");
-//            intent.putExtra("result", "Bad");
-//            setResult(RESULT_CANCELED);
-//            finish();
-//        }
 //
-//        Button button = (Button) findViewById(R.id.button);
-//        button.setOnClickListener(new Button.OnClickListener() {
+//        // Click event for single list row
+//        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //
 //            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent();
-//                intent.putExtra("result", "Success");
-//                intent.putExtra("film", "127 hours");
-//                Log.d(BasicUtil.LOG_TAG, "Finish ListFilmsActivity with OK code");
-//                setResult(RESULT_OK, intent);
-//                finish();
+//            public void onItemClick(AdapterView<?> parent, View view,
+//                                    int position, long id) {
+//                Log.d("my", "click");
 //            }
 //        });
 //    }
-
 }

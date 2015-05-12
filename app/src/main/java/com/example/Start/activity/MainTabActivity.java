@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TabHost;
 
 import com.example.Start.R;
@@ -29,6 +30,7 @@ public class MainTabActivity extends TabActivity {
         tabs.addTab(spec);
 
         spec = tabs.newTabSpec("tag2");
+
         spec.setContent(new Intent().setClass(this, LoginActivity.class));
         spec.setIndicator("", res.getDrawable(R.drawable.star32));
         tabs.addTab(spec);
@@ -42,6 +44,12 @@ public class MainTabActivity extends TabActivity {
         spec.setContent(new Intent().setClass(this, FilmPageActivity.class));
         spec.setIndicator("", res.getDrawable(R.drawable.house32));
         tabs.addTab(spec);
+
+        spec = tabs.newTabSpec("tag5");
+        spec.setContent(new Intent().setClass(this, ListFilmsActivity.class));
+        spec.setIndicator("", res.getDrawable(R.drawable.house32));
+        tabs.addTab(spec);
+        tabs.getTabWidget().getChildAt(4).setVisibility(View.GONE);
 
         tabs.setCurrentTab(2);
 
