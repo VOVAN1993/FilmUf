@@ -77,7 +77,6 @@
             android:id="@+id/line"
             android:layout_width="fill_parent"
             android:layout_height="1px"
-            android:layout_marginBottom="15dp"
             android:layout_marginTop="15dp"
             android:background="@color/grey1"  />
 
@@ -90,9 +89,9 @@
                 android:id="@+id/esUserEstimate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="60sp"
-                android:layout_marginRight="10dp"
-                android:paddingBottom="10dp"/>
+                android:textSize="68sp"
+                android:typeface="serif"
+                android:layout_marginRight="10dp"/>
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -102,7 +101,8 @@
                 android:maxWidth="64dp"
                 android:src="@drawable/star"
                 android:tint="@color/star_color"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:baselineAlignBottom="true"/>
 
             <ImageView
                 android:id="@+id/esAvatar"
@@ -112,14 +112,16 @@
                 android:maxHeight="70dp"
                 android:maxWidth="70dp"
                 android:src="@drawable/av2"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="18dp"/>
 
             <LinearLayout
                 android:id="@+id/esAbout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginTop="18dp">
 
                 <TextView
                     android:id="@+id/esUserName"

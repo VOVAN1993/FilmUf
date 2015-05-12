@@ -1,11 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
-    android:layout_marginTop="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical">
+<LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="top"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/search_line"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:hint="@string/search_hint"
+            android:imeOptions="actionSearch"
+            android:inputType="text" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="@color/material_blue_grey_800">
+
+        <TextView
+            android:id="@+id/more_find"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/more_search"
+            android:textColor="@color/white"
+            android:textSize="30dp" />
+
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
 
     <ExpandableListView
         android:id="@+id/elvMain"
@@ -22,9 +61,7 @@
     <RelativeLayout
         android:id="@+id/tmp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="5dp"
-        android:paddingTop="10dp">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/linearGroup"
@@ -38,7 +75,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/listPreferredItemHeight"
                 android:onClick="onClick"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/background_rang"
+                android:paddingTop="10dp">
 
                 <TextView
                     android:id="@+id/tvRangeParent"
@@ -75,9 +114,9 @@
             android:layout_below="@id/linearGroup"
             android:orientation="horizontal" />
         <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/grey2"
             android:layout_above="@id/linearGroupChild"/>
     </RelativeLayout>
 
@@ -90,4 +129,5 @@
         android:text="@string/search_button" />
 
 
+</LinearLayout>
 </LinearLayout>

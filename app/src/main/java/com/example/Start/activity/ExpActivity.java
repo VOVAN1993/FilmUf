@@ -5,16 +5,21 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.SparseBooleanArray;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.Start.R;
 import com.example.Start.adapter.ExpListAdapter;
 import com.example.Start.util.BasicUtil;
+import com.example.Start.util.NetworkUtil;
 import com.example.Start.util.RangeSeekBar;
 
 import java.util.ArrayList;
@@ -28,6 +33,8 @@ public class ExpActivity extends Activity {
     private RangeSeekBar<Integer> bar;
     private ExpListAdapter adapter;
     private ExpandableListView listView;
+    EditText editText;
+
 
     // названия компаний (групп)
     String[] mygroups = new String[]{"Жанры", "Страна"};
@@ -40,6 +47,19 @@ public class ExpActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main1);
+
+        // обрабатываем ввод в строке поиска
+        editText = (EditText) findViewById(R.id.search_line);
+        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                boolean handled = false;
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    handled = true;
+                }
+                return handled;
+            }
+        });
 
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -65,6 +85,15 @@ public class ExpActivity extends Activity {
         final float scale = getResources().getDisplayMetrics().density;
         // Convert the dps to pixels, based on density scale
         return (int) (pixels * scale + 0.5f);
+    }
+
+    private ArrayList<Map<String, String>> search(Map<String, String> map) {
+        return NetworkUtil.requestToMyServer("http://109.234.36.127:8000/dasha/getFilmByCountry/USA");
+    }
+
+    private String createURI(Map<String, String> map) {
+        String addr = "http://109.234.36.127:8000/dasha/getFilm/127%20hours";
+        return addr;
     }
 
     public void onClick(View view){

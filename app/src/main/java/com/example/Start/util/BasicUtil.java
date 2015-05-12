@@ -51,6 +51,7 @@ public class BasicUtil {
                 film.poster = jsonObject.isNull("poster_link")?"N/A":jsonObject.getString("poster_link");
                 film.title = jsonObject.isNull("title")?"N/A":jsonObject.getString("title");
                 film.title_rus = jsonObject.isNull("title_rus")?"N/A":jsonObject.getString("title_rus");
+                film.year = jsonObject.isNull("year")?"N/A":jsonObject.getString("year");
                 result.add(film);
             }
 
