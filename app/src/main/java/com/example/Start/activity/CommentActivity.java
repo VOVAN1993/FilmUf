@@ -91,7 +91,7 @@ public class CommentActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.d(BasicUtil.LOG_TAG,"CommentActivity onDestroy");
+        Log.d(BasicUtil.LOG_TAG, "CommentActivity onDestroy");
 
     }
 
@@ -115,6 +115,14 @@ public class CommentActivity extends Activity {
                     LinearLayout parent = (LinearLayout) view.getParent().getParent().getParent();
                     dislike(parent);
                 }
+                break;
+            case R.id.cPoster:
+                FilmPageActivity.map.clear();
+
+                FilmPageActivity.map.put("name", Comment.COMMENT_ATTRIBUTE_FILM);
+//                Log.d(BasicUtil.LOG_TAG, engName.toString());
+
+                MainTabActivity.tabs.setCurrentTab(5);
                 break;
         }
     }

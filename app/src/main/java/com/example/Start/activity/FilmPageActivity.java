@@ -1,6 +1,7 @@
 package com.example.Start.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,12 +17,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.concurrent.ExecutionException;
 
 public class FilmPageActivity extends Activity {
     /**
      * Called when the activity is first created.
      */
+    public static Map<String,Object> map = new TreeMap<>();
+
     private TextView twRusName;
     private TextView twEngName;
     private TextView twYear;
@@ -41,6 +47,10 @@ public class FilmPageActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.film_page_activity);
+
+        Intent intent = getIntent();
+        final String extra = (String) map.get("name");
+
         Log.d(BasicUtil.LOG_TAG,"remove me");
         twRusName = (TextView) findViewById(R.id.twRusName);
         twEngName = (TextView) findViewById(R.id.twEngName);
@@ -60,7 +70,7 @@ public class FilmPageActivity extends Activity {
             @Override
             public void onClick(View v) {
                 MyAsyncTask myAsyncTask = new MyAsyncTask();
-                myAsyncTask.execute("http://109.234.36.127:8000/dasha/getFilm/127%20hours");
+                myAsyncTask.execute("http://109.234.36.127:8000/dasha/getFilm/...Pervaya%20lyubov");
                 try {
                     String response = myAsyncTask.get();
                     JSONObject jsonObject = new JSONArray(response).getJSONObject(0).getJSONObject("fields");
