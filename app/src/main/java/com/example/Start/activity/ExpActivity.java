@@ -6,7 +6,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.util.SparseBooleanArray;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,15 +13,12 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.Start.R;
 import com.example.Start.adapter.ExpListAdapter;
 import com.example.Start.util.BasicUtil;
-import com.example.Start.util.Comment;
-import com.example.Start.util.NetworkUtil;
 import com.example.Start.util.NetworkUtil;
 import com.example.Start.util.RangeSeekBar;
 
@@ -51,7 +47,7 @@ public class ExpActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main1);
+        setContentView(R.layout.exp_activity);
 
         // обрабатываем ввод в строке поиска
         editText = (EditText) findViewById(R.id.search_line);

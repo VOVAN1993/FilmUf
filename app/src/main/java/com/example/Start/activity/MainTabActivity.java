@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
@@ -41,8 +42,8 @@ public class MainTabActivity extends TabActivity {
 
         tabs = (TabHost) findViewById(android.R.id.tabhost);
 
-
         tabs.setup();
+        TabWidget widget = tabs.getTabWidget();
 
         TabHost.TabSpec spec = tabs.newTabSpec("tag1");
         spec.setContent(new Intent().setClass(this, RibbonTabActivity.class));
@@ -81,14 +82,20 @@ public class MainTabActivity extends TabActivity {
 
         setContentView(tabs);
 
-        TabWidget widget = tabs.getTabWidget();
         for(int i = 0; i < widget.getChildCount(); i++) {
-            View v = widget.getChildAt(i);
+            LinearLayout v = (LinearLayout) widget.getChildAt(i);
+            v.getLayoutParams().height = 80;
+//            getTabHost().getTabWidget().getChildAt(i).setMinimumHeight(60);
+
             Drawable drawable = getResources().getDrawable(R.drawable.tab_indicator_ab_example);
             drawable.setAlpha(110);
             v.setBackground(drawable);
 //            v.setBackgroundResource(R.drawable.tab_indicator_ab_example);
         }
+
+//        for (int i = 0; i < tabs.getTabWidget().getTabCount(); i++) {
+//            tabs.getTabWidget().getChildAt(i).getLayoutParams().height = 60;
+//        }
     }
 
 

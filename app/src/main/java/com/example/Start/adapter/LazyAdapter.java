@@ -71,7 +71,7 @@ public class LazyAdapter extends BaseAdapter {
             }
             thumb_image.setImageBitmap(bitmap);
         }else{
-            thumb_image.setImageResource(R.drawable.aaa);
+            thumb_image.setImageResource(R.drawable.blank_wanted_poster);
         }
 
         return vi;

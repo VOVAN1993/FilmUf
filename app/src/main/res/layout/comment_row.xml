@@ -201,28 +201,6 @@
                 android:onClick="onClick"
                 android:src="@drawable/ic_like" />
 
-            <TextView
-                android:id="@+id/cCommentNum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_toLeftOf="@id/cLike"
-                android:text="00"
-                android:textSize="20sp"/>
-
-            <ImageView
-                android:id="@+id/cComment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/cLike"
-                android:layout_marginLeft="10dp"
-                android:layout_toLeftOf="@id/cCommentNum"
-                android:adjustViewBounds="true"
-                android:clickable="true"
-                android:maxHeight="38dp"
-                android:maxWidth="38dp"
-                android:src="@drawable/ic_comment2" />
-
         </RelativeLayout>
 
     </RelativeLayout>
