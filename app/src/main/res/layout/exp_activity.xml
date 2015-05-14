@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-<LinearLayout
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -30,9 +32,9 @@
             android:id="@+id/more_find"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
             android:text="@string/more_search"
             android:textColor="@color/white"
             android:textSize="30dp" />
@@ -47,88 +49,86 @@
         android:layout_marginTop="15dp"
         android:orientation="vertical">
 
-    <ExpandableListView
-        android:id="@+id/elvMain"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:groupIndicator="@drawable/indicator_exp"></ExpandableListView>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/grey2"/>
-
-    <!--this layout for range seek bar-->
-    <RelativeLayout
-        android:id="@+id/tmp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:id="@+id/linearGroup"
-            android:layout_width="match_parent"
-            android:layout_height="?android:attr/listPreferredItemHeight"
-            android:orientation="horizontal">
-
-
-            <LinearLayout
-                android:id="@+id/imgPlusTV"
-                android:layout_width="match_parent"
-                android:layout_height="?android:attr/listPreferredItemHeight"
-                android:onClick="onClick"
-                android:orientation="horizontal"
-                android:background="@drawable/background_rang"
-                android:paddingTop="10dp">
-
-                <TextView
-                    android:id="@+id/tvRangeParent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Год"
-                    android:textAppearance="?android:attr/textAppearanceListItem"
-                    />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    />
-
-                <ImageView
-                    android:id="@+id/ivRangeParent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxWidth="10dp"
-                    android:maxHeight="10dp"
-                    android:src="@drawable/arr_down64"
-                    android:layout_gravity="right"/>
-
-            </LinearLayout>
-        </LinearLayout>
-
-
-
-        <LinearLayout
-            android:id="@+id/linearGroupChild"
+        <ExpandableListView
+            android:id="@+id/elvMain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/linearGroup"
-            android:orientation="horizontal" />
+            android:groupIndicator="@drawable/indicator_exp"></ExpandableListView>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:background="@color/grey2"
-            android:layout_above="@id/linearGroupChild"/>
-    </RelativeLayout>
+            android:background="@color/grey2" />
+
+        <!--this layout for range seek bar-->
+        <RelativeLayout
+            android:id="@+id/tmp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/linearGroup"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/listPreferredItemHeight"
+                android:orientation="horizontal">
 
 
-    <Button
-        android:id="@+id/search"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onClick"
-        android:text="@string/search_button" />
+                <LinearLayout
+                    android:id="@+id/imgPlusTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="?android:attr/listPreferredItemHeight"
+                    android:background="@drawable/background_rang"
+                    android:onClick="onClick"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tvRangeParent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Год"
+                        android:textAppearance="?android:attr/textAppearanceListItem" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:id="@+id/ivRangeParent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:maxHeight="10dp"
+                        android:maxWidth="10dp"
+                        android:src="@drawable/arr_down64" />
+
+                </LinearLayout>
+            </LinearLayout>
 
 
-</LinearLayout>
+            <LinearLayout
+                android:id="@+id/linearGroupChild"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linearGroup"
+                android:orientation="horizontal" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_above="@id/linearGroupChild"
+                android:background="@color/grey2" />
+        </RelativeLayout>
+
+
+        <Button
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="@string/search_button" />
+
+
+    </LinearLayout>
 </LinearLayout>
