@@ -1,11 +1,16 @@
 package com.example.Start.activity;
 
+import android.annotation.TargetApi;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TabHost;
+import android.widget.TabWidget;
 
 import com.example.Start.R;
 
@@ -15,6 +20,7 @@ import com.example.Start.R;
 public class RibbonTabActivity extends TabActivity {
     /** Called when the activity is first created. */
     public static TabHost tabs;
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +43,15 @@ public class RibbonTabActivity extends TabActivity {
         tabs.addTab(spec);
 
         tabs.setCurrentTab(0);
+
+        TabWidget widget = tabs.getTabWidget();
+        for(int i = 0; i < widget.getChildCount(); i++) {
+            View v = widget.getChildAt(i);
+            Drawable drawable = getResources().getDrawable(R.drawable.tab_indicator_ab_example);
+            drawable.setAlpha(110);
+            v.setBackground(drawable);
+//            v.setBackgroundResource(R.drawable.tab_indicator_ab_example);
+        }
     }
 
 

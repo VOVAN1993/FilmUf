@@ -15,5 +15,12 @@
 
     <color name="material_blue_grey_800">#ff37474f</color>
     <color name="star_color">#ffffe061</color>
+    <!-- A dark Holo shade of red -->
+    <color name="holo_red_dark">#ffcc0000</color>
+    <!-- A dark Holo shade of green -->
+    <color name="holo_green_dark">#ff669900</color>
+    <color name="keyguard_text_color_decline">#fe0a5a</color>
+    <color name="highlighted_text_holo_dark">#6633b5e5</color>
+    <color name="highlighted_text_holo_light">#6633b5e5</color>
 
 </resources>
