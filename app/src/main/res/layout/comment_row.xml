@@ -25,6 +25,13 @@
             android:clickable="true"
             android:onClick="onClick"/>
 
+        <TextView
+            android:id="@+id/invisiblePK"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:visibility="invisible"
+            />
+
         <LinearLayout
             android:id="@+id/cAboutComment"
             android:layout_width="match_parent"

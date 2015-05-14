@@ -1,6 +1,7 @@
 package com.example.Start.adapter;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewParent;
@@ -11,8 +12,10 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.example.Start.R;
+import com.example.Start.activity.MainTabActivity;
 import com.example.Start.util.BasicUtil;
 import com.example.Start.util.Comment;
+import com.example.Start.util.NetworkUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,11 +26,14 @@ public class CommentAdapter extends SimpleAdapter{
     private final ArrayList<Comment> likes;
     private final ArrayList<Comment> dislikes;
 
+    private Context context;
+
     public CommentAdapter(ArrayList<Comment> likes,ArrayList<Comment> dislikes, Context context,
                           List<? extends Map<String, ?>> data, int resource, String[] from, int[] to) {
         super(context, data, resource, from, to);
         this.likes = likes;
         this.dislikes = dislikes;
+        this.context = context;
     }
 
     @Override
@@ -72,5 +78,21 @@ public class CommentAdapter extends SimpleAdapter{
             if(c.pk.equals(pk))return true;
         }
         return false;
+    }
+
+    @Override
+    public void setViewImage(ImageView v, String value) {
+        super.setViewImage(v, value);
+        String[] split = value.split("end@");
+        if(split[1].equals("N/A")){
+            v.setImageDrawable(context.getResources().getDrawable(R.drawable.blank_wanted_poster));
+        } else{
+            v.setImageBitmap(NetworkUtil.getImage(split[1],split[0]));
+        }
+    }
+
+    @Override
+    public void setViewImage(ImageView v, int value) {
+        super.setViewImage(v, value);
     }
 }

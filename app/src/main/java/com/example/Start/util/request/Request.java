@@ -39,9 +39,11 @@ public class Request {
                 JSONArray item = jsonArray.getJSONArray(i);
                 for (int j = 0; j < item.length(); j++) {
                     JSONObject obj = item.getJSONObject(j);
+                    Film film = new Film(obj.getInt("film_id"), obj.getString("film"));
+                    film.poster = obj.getString("film_poster");
                     Comment c = new Comment(obj.getString("comment"),
                             new User(obj.getString("users")),
-                            new Film(obj.getInt("film_id"), obj.getString("film")),
+                            film,
 //                            new Integer(obj.getInt("year")).toString(),
                             "2012",
                             new Date(obj.getLong("timestamp")),
@@ -118,10 +120,11 @@ public class Request {
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject obj = jsonArray.getJSONObject(i);
-
+                Film film = new Film(obj.getInt("film_id"), obj.getString("film"));
+                film.poster = obj.getString("film_poster");
                 Comment c = new Comment(obj.getString("comment"),
                         new User(obj.getString("users")),
-                        new Film(obj.getInt("film_id"), obj.getString("film")),
+                        film,
 //                        new Integer(obj.getString("year")).toString(),
                         "2012",
                         new Date(obj.getLong("timestamp")),
@@ -153,9 +156,11 @@ public class Request {
                 JSONArray item = jsonArray.getJSONArray(i);
                 for (int j = 0; j < item.length(); j++) {
                     JSONObject obj = item.getJSONObject(j);
+                    Film film = new Film(obj.getInt("film_id"), obj.getString("film"));
+                    film.poster = obj.getString("film_poster");
                     Estimate c = new Estimate(obj.getString("value"),
                             new User(obj.getString("users")),
-                            new Film(obj.getInt("film_id"), obj.getString("film")),
+                            film,
                             new Date(obj.getLong("timestamp")));
                     ret.add(c);
                 }

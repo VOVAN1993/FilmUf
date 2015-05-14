@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewParent;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -35,19 +36,25 @@ public class CommentActivity extends Activity {
         setContentView(R.layout.comment_activity);
 
         Set<Comment> commentsByFriends = Request.getCommentsByFriends(new User(name));
-        ArrayList<Map<String,String>> data = new ArrayList<>();
+        ArrayList<Map<String,Object>> data = new ArrayList<>();
 
         for(Comment c : commentsByFriends){
-            data.add(c.toMap());
+            data.add(c.toMapWithImage());
         }
 
 
-        String[] from = {Comment.COMMENT_ATTRIBUTE_COMMENT, Comment.COMMENT_ATTRIBUTE_DATE,
-                Comment.COMMENT_ATTRIBUTE_FILM, Comment.COMMENT_ATTRIBUTE_YEAR, Comment.COMMENT_ATTRIBUTE_USER,
+        String[] from = {
+                Comment.COMMENT_ATTRIBUTE_FILM_POSTER,
+                Comment.COMMENT_ATTRIBUTE_COMMENT,
+                Comment.COMMENT_ATTRIBUTE_DATE,
+                Comment.COMMENT_ATTRIBUTE_FILM,
+                Comment.COMMENT_ATTRIBUTE_YEAR,
+                Comment.COMMENT_ATTRIBUTE_USER,
                 Comment.COMMENT_ATTRIBUTE_PK,
-                Comment.COMMENT_ATTRIBUTE_LIKES,Comment.COMMENT_ATTRIBUTE_DISLIKES};
+                Comment.COMMENT_ATTRIBUTE_LIKES,
+                Comment.COMMENT_ATTRIBUTE_DISLIKES};
 
-        int[] to = {R.id.cTitleRus,R.id.cDate, R.id.cEngName, R.id.cYear, R.id.cUserName};
+        int[] to = {R.id.cPoster, R.id.cTitleRus,R.id.cDate, R.id.cEngName, R.id.cYear, R.id.cUserName, R.id.invisiblePK};
 
         CommentAdapter adapter = new CommentAdapter(Request.getAllLikeComment(new User("vova")), Request.getAllDislikeComment(new User("vova")),
                 this, data,R.layout.comment_row,from,to);
@@ -119,6 +126,8 @@ public class CommentActivity extends Activity {
             case R.id.cPoster:
                 FilmPageActivity.map.clear();
 
+                RelativeLayout parent = ((RelativeLayout) view.getParent());
+                TextView tw = (TextView) parent.findViewById(R.id.invisiblePK);
                 FilmPageActivity.map.put("name", Comment.COMMENT_ATTRIBUTE_FILM);
 //                Log.d(BasicUtil.LOG_TAG, engName.toString());
 

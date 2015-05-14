@@ -8,6 +8,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.example.Start.R;
+import com.example.Start.adapter.EstimateAdapter;
 import com.example.Start.util.Estimate;
 import com.example.Start.util.User;
 import com.example.Start.util.request.Request;
@@ -26,18 +27,21 @@ public class EstimateActivity extends Activity {
         setContentView(R.layout.estimate_activity);
 
         Set<Estimate> estimatesByFriends = Request.getEstimatesByFriends(new User(name));
-        ArrayList<Map<String,String>> data = new ArrayList<>();
+        ArrayList<Map<String,Object>> data = new ArrayList<>();
 
         for(Estimate e: estimatesByFriends){
-            data.add(e.toMap());
+            data.add(e.toMapWithPoster());
         }
 
-        String[] from = {Estimate.ESTIMATE_ATTRIBUTE_ESTIMATE, Estimate.ESTIMATE_ATTRIBUTE_FILM,
-                Estimate.ESTIMATE_ATTRIBUTE_USER, Estimate.ESTIMATE_ATTRIBUTE_DATE};
+        String[] from = {Estimate.ESTIMATE_ATTRIBUTE_FILM_POSTER,
+                Estimate.ESTIMATE_ATTRIBUTE_ESTIMATE,
+                Estimate.ESTIMATE_ATTRIBUTE_FILM,
+                Estimate.ESTIMATE_ATTRIBUTE_USER,
+                Estimate.ESTIMATE_ATTRIBUTE_DATE};
 
-        int[] to = {R.id.esUserEstimate, R.id.esRusName, R.id.esUserName, R.id.esDate};
+        int[] to = {R.id.esPoster, R.id.esUserEstimate, R.id.esRusName, R.id.esUserName, R.id.esDate};
 
-        SimpleAdapter adapter = new SimpleAdapter(this, data, R.layout.estimate_row, from, to);
+        SimpleAdapter adapter = new EstimateAdapter(this, data, R.layout.estimate_row, from, to);
         ListView lv = ((ListView) findViewById(R.id.lvSimple));
         lv.setAdapter(adapter);
 

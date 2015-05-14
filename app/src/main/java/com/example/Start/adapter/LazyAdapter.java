@@ -65,7 +65,8 @@ public class LazyAdapter extends BaseAdapter {
         if(film.containsKey(Film.KEY_POSTER)){
             Bitmap bitmap = cache.get(film.get(Film.KEY_POSTER));
             if(bitmap==null){
-                bitmap = NetworkUtil.getImage(film.get(Film.KEY_POSTER),activity);
+                bitmap = NetworkUtil.getImage(film.get(Film.KEY_POSTER),activity,
+                        film.get(Film.KEY_PK));
                 cache.put(film.get(Film.KEY_POSTER),bitmap);
             }
             thumb_image.setImageBitmap(bitmap);

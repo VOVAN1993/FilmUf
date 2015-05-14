@@ -15,6 +15,7 @@ public class Film {
     public static String KEY_IMBDRATING = "imbdRating";
     public static String KEY_GENRES = "genres";
     public static String KEY_YEAR = "year";
+    public static String KEY_PK = "pk";
     public  String name;
     public  String name_rus;
     public  String directors;
@@ -26,15 +27,14 @@ public class Film {
     public  String genres;
     public  String imbdRating;
     public  String year;
-
-    public int pk;
+    public  String pk;
 
     public Film(String name) {
         this.name = name;
     }
 
     public Film(int pk, String name) {
-        this.pk = pk;
+        this.pk = new Integer(pk).toString();
         this.name = name;
     }
 
@@ -51,6 +51,7 @@ public class Film {
         BasicUtil.putIfNotNA(map, KEY_IMBDRATING, imbdRating);
         BasicUtil.putIfNotNA(map, KEY_GENRES, genres);
         BasicUtil.putIfNotNA(map, KEY_YEAR, year);
+        BasicUtil.putIfNotNA(map, KEY_PK, pk);
         return map;
     }
 }

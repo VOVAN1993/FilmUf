@@ -4,6 +4,9 @@ import android.annotation.TargetApi;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,16 +17,26 @@ import android.widget.TabWidget;
 import android.widget.TextView;
 
 import com.example.Start.R;
+import com.example.Start.db.DBHelper;
 
 public class MainTabActivity extends TabActivity {
     /** Called when the activity is first created. */
     public static TabHost tabs;
+    public static DBHelper dbHelper;
+
+    public static Bitmap emptyFilmPoster;
+    
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_tab_activity);
         Log.d("myLog", "MyTab : oncreate");
+        emptyFilmPoster = BitmapFactory.decodeResource(this.getResources(),
+                R.drawable.blank_wanted_poster);
+        dbHelper = new DBHelper(this);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+//        int clearCount = db.delete("tbl_image", null, null);
         Resources res = getResources();
 
         tabs = (TabHost) findViewById(android.R.id.tabhost);

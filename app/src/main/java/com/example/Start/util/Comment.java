@@ -1,8 +1,11 @@
 package com.example.Start.util;
 
+import com.example.Start.R;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
+import java.util.Objects;
 import java.util.TreeMap;
 
 public class Comment {
@@ -16,6 +19,7 @@ public class Comment {
     public String pk;
 
     public static String COMMENT_ATTRIBUTE_FILM = "commentFilm";
+    public static String COMMENT_ATTRIBUTE_FILM_POSTER = "commentFilmPoster";
     public static String COMMENT_ATTRIBUTE_YEAR = "commentFYear";
     public static String COMMENT_ATTRIBUTE_COMMENT = "commentComment";
     public static String COMMENT_ATTRIBUTE_USER = "commentUser";
@@ -40,8 +44,8 @@ public class Comment {
         this.dislikes=dislikes;
     }
 
-    public Map<String, String> toMap(){
-        TreeMap<String, String> map = new TreeMap<>();
+    public Map<String, Object> toMap(){
+        TreeMap<String, Object> map = new TreeMap<>();
         map.put(COMMENT_ATTRIBUTE_FILM,film.name);
         map.put(COMMENT_ATTRIBUTE_YEAR,year);
         map.put(COMMENT_ATTRIBUTE_COMMENT,comment);
@@ -50,6 +54,14 @@ public class Comment {
         map.put(COMMENT_ATTRIBUTE_DISLIKES, dislikes);
         map.put(COMMENT_ATTRIBUTE_LIKES, likes);
         map.put(COMMENT_ATTRIBUTE_DATE,dateFormat.format(date));
+
+        return map;
+    }
+
+    public Map<String, Object> toMapWithImage(){
+        Map<String, Object> map = toMap();
+        map.put(COMMENT_ATTRIBUTE_FILM_POSTER, film.pk + "end@" + film.poster);
+//        map.put(COMMENT_ATTRIBUTE_FILM_POSTER, NetworkUtil.getImage(film.poster, film.pk));
 
         return map;
     }

@@ -14,12 +14,13 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
 
     protected Bitmap doInBackground(String... urls) {
         try {
-            Log.d(BasicUtil.LOG_TAG,"Start download image");
+            Log.d(BasicUtil.LOG_TAG,"Start download image url = " + urls[0]);
             URL url = new URL(urls[0]);
             Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
             Log.d(BasicUtil.LOG_TAG, "End download image");
             return bmp;
         } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
     }
