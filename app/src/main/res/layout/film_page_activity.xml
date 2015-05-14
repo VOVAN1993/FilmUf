@@ -2,196 +2,194 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:layout_marginBottom="80dp"
-    >
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
-    <!--android:background="@android:color/background_light">-->
+    android:layout_marginBottom="60dp">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="20dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
+        <!--android:background="@android:color/background_light">-->
 
-        <RelativeLayout
-            android:id="@+id/fRL1"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/twRusName"
-                android:layout_width="fill_parent"
+            <RelativeLayout
+                android:id="@+id/fRL1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Hello World, MyActivity"
-                android:textSize="@dimen/font_size" />
+                android:gravity="center">
 
-            <TextView
-                android:id="@+id/twEngName"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/twRusName"
-                android:textSize="@dimen/font_size" />
+                <TextView
+                    android:id="@+id/twRusName"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Hello World, MyActivity"
+                    android:textSize="@dimen/font_size" />
 
-            <ImageView
-                android:id="@+id/fBookmark"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="10dp"
-                android:clickable="true"
-                android:src="@drawable/ic_bookmark"
-                android:tint="#505050"
-                />
+                <TextView
+                    android:id="@+id/twEngName"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/twRusName"
+                    android:textSize="@dimen/font_size" />
 
-            <ImageView
-                android:id="@+id/fHeart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/fBookmark"
-                android:clickable="true"
-                android:src="@drawable/ic_favorites"
-                android:tint="#505050" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/fRL2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/fPoster"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-
-                android:maxWidth="200dp"
-                android:src="@drawable/blank_wanted_poster" />
-
-            <LinearLayout
-                android:id="@+id/fLL1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_toRightOf="@id/fPoster"
-                android:orientation="vertical">
-
-                <RelativeLayout
+                <ImageView
+                    android:id="@+id/fBookmark"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="10dp"
+                    android:clickable="true"
+                    android:src="@drawable/ic_bookmark"
+                    android:tint="#505050" />
+
+                <ImageView
+                    android:id="@+id/fHeart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@id/fBookmark"
+                    android:clickable="true"
+                    android:src="@drawable/ic_favorites"
+                    android:tint="#505050" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/fRL2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/fPoster"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+
+                    android:maxWidth="200dp"
+                    android:src="@drawable/blank_wanted_poster" />
+
+                <LinearLayout
+                    android:id="@+id/fLL1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@id/fPoster"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/twYear"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:id="@+id/fPipe1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/twYear"
+                            android:text=" | " />
+
+                        <TextView
+                            android:id="@+id/twTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/fPipe1" />
+
+                    </RelativeLayout>
 
                     <TextView
-                        android:id="@+id/twYear"
+                        android:id="@+id/twCountry"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:id="@+id/fPipe1"
+                        android:id="@+id/twGenres"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/twYear"
-                        android:text=" | " />
+                        android:layout_height="wrap_content" />
 
-                    <TextView
-                        android:id="@+id/twTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/fPipe1" />
+                </LinearLayout>
+            </RelativeLayout>
 
-                </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/twCountry"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:id="@+id/twGenres"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+            <LinearLayout
+                android:id="@+id/fTagsLL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
             </LinearLayout>
-        </RelativeLayout>
 
-        <LinearLayout
-            android:id="@+id/fTagsLL"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/grey1" />
+
+            <TextView
+                android:id="@+id/twTitleRus"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/grey1" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/director"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Режиссер: " />
+
+                <TextView
+                    android:id="@+id/twDirector"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/director" />
+
+                <TextView
+                    android:id="@+id/actor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/twDirector"
+                    android:text="В главных ролях: " />
+
+                <TextView
+                    android:id="@+id/twActors"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/actor"
+                    android:layout_toRightOf="@id/actor" />
+
+            </RelativeLayout>
+
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/fLL1"
+                android:text="Button" />
+
+            <ImageView
+                android:id="@+id/appImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true" />
+
 
         </LinearLayout>
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="15dp"
-            android:background="@color/grey1" />
-
-        <TextView
-            android:id="@+id/twTitleRus"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="15dp"
-            android:background="@color/grey1" />
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/director"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Режиссер: " />
-
-            <TextView
-                android:id="@+id/twDirector"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/director" />
-
-            <TextView
-                android:id="@+id/actor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@id/twDirector"
-                android:text="В главных ролях: " />
-
-            <TextView
-                android:id="@+id/twActors"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@id/actor"
-                android:layout_toRightOf="@id/actor" />
-
-        </RelativeLayout>
-
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/fLL1"
-            android:text="Button" />
-
-        <ImageView
-            android:id="@+id/appImg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true" />
-
-
-    </LinearLayout>
-</FrameLayout>
-    </ScrollView>
+    </FrameLayout>
+</ScrollView>

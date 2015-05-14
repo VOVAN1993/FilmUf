@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.example.Start.R;
 import com.example.Start.db.DBHelper;
+import com.example.Start.util.BasicUtil;
 
 public class MainTabActivity extends TabActivity {
     /** Called when the activity is first created. */
@@ -84,7 +85,7 @@ public class MainTabActivity extends TabActivity {
 
         for(int i = 0; i < widget.getChildCount(); i++) {
             LinearLayout v = (LinearLayout) widget.getChildAt(i);
-            v.getLayoutParams().height = 80;
+            v.getLayoutParams().height = (int) BasicUtil.dipToPixels(this, 60);
 //            getTabHost().getTabWidget().getChildAt(i).setMinimumHeight(60);
 
             Drawable drawable = getResources().getDrawable(R.drawable.tab_indicator_ab_example);
