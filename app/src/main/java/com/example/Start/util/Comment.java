@@ -19,6 +19,7 @@ public class Comment {
     public String pk;
 
     public static String COMMENT_ATTRIBUTE_FILM = "commentFilm";
+    public static String COMMENT_ATTRIBUTE_FILM_PK = "commentFilmPK";
     public static String COMMENT_ATTRIBUTE_FILM_POSTER = "commentFilmPoster";
     public static String COMMENT_ATTRIBUTE_YEAR = "commentFYear";
     public static String COMMENT_ATTRIBUTE_COMMENT = "commentComment";
@@ -47,6 +48,7 @@ public class Comment {
     public Map<String, Object> toMap(){
         TreeMap<String, Object> map = new TreeMap<>();
         map.put(COMMENT_ATTRIBUTE_FILM,film.name);
+        map.put(COMMENT_ATTRIBUTE_FILM_PK,film.pk);
         map.put(COMMENT_ATTRIBUTE_YEAR,year);
         map.put(COMMENT_ATTRIBUTE_COMMENT,comment);
         map.put(COMMENT_ATTRIBUTE_USER,user.name);

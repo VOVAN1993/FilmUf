@@ -31,7 +31,6 @@ public class BasicUtil {
         ArrayList<Film> result = new ArrayList<>();
         try {
             String tmp = s;
-            String[] split = tmp.split(Pattern.quote("\"") + "fields"+ Pattern.quote("\"")+Pattern.quote(":"));
 
             String[] pks = tmp.split("pk");
             Film film = null;

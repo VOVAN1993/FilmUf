@@ -25,6 +25,24 @@ public class DBHelper extends SQLiteOpenHelper {
                 ");";
 
         db.execSQL(createQuery);
+
+        createQuery = "CREATE TABLE films1 (\n" +
+                "    _id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+                "    pk INTEGER,\n" +
+                "    name VARCHAR(500),\n" +
+                "    name_rus VARCHAR(500) DEFAULT NULL,\n" +
+                "    actors VARCHAR(500) DEFAULT NULL,\n" +
+                "    directors VARCHAR(500) DEFAULT NULL,\n" +
+                "    genres VARCHAR(500) DEFAULT NULL,\n" +
+                "    title VARCHAR(8000) DEFAULT NULL,\n" +
+                "    title_rus VARCHAR(8000) DEFAULT NULL,\n" +
+                "    time VARCHAR(15) DEFAULT NULL,\n" +
+                "    year VARCHAR(15) DEFAULT NULL,\n" +
+                "    imbdRating double DEFAULT NULL,\n" +
+                "    poster varchar(200) DEFAULT NULL\n" +
+                ");";
+
+        db.execSQL(createQuery);
     }
 
     @Override

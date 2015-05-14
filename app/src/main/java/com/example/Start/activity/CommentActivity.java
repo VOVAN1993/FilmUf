@@ -1,6 +1,10 @@
 package com.example.Start.activity;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -50,7 +54,7 @@ public class CommentActivity extends Activity {
                 Comment.COMMENT_ATTRIBUTE_FILM,
                 Comment.COMMENT_ATTRIBUTE_YEAR,
                 Comment.COMMENT_ATTRIBUTE_USER,
-                Comment.COMMENT_ATTRIBUTE_PK,
+                Comment.COMMENT_ATTRIBUTE_FILM_PK,
                 Comment.COMMENT_ATTRIBUTE_LIKES,
                 Comment.COMMENT_ATTRIBUTE_DISLIKES};
 
@@ -128,8 +132,10 @@ public class CommentActivity extends Activity {
 
                 RelativeLayout parent = ((RelativeLayout) view.getParent());
                 TextView tw = (TextView) parent.findViewById(R.id.invisiblePK);
-                FilmPageActivity.map.put("name", Comment.COMMENT_ATTRIBUTE_FILM);
-//                Log.d(BasicUtil.LOG_TAG, engName.toString());
+                String pk = tw.getText().toString();
+                FilmPageActivity.map.put("pk", pk);
+                Drawable drawable = ((ImageView) view).getDrawable();
+                FilmPageActivity.map.put("poster", drawable);
 
                 MainTabActivity.tabs.setCurrentTab(5);
                 break;
