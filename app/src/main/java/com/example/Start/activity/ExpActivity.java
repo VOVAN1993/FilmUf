@@ -154,4 +154,8 @@ public class ExpActivity extends Activity {
             return bar;
         }
     }
+
+    @Override
+    public void onBackPressed() {
+    }
 }

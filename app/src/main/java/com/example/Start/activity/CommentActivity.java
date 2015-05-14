@@ -52,13 +52,14 @@ public class CommentActivity extends Activity {
                 Comment.COMMENT_ATTRIBUTE_COMMENT,
                 Comment.COMMENT_ATTRIBUTE_DATE,
                 Comment.COMMENT_ATTRIBUTE_FILM,
+                Comment.COMMENT_ATTRIBUTE_FILM_RUS,
                 Comment.COMMENT_ATTRIBUTE_YEAR,
                 Comment.COMMENT_ATTRIBUTE_USER,
                 Comment.COMMENT_ATTRIBUTE_FILM_PK,
                 Comment.COMMENT_ATTRIBUTE_LIKES,
                 Comment.COMMENT_ATTRIBUTE_DISLIKES};
 
-        int[] to = {R.id.cPoster, R.id.cTitleRus,R.id.cDate, R.id.cEngName, R.id.cYear, R.id.cUserName, R.id.invisiblePK};
+        int[] to = {R.id.cPoster, R.id.cTitleRus,R.id.cDate, R.id.cEngName, R.id.cRusName, R.id.cYear, R.id.cUserName, R.id.invisiblePK};
 
         CommentAdapter adapter = new CommentAdapter(Request.getAllLikeComment(new User("vova")), Request.getAllDislikeComment(new User("vova")),
                 this, data,R.layout.comment_row,from,to);
@@ -69,7 +70,7 @@ public class CommentActivity extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d(BasicUtil.LOG_TAG,"CommentActivity onStart");
+        Log.d(BasicUtil.LOG_TAG, "CommentActivity onStart");
     }
 
     @Override
@@ -136,7 +137,7 @@ public class CommentActivity extends Activity {
                 FilmPageActivity.map.put("pk", pk);
                 Drawable drawable = ((ImageView) view).getDrawable();
                 FilmPageActivity.map.put("poster", drawable);
-
+                FilmPageActivity.previousTab=10;
                 MainTabActivity.tabs.setCurrentTab(5);
                 break;
         }
@@ -156,7 +157,7 @@ public class CommentActivity extends Activity {
     private void updateLikeNum(int diff, LinearLayout view){
         TextView tvLike = (TextView) view.findViewById(R.id.cLikeNum);
         int i = tvLike.getText().toString().isEmpty() ? 0 : Integer.parseInt(tvLike.getText().toString());
-        tvLike.setText(new Integer(i+diff).toString());
+        tvLike.setText(new Integer(i + diff).toString());
     }
 
     private void updateDisLikeNum(int diff, LinearLayout view){
@@ -175,5 +176,9 @@ public class CommentActivity extends Activity {
         ivDisLike.setSelected(true);
         TextView invisibleTV = ((TextView) view.findViewById(R.id.invisibleTV));
         Request.dislikeComment(invisibleTV.getText().toString(), new User(name));
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }

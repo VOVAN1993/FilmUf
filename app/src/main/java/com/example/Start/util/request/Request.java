@@ -41,6 +41,7 @@ public class Request {
                     JSONObject obj = item.getJSONObject(j);
                     Film film = new Film(obj.getInt("film_id"), obj.getString("film"));
                     film.poster = obj.getString("film_poster");
+                    film.name_rus = obj.getString("film_rus");
                     Comment c = new Comment(obj.getString("comment"),
                             new User(obj.getString("users")),
                             film,
@@ -122,6 +123,7 @@ public class Request {
                 JSONObject obj = jsonArray.getJSONObject(i);
                 Film film = new Film(obj.getInt("film_id"), obj.getString("film"));
                 film.poster = obj.getString("film_poster");
+                film.name_rus = obj.getString("film_rus");
                 Comment c = new Comment(obj.getString("comment"),
                         new User(obj.getString("users")),
                         film,

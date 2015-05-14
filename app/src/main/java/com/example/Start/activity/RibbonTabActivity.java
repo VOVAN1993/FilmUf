@@ -14,9 +14,7 @@ import android.widget.TabWidget;
 
 import com.example.Start.R;
 
-/**
- * Created by Даша on 23.04.2015.
- */
+
 public class RibbonTabActivity extends TabActivity {
     /** Called when the activity is first created. */
     public static TabHost tabs;

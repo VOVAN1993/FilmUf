@@ -27,7 +27,6 @@
 
     </LinearLayout>
 
-    <!-- Title Of Song-->
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
@@ -40,7 +39,6 @@
         android:typeface="sans"
         android:layout_marginRight="50dp"/>
 
-    <!-- Artist Name -->
     <TextView
         android:id="@+id/artist"
         android:layout_width="fill_parent"
@@ -48,11 +46,9 @@
         android:layout_below="@id/title"
         android:layout_marginTop="1dip"
         android:layout_toRightOf="@+id/thumbnail"
-        android:text="Just gona stand there and ..."
         android:textColor="#343434"
         android:textSize="10dip" />
 
-    <!-- Rightend Duration -->
     <TextView
         android:id="@+id/duration"
         android:layout_width="wrap_content"
@@ -66,7 +62,6 @@
         android:textSize="10dip"
         android:textStyle="bold" />
 
-    <!-- Rightend Arrow -->
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

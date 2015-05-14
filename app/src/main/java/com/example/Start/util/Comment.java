@@ -19,6 +19,7 @@ public class Comment {
     public String pk;
 
     public static String COMMENT_ATTRIBUTE_FILM = "commentFilm";
+    public static String COMMENT_ATTRIBUTE_FILM_RUS = "commentFilmRus";
     public static String COMMENT_ATTRIBUTE_FILM_PK = "commentFilmPK";
     public static String COMMENT_ATTRIBUTE_FILM_POSTER = "commentFilmPoster";
     public static String COMMENT_ATTRIBUTE_YEAR = "commentFYear";
@@ -29,8 +30,7 @@ public class Comment {
     public static String COMMENT_ATTRIBUTE_LIKES = "commentLikes";
     public static String COMMENT_ATTRIBUTE_DISLIKES = "commentDislikes";
 
-//    private static SimpleDateFormat dateFormat = new SimpleDateFormat("MM.dd HH:mm:ss");
-    private static SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+    private static SimpleDateFormat dateFormat = new SimpleDateFormat("MM.dd \nHH:mm");
 
 
     public Comment(String comment, User user, Film film, String year, Date date, String pk,
@@ -55,6 +55,7 @@ public class Comment {
         map.put(COMMENT_ATTRIBUTE_PK, pk);
         map.put(COMMENT_ATTRIBUTE_DISLIKES, dislikes);
         map.put(COMMENT_ATTRIBUTE_LIKES, likes);
+        map.put(COMMENT_ATTRIBUTE_FILM_RUS,film.name_rus);
         map.put(COMMENT_ATTRIBUTE_DATE,dateFormat.format(date));
 
         return map;
