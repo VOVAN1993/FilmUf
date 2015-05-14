@@ -120,7 +120,7 @@ public class NetworkUtil {
             SQLiteDatabase db = MainTabActivity.dbHelper.getWritableDatabase();
             String selection = "pk = ?";
             String[] selectionArgs = new String[]{pk};
-            Cursor c = db.query("films1", null, null, null, null, null,
+            Cursor c = db.query("films1", null, selection, selectionArgs, null, null,
                     null);
 
             if (c != null) {
