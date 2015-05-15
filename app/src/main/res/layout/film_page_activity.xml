@@ -134,7 +134,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_toRightOf="@id/fBigStar"
-                            android:text="РЕЙТИНГ" />
+                            android:text="0.0" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -151,8 +151,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="количествооценок" />
-
+                                android:id="@+id/fNumRating"
+                                android:text="0"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"

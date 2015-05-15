@@ -16,6 +16,9 @@ public class Film {
     public static String KEY_GENRES = "genres";
     public static String KEY_YEAR = "year";
     public static String KEY_PK = "pk";
+    public static String KEY_EST_NUM = "est_num";
+    public static String KEY_EST_MID = "est_mid";
+    public static String KEY_USER_RATING = "userRating";
     public  String name;
     public  String name_rus;
     public  String directors;
@@ -24,10 +27,13 @@ public class Film {
     public  String poster;
     public  String title;
     public  String title_rus;
+    public  String est_num;
+    public  String est_mid;
     public  String genres;
     public  String imbdRating;
     public  String year;
     public  String pk;
+    public  String myRating = "N/A";
 
     public Film(String name) {
         this.name = name;
@@ -52,6 +58,9 @@ public class Film {
         BasicUtil.putIfNotNA(map, KEY_GENRES, genres);
         BasicUtil.putIfNotNA(map, KEY_YEAR, year);
         BasicUtil.putIfNotNA(map, KEY_PK, pk);
+        BasicUtil.putIfNotNA(map, KEY_EST_MID, est_mid);
+        BasicUtil.putIfNotNA(map, KEY_EST_NUM, est_num);
+        BasicUtil.putIfNotNA(map, KEY_USER_RATING, myRating);
         return map;
     }
 }

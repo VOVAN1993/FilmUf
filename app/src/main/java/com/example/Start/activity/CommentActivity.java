@@ -30,8 +30,6 @@ import java.util.TreeMap;
 
 public class CommentActivity extends Activity {
 
-    private String name = "vova";
-
     public static Map<String, Object> map = new TreeMap<>();
 
     @Override
@@ -39,7 +37,7 @@ public class CommentActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.comment_activity);
 
-        Set<Comment> commentsByFriends = Request.getCommentsByFriends(new User(name));
+        Set<Comment> commentsByFriends = Request.getCommentsByFriends(new User(MainTabActivity.user));
         ArrayList<Map<String,Object>> data = new ArrayList<>();
 
         for(Comment c : commentsByFriends){
@@ -151,7 +149,7 @@ public class CommentActivity extends Activity {
         dislike.setSelected(false);
         ivLike.setSelected(true);
         TextView invisibleTV = ((TextView) view.findViewById(R.id.invisibleTV));
-        Request.likeComment(invisibleTV.getText().toString(), new User(name));
+        Request.likeComment(invisibleTV.getText().toString(), new User(MainTabActivity.user));
     }
 
     private void updateLikeNum(int diff, LinearLayout view){
@@ -175,7 +173,7 @@ public class CommentActivity extends Activity {
         like.setSelected(false);
         ivDisLike.setSelected(true);
         TextView invisibleTV = ((TextView) view.findViewById(R.id.invisibleTV));
-        Request.dislikeComment(invisibleTV.getText().toString(), new User(name));
+        Request.dislikeComment(invisibleTV.getText().toString(), new User(MainTabActivity.user));
     }
 
     @Override
