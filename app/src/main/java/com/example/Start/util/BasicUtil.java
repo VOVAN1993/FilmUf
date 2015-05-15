@@ -33,35 +33,31 @@ public class BasicUtil {
     public static ArrayList<Film> jsonToFilm(String s){
         ArrayList<Film> result = new ArrayList<>();
         try {
-            String tmp = s;
-
-            String[] pks = tmp.split("pk");
             Film film = null;
-            for(int i=1;i<pks.length;i++){
-                String str = pks[i];
-                str = "{\"" + "pk" + str;
-                if(str.lastIndexOf("][{") >0){
-                    str = str.substring(0,str.lastIndexOf("][{"));
-                }
-                JSONObject jsonObject = new JSONObject(str);
+            JSONArray array = new JSONArray(s);
+            for(int i=0;i<array.length();i++){
+                String string = array.getString(i);
+
+                JSONObject jsonObject = new JSONObject(string);
                 int pk = jsonObject.getInt("pk");
 
-                JSONObject filmJson = jsonObject.getJSONObject("fields");
-                if(filmJson.isNull("name")){
+                if(jsonObject.isNull("name")){
                     throw new IllegalArgumentException("Name in json is null");
                 }
 
-                film = new Film(pk, filmJson.getString("name"));
-                film.name_rus = filmJson.isNull("name_rus")?"N/A":filmJson.getString("name_rus");
-                film.actors = filmJson.isNull("actors")?"N/A":arrayToString(filmJson.getJSONArray("actors"));
-                film.directors = filmJson.isNull("directors")?"N/A":arrayToString(filmJson.getJSONArray("directors"));
-                film.genres = filmJson.isNull("genres")?"N/A":arrayToString(filmJson.getJSONArray("genres"));
-                film.delay = filmJson.isNull("time")?"N/A":filmJson.getString("time");
-                film.imbdRating = filmJson.isNull("imbdRating")?"N/A":filmJson.getString("imbdRating");
-                film.poster = filmJson.isNull("poster_link")?"N/A":filmJson.getString("poster_link");
-                film.title = filmJson.isNull("title")?"N/A":filmJson.getString("title");
-                film.title_rus = filmJson.isNull("title_rus")?"N/A":filmJson.getString("title_rus");
-                film.year = filmJson.isNull("year")?"N/A":filmJson.getString("year");
+                film = new Film(pk, jsonObject.getString("name"));
+                film.name_rus = jsonObject.isNull("name_rus")?"N/A":jsonObject.getString("name_rus");
+                film.actors = jsonObject.isNull("actors")?"N/A":arrayToString(jsonObject.getJSONArray("actors"));
+                film.directors = jsonObject.isNull("directors")?"N/A":arrayToString(jsonObject.getJSONArray("directors"));
+                film.genres = jsonObject.isNull("genres")?"N/A":arrayToString(jsonObject.getJSONArray("genres"));
+                film.delay = jsonObject.isNull("time")?"N/A":jsonObject.getString("time");
+                film.imbdRating = jsonObject.isNull("imbdRating")?"N/A":jsonObject.getString("imbdRating");
+                film.poster = jsonObject.isNull("poster_link")?"N/A":jsonObject.getString("poster_link");
+                film.title = jsonObject.isNull("title")?"N/A":jsonObject.getString("title");
+                film.title_rus = jsonObject.isNull("title_rus")?"N/A":jsonObject.getString("title_rus");
+                film.year = jsonObject.isNull("year")?"N/A":jsonObject.getString("year");
+                film.est_mid = jsonObject.isNull("est_mid")?"N/A":jsonObject.getString("est_mid");
+                film.est_num = jsonObject.isNull("est_num")?"N/A":jsonObject.getString("est_num");
 
                 result.add(film);
 

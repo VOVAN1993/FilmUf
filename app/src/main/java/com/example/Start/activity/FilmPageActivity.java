@@ -45,10 +45,10 @@ public class FilmPageActivity extends Activity {
     private TextView twActors;
     private TextView twTitleRus;
     private ImageView fPoster;
+    private TextView fRating;
+    private TextView fNumRating;
+    private int currentStars = 0;
 
-    private void print(String s) {
-        twEngName.setText(s);
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,16 +68,48 @@ public class FilmPageActivity extends Activity {
 
         fStars = (RatingBar) findViewById(R.id.fStars);
         fStars.setStepSize((int) 1.0);
-        fStars.setMax(6);
+        fStars.setMax(10);
 
+        fStars.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+                int rating = (int) v;
+                if(rating == currentStars) return;
+                updateRatingForFilm((int) v);
+                NetworkUtil.setRating(rating, MainTabActivity.user, (String) map.get("pk"));
+                System.out.println();
+            }
+        });
 
+        fRating = (TextView) findViewById(R.id.fRating);
+        fNumRating = (TextView) findViewById(R.id.fNumRating);
+    }
+
+    private void updateRatingForFilm(int value) {
+        int i = Integer.parseInt(fNumRating.getText().toString());
+        double mid = Double.parseDouble(fRating.getText().toString());
+        int sum = (int) (i * mid);
+        int rating = currentStars;
+        sum = sum - rating + value;
+        i = rating == 0 ? i : (i - 1);
+        float newRating = sum / (i+1);
+        currentStars = value;
+        fNumRating.setText(new Integer(i+1).toString());
+        fRating.setText(new Float(newRating).toString());
+    }
+
+    private String cleanName(String name) {
+        return name.split("/")[0];
     }
 
     private void fillInfo(Map<String, String> filmByPk) {
 
-        if (filmByPk.containsKey("name_rus")) twRusName.setText(filmByPk.get("name_rus"));
-        if (filmByPk.containsKey("name")) twEngName.setText(filmByPk.get("name"));
+        if (filmByPk.containsKey("name_rus"))
+            twRusName.setText(cleanName(filmByPk.get("name_rus")));
+        if (filmByPk.containsKey("name")) twEngName.setText(cleanName(filmByPk.get("name")));
         if (filmByPk.containsKey("year")) twYear.setText(filmByPk.get("year"));
+        if (filmByPk.containsKey("est_num")) fNumRating.setText(filmByPk.get("est_num"));
+        if (filmByPk.containsKey("est_mid")) fRating.setText(filmByPk.get("est_mid"));
         if (filmByPk.containsKey("delay")) twTime.setText(filmByPk.get("delay"));
         if (filmByPk.containsKey("country")) twCountry.setText(filmByPk.get("country"));
         if (filmByPk.containsKey("genres")) twGenres.setText(filmByPk.get("genres"));
@@ -112,7 +144,11 @@ public class FilmPageActivity extends Activity {
 
     private void fillActivity() {
         final String pk = (String) map.get("pk");
-        Map<String, String> filmByPk = NetworkUtil.getFilmByPk(pk);
+        Map<String, String> filmByPk = NetworkUtil.getFilmByPk(pk, MainTabActivity.user);
+        if (filmByPk.containsKey("userRating")) {
+            fStars.setRating(Float.parseFloat(filmByPk.get("userRating")));
+            currentStars = Integer.parseInt(filmByPk.get("userRating"));
+        }
         fillInfo(filmByPk);
 
         Bitmap poster1 = NetworkUtil.getImage(filmByPk.get("poster"), pk);
