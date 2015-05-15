@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.Start.R;
@@ -32,6 +33,7 @@ public class FilmPageActivity extends Activity {
      */
     public static Map<String, Object> map = new TreeMap<>();
     public static int previousTab = -1;
+    private RatingBar fStars;
 
     private TextView twRusName;
     private TextView twEngName;
@@ -53,7 +55,6 @@ public class FilmPageActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.film_page_activity);
 
-
         twRusName = (TextView) findViewById(R.id.twRusName);
         twEngName = (TextView) findViewById(R.id.twEngName);
         twYear = (TextView) findViewById(R.id.twYear);
@@ -64,6 +65,12 @@ public class FilmPageActivity extends Activity {
         twActors = (TextView) findViewById(R.id.twActors);
         twTitleRus = (TextView) findViewById(R.id.twTitleRus);
         fPoster = (ImageView) findViewById(R.id.fPoster);
+
+        fStars = (RatingBar) findViewById(R.id.fStars);
+        fStars.setStepSize((int) 1.0);
+        fStars.setMax(6);
+
+
     }
 
     private void fillInfo(Map<String, String> filmByPk) {
