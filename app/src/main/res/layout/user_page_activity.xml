@@ -2,17 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:layout_margin="20dp"
+    android:orientation="vertical"
     android:paddingBottom="50dp">
 
     <TextView
         android:id="@+id/uName"
-        android:text="fakeName"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/font_size"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp"
+        android:text="fakeName"
+        android:textSize="@dimen/font_size" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -28,9 +28,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_marginLeft="30dp"
             android:layout_toRightOf="@id/uAvatar"
-            android:layout_marginLeft="30dp">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -39,9 +39,9 @@
 
                 <TextView
                     android:id="@+id/uAge"
-                    android:text="fakeAge"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="fakeAge" />
 
                 <TextView
                     android:id="@+id/uPipe1"
@@ -51,17 +51,17 @@
 
                 <TextView
                     android:id="@+id/uSex"
-                    android:text="fakeSex"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="fakeSex" />
 
             </LinearLayout>
 
             <TextView
                 android:id="@+id/uCity"
-                android:text="fakeCity"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="fakeCity" />
 
             <View
                 android:id="@+id/line"
@@ -78,32 +78,31 @@
 
                 <TextView
                     android:id="@+id/uSubText1"
-                    android:text="Подписчики: "
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="Подписчики: " />
 
                 <TextView
                     android:id="@+id/uSubscribers"
-                    android:text="fake10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/uSubText1"/>
+                    android:layout_toRightOf="@id/uSubText1"
+                    android:text="fake10" />
 
                 <ImageView
                     android:id="@+id/uPlus1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxHeight="40dp"
-                    android:maxWidth="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:adjustViewBounds="true"
                     android:clickable="true"
-                    android:src="@drawable/ic_add_friend"
+                    android:maxHeight="40dp"
+                    android:maxWidth="40dp"
                     android:onClick="onClick"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    />
+                    android:src="@drawable/ic_add_friend" />
 
-                </RelativeLayout>
+            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -111,34 +110,33 @@
 
                 <TextView
                     android:id="@+id/uSubText2"
-                    android:text="Подписки: "
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="Подписки: " />
 
                 <TextView
                     android:id="@+id/uSubscribs"
-                    android:text="fake10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/uSubText2"/>
+                    android:layout_toRightOf="@id/uSubText2"
+                    android:text="fake10" />
 
                 <ImageView
                     android:id="@+id/uPlus2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxHeight="40dp"
-                    android:maxWidth="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:adjustViewBounds="true"
                     android:clickable="true"
-                    android:src="@drawable/ic_add_friend"
+                    android:maxHeight="40dp"
+                    android:maxWidth="40dp"
                     android:onClick="onClick"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"/>
+                    android:src="@drawable/ic_add_friend" />
 
             </RelativeLayout>
 
-            </LinearLayout>
-
+        </LinearLayout>
 
 
     </RelativeLayout>
@@ -159,45 +157,44 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_weight="1"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <TextView
-                android:text="Комментариев: "
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="Комментариев: " />
 
             <TextView
                 android:id="@+id/uCommNum"
-                android:text="fake10"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="fake10" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_weight="1"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <TextView
-                android:text="Оценок: "
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="Оценок: " />
 
             <TextView
                 android:id="@+id/uEstNum"
-                android:text="fake20"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="fake20" />
 
         </LinearLayout>
 
-        </LinearLayout>
-
+    </LinearLayout>
 
 
     <View
