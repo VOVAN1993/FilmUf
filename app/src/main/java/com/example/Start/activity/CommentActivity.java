@@ -50,14 +50,15 @@ public class CommentActivity extends Activity {
                 Comment.COMMENT_ATTRIBUTE_COMMENT,
                 Comment.COMMENT_ATTRIBUTE_DATE,
                 Comment.COMMENT_ATTRIBUTE_FILM,
-                Comment.COMMENT_ATTRIBUTE_FILM_RUS,
-                Comment.COMMENT_ATTRIBUTE_YEAR,
                 Comment.COMMENT_ATTRIBUTE_USER,
                 Comment.COMMENT_ATTRIBUTE_FILM_PK,
+                Comment.COMMENT_ATTRIBUTE_PK,
                 Comment.COMMENT_ATTRIBUTE_LIKES,
                 Comment.COMMENT_ATTRIBUTE_DISLIKES};
 
-        int[] to = {R.id.cPoster, R.id.cTitleRus,R.id.cDate, R.id.cEngName, R.id.cRusName, R.id.cYear, R.id.cUserName, R.id.invisiblePK};
+        int[] to = {R.id.cPoster, R.id.cTitleRus,
+                R.id.cDate, R.id.cEngName,
+                R.id.cUserName, R.id.invisiblePK,R.id.cInvisibleTVCommentPK, R.id.cLikeNum, R.id.cDislikeNum};
 
         CommentAdapter adapter = new CommentAdapter(Request.getAllLikeComment(new User("vova")), Request.getAllDislikeComment(new User("vova")),
                 this, data,R.layout.comment_row,from,to);
@@ -148,7 +149,7 @@ public class CommentActivity extends Activity {
         if(dislike.isSelected()) updateDisLikeNum(-1, view);
         dislike.setSelected(false);
         ivLike.setSelected(true);
-        TextView invisibleTV = ((TextView) view.findViewById(R.id.invisibleTV));
+        TextView invisibleTV = ((TextView) view.findViewById(R.id.cInvisibleTVCommentPK));
         Request.likeComment(invisibleTV.getText().toString(), new User(MainTabActivity.user));
     }
 
@@ -172,7 +173,7 @@ public class CommentActivity extends Activity {
         if(like.isSelected()) updateLikeNum(-1, view);
         like.setSelected(false);
         ivDisLike.setSelected(true);
-        TextView invisibleTV = ((TextView) view.findViewById(R.id.invisibleTV));
+        TextView invisibleTV = ((TextView) view.findViewById(R.id.cInvisibleTVCommentPK));
         Request.dislikeComment(invisibleTV.getText().toString(), new User(MainTabActivity.user));
     }
 

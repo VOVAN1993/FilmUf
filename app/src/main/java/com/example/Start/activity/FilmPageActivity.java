@@ -7,24 +7,40 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.example.Start.R;
+import com.example.Start.adapter.CommentAdapter;
 import com.example.Start.util.BasicUtil;
+import com.example.Start.util.Comment;
 import com.example.Start.util.Film;
 import com.example.Start.util.NetworkUtil;
+import com.example.Start.util.User;
 import com.example.Start.util.asyncTasks.MyAsyncTask;
+import com.example.Start.util.request.Request;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.Map;
+import java.util.Set;
+import java.util.SortedSet;
 import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.concurrent.ExecutionException;
 
 public class FilmPageActivity extends Activity {
@@ -74,7 +90,7 @@ public class FilmPageActivity extends Activity {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
                 int rating = (int) v;
-                if(rating == currentStars) return;
+                if (rating == currentStars) return;
                 updateRatingForFilm((int) v);
                 NetworkUtil.setRating(rating, MainTabActivity.user, (String) map.get("pk"));
                 System.out.println();
@@ -83,6 +99,36 @@ public class FilmPageActivity extends Activity {
 
         fRating = (TextView) findViewById(R.id.fRating);
         fNumRating = (TextView) findViewById(R.id.fNumRating);
+
+
+        //-----------comments---------------
+
+//        Set<Comment> commentsByFriends = Request.getCommentsByFriends(new User(MainTabActivity.user));
+        ArrayList<Map<String, Object>> data = new ArrayList<>();
+
+        Set<Comment> comments = Request.getAllcommentsForFilm((String) map.get("pk"));
+        for(Comment c:comments){
+            data.add(c.toMap());
+        }
+
+        String[] from = {
+                Comment.COMMENT_ATTRIBUTE_PK,
+                Comment.COMMENT_ATTRIBUTE_COMMENT,
+                Comment.COMMENT_ATTRIBUTE_DATE,
+                Comment.COMMENT_ATTRIBUTE_USER,
+                Comment.COMMENT_ATTRIBUTE_LIKES,
+                Comment.COMMENT_ATTRIBUTE_DISLIKES
+        };
+
+        int[] to = {R.id.fInvisibleTVCommentPK, R.id.cTitleRus, R.id.cDate, R.id.cUserName, R.id.fLikeNum, R.id.fDislikeNum};
+
+        ArrayList<Comment> likes = Request.getAllLikeComment(new User(MainTabActivity.user));
+        ArrayList<Comment> dislikes = Request.getAllDislikeComment(new User(MainTabActivity.user));
+        CommentAdapter sAdapter = new CommentAdapter(likes, dislikes,this, data, R.layout.film_comment_row,
+                from, to);
+        ListView lv = ((ListView) findViewById(R.id.fCommentList));
+        lv.setAdapter(sAdapter);
+        setListViewHeightBasedOnChildren(lv);
     }
 
     private void updateRatingForFilm(int value) {
@@ -92,9 +138,9 @@ public class FilmPageActivity extends Activity {
         int rating = currentStars;
         sum = sum - rating + value;
         i = rating == 0 ? i : (i - 1);
-        float newRating = sum / (i+1);
+        float newRating = sum / (i + 1);
         currentStars = value;
-        fNumRating.setText(new Integer(i+1).toString());
+        fNumRating.setText(new Integer(i + 1).toString());
         fRating.setText(new Float(newRating).toString());
     }
 
@@ -154,5 +200,87 @@ public class FilmPageActivity extends Activity {
         Bitmap poster1 = NetworkUtil.getImage(filmByPk.get("poster"), pk);
         fPoster.setImageBitmap(poster1);
 
+    }
+
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null)
+            return;
+
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
+        int totalHeight = 0;
+        View view = null;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            view = listAdapter.getView(i, view, listView);
+            if (i == 0)
+                view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+            view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+            totalHeight += view.getMeasuredHeight();
+        }
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount()));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
+    }
+
+    public void onClick(View view){
+        switch (view.getId()){
+            case R.id.cLike:
+
+                ImageView iv = ((ImageView) view);
+                if(iv.isSelected()){
+                    //TODO: unlike
+                }else{
+                    RelativeLayout parent = (RelativeLayout) view.getParent();
+                    like(parent);
+                }
+                break;
+            case R.id.cDislike:
+                ImageView iv2 = ((ImageView) view);
+                if(iv2.isSelected()){
+                    //TODO: undislike
+                }else {
+                    RelativeLayout parent = (RelativeLayout) view.getParent();
+                    dislike(parent);
+                }
+                break;
+        }
+    }
+
+
+    private void like(RelativeLayout view){
+        ImageView ivLike = (ImageView) view.findViewById(R.id.cLike);
+        updateLikeNum(1,view);
+        ImageView dislike = (ImageView)view.findViewById(R.id.cDislike);
+        if(dislike.isSelected()) updateDisLikeNum(-1, view);
+        dislike.setSelected(false);
+        ivLike.setSelected(true);
+        TextView invisibleTV = ((TextView) view.findViewById(R.id.fInvisibleTVCommentPK));
+        Request.likeComment(invisibleTV.getText().toString(), new User(MainTabActivity.user));
+    }
+
+    private void updateLikeNum(int diff, RelativeLayout view){
+        TextView tvLike = (TextView) view.findViewById(R.id.fLikeNum);
+        int i = tvLike.getText().toString().isEmpty() ? 0 : Integer.parseInt(tvLike.getText().toString());
+        tvLike.setText(new Integer(i + diff).toString());
+    }
+
+    private void updateDisLikeNum(int diff, RelativeLayout view){
+        TextView tvLike = (TextView) view.findViewById(R.id.fDislikeNum);
+        int i = tvLike.getText().toString().isEmpty() ? 0 : Integer.parseInt(tvLike.getText().toString());
+        tvLike.setText(new Integer(i + diff).toString());
+    }
+
+    private void dislike(RelativeLayout view){
+        ImageView ivDisLike = (ImageView) view.findViewById(R.id.cDislike);
+        updateDisLikeNum(1,view);
+        ImageView like = (ImageView)view.findViewById(R.id.cLike);
+
+        if(like.isSelected()) updateLikeNum(-1, view);
+        like.setSelected(false);
+        ivDisLike.setSelected(true);
+        TextView invisibleTV = ((TextView) view.findViewById(R.id.fInvisibleTVCommentPK));
+        Request.dislikeComment(invisibleTV.getText().toString(), new User(MainTabActivity.user));
     }
 }

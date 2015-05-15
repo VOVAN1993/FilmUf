@@ -9,7 +9,7 @@
     android:paddingTop="20dp">
 
     <TextView
-        android:id="@+id/fTitleRus"
+        android:id="@+id/cTitleRus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -67,7 +67,7 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:id="@+id/RL"
+            android:id="@+id/vova"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/cAvatar"
@@ -75,7 +75,7 @@
             android:layout_toRightOf="@id/cAbout">
 
             <TextView
-                android:id="@+id/cDislikeNum"
+                android:id="@+id/fDislikeNum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -87,16 +87,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="12dp"
-                android:layout_toLeftOf="@id/cDislikeNum"
+                android:layout_toLeftOf="@id/fDislikeNum"
                 android:adjustViewBounds="true"
                 android:clickable="true"
                 android:maxHeight="40dp"
                 android:maxWidth="40dp"
                 android:onClick="onClick"
                 android:src="@drawable/ic_dislike" />
-
             <TextView
-                android:id="@+id/cLikeNum"
+                android:id="@+id/fInvisibleTVCommentPK"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:visibility="invisible" />
+            <TextView
+                android:id="@+id/fLikeNum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -108,7 +112,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_toLeftOf="@id/cLikeNum"
+                android:layout_toLeftOf="@id/fLikeNum"
                 android:adjustViewBounds="true"
                 android:clickable="true"
                 android:maxHeight="40dp"

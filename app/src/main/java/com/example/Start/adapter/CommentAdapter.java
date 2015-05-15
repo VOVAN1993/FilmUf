@@ -23,12 +23,12 @@ import java.util.List;
 import java.util.Map;
 
 public class CommentAdapter extends SimpleAdapter{
-    private final ArrayList<Comment> likes;
-    private final ArrayList<Comment> dislikes;
+    private final List<Comment> likes;
+    private final List<Comment> dislikes;
 
     private Context context;
 
-    public CommentAdapter(ArrayList<Comment> likes,ArrayList<Comment> dislikes, Context context,
+    public CommentAdapter(List<Comment> likes,List<Comment> dislikes, Context context,
                           List<? extends Map<String, ?>> data, int resource, String[] from, int[] to) {
         super(context, data, resource, from, to);
         this.likes = likes;
@@ -40,27 +40,28 @@ public class CommentAdapter extends SimpleAdapter{
     public void setViewText(TextView v, String text) {
         super.setViewText(v, text);
         if (v.getId() == R.id.cLikeNum) {
-            LinearLayout parent = (LinearLayout) v.getParent().getParent().getParent();
-            TextView invisibleTV = ((TextView) parent.findViewById(R.id.invisibleTV));
-
-            RelativeLayout rl1 = (RelativeLayout) parent.findViewById(R.id.cUserInfo);
-            RelativeLayout rl2 = (RelativeLayout) rl1.findViewById(R.id.cUserInfo);
-            RelativeLayout rl3 = (RelativeLayout) rl2.findViewById(R.id.vova);
-
+            RelativeLayout parent = (RelativeLayout) v.getParent();
+            TextView invisibleTV = ((TextView) parent.findViewById(R.id.cInvisibleTVCommentPK));
 
             if(contains(invisibleTV.getText().toString(), likes)){
-                ImageView viewById = (ImageView) rl3.findViewById(R.id.cLike);
+                ImageView viewById = (ImageView) parent.findViewById(R.id.cLike);
                 if(!viewById.isSelected() && viewById.getVisibility() == View.VISIBLE){
 
                     Log.d(BasicUtil.LOG_TAG, "like , " + invisibleTV.getText() + " "  + viewById.hashCode());
                     viewById.setSelected(true);
                 }
 
+            }else{
+                ImageView viewById = (ImageView) parent.findViewById(R.id.cLike);
+                    viewById.setSelected(false);
             }
+            return;
+
         }
+
         if(v.getId() == R.id.cDislikeNum){
-            LinearLayout parent = (LinearLayout) v.getParent().getParent().getParent();
-            TextView invisibleTV = ((TextView) parent.findViewById(R.id.invisibleTV));
+            RelativeLayout parent = (RelativeLayout) v.getParent();
+            TextView invisibleTV = ((TextView) parent.findViewById(R.id.cInvisibleTVCommentPK));
             if(contains(invisibleTV.getText().toString(), dislikes)){
                 ImageView viewById11 = (ImageView) ((RelativeLayout) v.getParent()).findViewById(R.id.cDislike);
                 if(!viewById11.isSelected()){
@@ -68,7 +69,43 @@ public class CommentAdapter extends SimpleAdapter{
                     viewById11.setSelected(true);
                 }
 
+            }else{
+                ImageView viewById = (ImageView) parent.findViewById(R.id.cDislike);
+                viewById.setSelected(false);
             }
+            return;
+        }
+        if (v.getId() == R.id.fLikeNum) {
+            RelativeLayout parent = (RelativeLayout) v.getParent();
+            TextView invisibleTV = ((TextView) parent.findViewById(R.id.fInvisibleTVCommentPK));
+
+            if(contains(invisibleTV.getText().toString(), likes)){
+                ImageView viewById = (ImageView) parent.findViewById(R.id.cLike);
+                if(!viewById.isSelected() && viewById.getVisibility() == View.VISIBLE){
+
+                    Log.d(BasicUtil.LOG_TAG, "like , " + invisibleTV.getText() + " "  + viewById.hashCode());
+                    viewById.setSelected(true);
+                }
+
+            }
+            return;
+
+        }
+
+        if (v.getId() == R.id.fDislikeNum) {
+            RelativeLayout parent = (RelativeLayout) v.getParent();
+            TextView invisibleTV = ((TextView) parent.findViewById(R.id.fInvisibleTVCommentPK));
+
+            if(contains(invisibleTV.getText().toString(), dislikes)){
+                ImageView viewById = (ImageView) parent.findViewById(R.id.cDislike);
+                if(!viewById.isSelected() && viewById.getVisibility() == View.VISIBLE){
+                    Log.d(BasicUtil.LOG_TAG, "like , " + invisibleTV.getText() + " "  + viewById.hashCode());
+                    viewById.setSelected(true);
+                }
+
+            }
+            return;
+
         }
 
     }

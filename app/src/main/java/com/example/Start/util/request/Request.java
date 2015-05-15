@@ -21,48 +21,66 @@ import java.util.TreeSet;
 import java.util.concurrent.ExecutionException;
 
 public class Request {
+    public static Set<Comment> getAllcommentsForFilm(String pk) {
+        String str = "http://109.234.36.127:8000/dasha/getAllCommentsForFilm/?film=" + pk;
+        MyAsyncTask myAsyncTask = new MyAsyncTask();
+        myAsyncTask.execute(str);
+        try {
+            String response = myAsyncTask.get();
+            Set<Comment> ret = parseJSONComment(response);
+            return ret;
+        } catch (InterruptedException | ExecutionException | JSONException e) {
+            //TODO:?????? handle exceptions
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-    public static Set<Comment> getCommentsByFriends(User user) {
+    public static Set<Comment> parseJSONComment(String json) throws JSONException {
         SortedSet<Comment> ret = new TreeSet<Comment>(new Comparator() {
             @Override
             public int compare(Object o, Object o2) {
                 return ((Comment) o).date.after(((Comment) o2).date) ? 1 : -1;
             }
         });
+        JSONArray jsonArray = new JSONArray(json);
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject obj = jsonArray.getJSONObject(i);
+            Film film = new Film(obj.getInt("film_id"), obj.getString("film"));
+            film.poster = obj.getString("film_poster");
+            film.name_rus = obj.getString("film_rus");
+            Comment c = new Comment(obj.getString("comment"),
+                    new User(obj.getString("users")),
+                    film,
+//                            new Integer(obj.getInt("year")).toString(),
+                    "2012",
+                    new Date(obj.getLong("timestamp")),
+                    obj.getString("pk"),
+                    obj.getString("cl"),
+                    obj.getString("cd"));
+            ret.add(c);
+        }
+        return ret;
+    }
+
+    public static Set<Comment> getCommentsByFriends(User user) {
+
         String str = "http://109.234.36.127:8000/dasha/getAllCommentsByFriends?user=" + user.name;
         MyAsyncTask myAsyncTask = new MyAsyncTask();
         myAsyncTask.execute(str);
         try {
             String response = myAsyncTask.get();
-            JSONArray jsonArray = new JSONArray(response);
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONArray item = jsonArray.getJSONArray(i);
-                for (int j = 0; j < item.length(); j++) {
-                    JSONObject obj = item.getJSONObject(j);
-                    Film film = new Film(obj.getInt("film_id"), obj.getString("film"));
-                    film.poster = obj.getString("film_poster");
-                    film.name_rus = obj.getString("film_rus");
-                    Comment c = new Comment(obj.getString("comment"),
-                            new User(obj.getString("users")),
-                            film,
-//                            new Integer(obj.getInt("year")).toString(),
-                            "2012",
-                            new Date(obj.getLong("timestamp")),
-                            obj.getString("pk"),
-                            obj.getString("cl"),
-                            obj.getString("cd"));
-                    ret.add(c);
-                }
-            }
-        } catch (InterruptedException |ExecutionException| JSONException e) {
+            Set<Comment> ret = parseJSONComment(response);
+            return ret;
+        } catch (InterruptedException | ExecutionException | JSONException e) {
             //TODO:?????? handle exceptions
             e.printStackTrace();
         }
 
-        return ret;
+        return null;
     }
 
-    public static void likeComment(String pk, User user){
+    public static void likeComment(String pk, User user) {
         String str = "http://109.234.36.127:8000/dasha/likeComment?user=" + user.name +
                 "&comment=" + pk;
 
@@ -76,7 +94,7 @@ public class Request {
         }
     }
 
-    public static void dislikeComment(String pk, User user){
+    public static void dislikeComment(String pk, User user) {
         String str = "http://109.234.36.127:8000/dasha/dislikeComment?user=" + user.name +
                 "&comment=" + pk;
 
@@ -90,7 +108,7 @@ public class Request {
         }
     }
 
-    public static ArrayList<Comment> getAllDislikeComment(User user){
+    public static ArrayList<Comment> getAllDislikeComment(User user) {
         String str = "http://109.234.36.127:8000/dasha/getAllDisLikeComments?user=" + user.name;
 
         MyAsyncTask myAsyncTask = new MyAsyncTask();
@@ -102,7 +120,7 @@ public class Request {
         }
     }
 
-    public static ArrayList<Comment> getAllLikeComment(User user){
+    public static ArrayList<Comment> getAllLikeComment(User user) {
         String str = "http://109.234.36.127:8000/dasha/getAllLikeComments?user=" + user.name;
 
         MyAsyncTask myAsyncTask = new MyAsyncTask();
@@ -115,7 +133,7 @@ public class Request {
         }
     }
 
-    private static ArrayList<Comment> parseJSONForListComment(JSONArray jsonArray){
+    private static ArrayList<Comment> parseJSONForListComment(JSONArray jsonArray) {
         ArrayList<Comment> ret = new ArrayList<>();
         try {
 
@@ -141,7 +159,7 @@ public class Request {
         }
     }
 
-    public static Set<Estimate> getEstimatesByFriends(User user){
+    public static Set<Estimate> getEstimatesByFriends(User user) {
         SortedSet<Estimate> ret = new TreeSet<Estimate>(new Comparator() {
             @Override
             public int compare(Object o, Object o2) {
@@ -167,7 +185,7 @@ public class Request {
                     ret.add(c);
                 }
             }
-        } catch (InterruptedException |ExecutionException| JSONException e) {
+        } catch (InterruptedException | ExecutionException | JSONException e) {
             //TODO:?????? handle exceptions
             e.printStackTrace();
         }
