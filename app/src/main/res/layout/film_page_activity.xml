@@ -121,52 +121,46 @@
                             android:id="@+id/fBigStar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
                             android:adjustViewBounds="true"
+                            android:baselineAlignBottom="true"
                             android:maxHeight="64dp"
                             android:maxWidth="64dp"
                             android:src="@drawable/star"
-                            android:tint="@color/star_color"
-                            android:layout_marginRight="10dp"
-                            android:baselineAlignBottom="true"/>
+                            android:tint="@color/star_color" />
 
                         <TextView
                             android:id="@+id/fRating"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_toRightOf="@id/fBigStar"
-                            android:text="РЕЙТИНГ"/>
+                            android:text="РЕЙТИНГ" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
+                            android:layout_below="@id/fRating"
                             android:layout_toRightOf="@id/fBigStar"
-                            android:layout_below="@id/fRating">
+                            android:orientation="horizontal">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="("/>
+                                android:text="(" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="количествооценок"/>
+                                android:text="количествооценок" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text=")"/>
+                                android:text=")" />
 
-                            </LinearLayout>
+                        </LinearLayout>
 
-                        </RelativeLayout>
-
-                    <RatingBar
-                        android:id="@+id/fStars"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:numStars="10"
-                        android:stepSize="1.0"
-                        style="@style/myRatingBar"/>
+                    </RelativeLayout>
 
                 </LinearLayout>
             </RelativeLayout>
@@ -178,6 +172,21 @@
                 android:orientation="horizontal">
 
             </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/grey1" />
+
+            <RatingBar
+                android:id="@+id/fStars"
+                style="@style/myRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="10"
+                android:stepSize="1.0" />
 
             <View
                 android:layout_width="fill_parent"
