@@ -263,6 +263,13 @@
                 android:layout_marginTop="15dp"
                 android:background="@color/grey1" />
 
+            <ListView
+                android:id="@+id/fCommentList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@color/grey1"
+                android:dividerHeight="1dp"></ListView>
+
         </LinearLayout>
     </FrameLayout>
 </ScrollView>

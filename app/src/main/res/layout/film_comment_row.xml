@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:orientation="vertical"
+    android:paddingBottom="20dp"
+    android:paddingTop="20dp">
+
+    <TextView
+        android:id="@+id/fTitleRus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:id="@+id/line2"
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/grey1"/>
+
+    <RelativeLayout
+        android:id="@+id/cUserInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+        <ImageView
+            android:id="@+id/cAvatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:adjustViewBounds="true"
+            android:maxHeight="70dp"
+            android:maxWidth="70dp"
+            android:src="@drawable/av2" />
+
+        <LinearLayout
+            android:id="@+id/cAbout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/cAvatar"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/cUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/cTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/cDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/RL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/cAvatar"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/cAbout">
+
+            <TextView
+                android:id="@+id/cDislikeNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/cDislike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="12dp"
+                android:layout_toLeftOf="@id/cDislikeNum"
+                android:adjustViewBounds="true"
+                android:clickable="true"
+                android:maxHeight="40dp"
+                android:maxWidth="40dp"
+                android:onClick="onClick"
+                android:src="@drawable/ic_dislike" />
+
+            <TextView
+                android:id="@+id/cLikeNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toLeftOf="@id/cDislike"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/cLike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toLeftOf="@id/cLikeNum"
+                android:adjustViewBounds="true"
+                android:clickable="true"
+                android:maxHeight="40dp"
+                android:maxWidth="40dp"
+                android:onClick="onClick"
+                android:src="@drawable/ic_like" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
