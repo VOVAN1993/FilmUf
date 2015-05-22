@@ -125,7 +125,7 @@ public class FilmPageActivity extends Activity {
         ArrayList<Comment> likes = Request.getAllLikeComment(new User(MainTabActivity.user));
         ArrayList<Comment> dislikes = Request.getAllDislikeComment(new User(MainTabActivity.user));
         CommentAdapter sAdapter = new CommentAdapter(likes, dislikes,this, data, R.layout.film_comment_row,
-                from, to);
+                from, to, "film");
         ListView lv = ((ListView) findViewById(R.id.fCommentList));
         lv.setAdapter(sAdapter);
         setListViewHeightBasedOnChildren(lv);

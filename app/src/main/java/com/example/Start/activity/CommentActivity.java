@@ -61,7 +61,7 @@ public class CommentActivity extends Activity {
                 R.id.cUserName, R.id.invisiblePK,R.id.cInvisibleTVCommentPK, R.id.cLikeNum, R.id.cDislikeNum};
 
         CommentAdapter adapter = new CommentAdapter(Request.getAllLikeComment(new User("vova")), Request.getAllDislikeComment(new User("vova")),
-                this, data,R.layout.comment_row,from,to);
+                this, data,R.layout.comment_row,from,to, "comment");
         ListView lv = ((ListView) findViewById(R.id.lvSimple));
         lv.setAdapter(adapter);
     }
