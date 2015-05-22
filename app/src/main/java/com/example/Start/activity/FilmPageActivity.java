@@ -1,6 +1,8 @@
 package com.example.Start.activity;
 
 import android.app.Activity;
+import android.app.LocalActivityManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -8,7 +10,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
@@ -64,7 +68,8 @@ public class FilmPageActivity extends Activity {
     private TextView fRating;
     private TextView fNumRating;
     private int currentStars = 0;
-
+    ArrayList<Map<String, Object>> data = null;
+    String pk;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -103,33 +108,7 @@ public class FilmPageActivity extends Activity {
 
         //-----------comments---------------
 
-//        Set<Comment> commentsByFriends = Request.getCommentsByFriends(new User(MainTabActivity.user));
-        ArrayList<Map<String, Object>> data = new ArrayList<>();
 
-        Set<Comment> comments = Request.getAllcommentsForFilm((String) map.get("pk"));
-        for(Comment c:comments){
-            data.add(c.toMap());
-        }
-
-        String[] from = {
-                Comment.COMMENT_ATTRIBUTE_PK,
-                Comment.COMMENT_ATTRIBUTE_COMMENT,
-                Comment.COMMENT_ATTRIBUTE_DATE,
-                Comment.COMMENT_ATTRIBUTE_USER,
-                Comment.COMMENT_ATTRIBUTE_LIKES,
-                Comment.COMMENT_ATTRIBUTE_DISLIKES
-        };
-
-        int[] to = {R.id.fInvisibleTVCommentPK, R.id.cTitleRus, R.id.cDate, R.id.cUserName, R.id.fLikeNum, R.id.fDislikeNum};
-
-        ArrayList<Comment> likes = Request.getAllLikeComment(new User(MainTabActivity.user));
-        ArrayList<Comment> dislikes = Request.getAllDislikeComment(new User(MainTabActivity.user));
-        CommentAdapter sAdapter = new CommentAdapter(likes, dislikes,this, data, R.layout.film_comment_row,
-                from, to, "film");
-        ListView lv = ((ListView) findViewById(R.id.fCommentList));
-        lv.setAdapter(sAdapter);
-        setListViewHeightBasedOnChildren(lv);
-        sAdapter.notifyDataSetChanged();
     }
 
     private void updateRatingForFilm(int value) {
@@ -167,11 +146,42 @@ public class FilmPageActivity extends Activity {
         if (filmByPk.containsKey("directors")) twDirector.setText(filmByPk.get("directors"));
     }
 
+    public void fillComment(){
+
+        Set<Comment> comments = Request.getAllcommentsForFilm((String) map.get("pk"));
+
+        ArrayList<Map<String, Object>> data = new ArrayList<>();
+
+        for(Comment c:comments){
+            data.add(c.toMap());
+        }
+
+        String[] from = {
+                Comment.COMMENT_ATTRIBUTE_PK,
+                Comment.COMMENT_ATTRIBUTE_COMMENT,
+                Comment.COMMENT_ATTRIBUTE_DATE,
+                Comment.COMMENT_ATTRIBUTE_USER,
+                Comment.COMMENT_ATTRIBUTE_LIKES,
+                Comment.COMMENT_ATTRIBUTE_DISLIKES
+        };
+
+        int[] to = {R.id.fInvisibleTVCommentPK, R.id.cTitleRus, R.id.cDate, R.id.cUserName, R.id.fLikeNum, R.id.fDislikeNum};
+
+        ArrayList<Comment> likes = Request.getAllLikeComment(new User(MainTabActivity.user));
+        ArrayList<Comment> dislikes = Request.getAllDislikeComment(new User(MainTabActivity.user));
+        CommentAdapter sAdapter = new CommentAdapter(likes, dislikes,this, data, R.layout.film_comment_row,
+                from, to, "film");
+        ListView lv = ((ListView) findViewById(R.id.fCommentList));
+        lv.setAdapter(sAdapter);
+        setListViewHeightBasedOnChildren(lv);
+        sAdapter.notifyDataSetChanged();
+    }
     @Override
     protected void onResume() {
         super.onResume();
         if (map.isEmpty()) return;
         fillActivity();
+        fillComment();
     }
 
     @Override
@@ -245,6 +255,18 @@ public class FilmPageActivity extends Activity {
                     RelativeLayout parent = (RelativeLayout) view.getParent();
                     dislike(parent);
                 }
+                break;
+            case R.id.fRatingButton:
+                EditText viewById = (EditText) findViewById(R.id.fEditText);
+                String s = viewById.getText().toString();
+                viewById.setText("");
+                InputMethodManager imm = (InputMethodManager)getSystemService(
+                        Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(viewById.getWindowToken(), 0);
+                String filmPk = (String) map.get("pk");
+                String user = MainTabActivity.user;
+                NetworkUtil.addComment(s,user,filmPk);
+                onBackPressed();
                 break;
         }
     }

@@ -59,6 +59,19 @@ public class NetworkUtil {
         }
     }
 
+    public static boolean addComment(String comment, String user, String pk) {
+        String url = "http://109.234.36.127:8000/dasha/addComment?user=" + user + "&pk=" + pk + "&comment=" + comment.replace(" ","%20");
+        MyAsyncTask myAsyncTask = new MyAsyncTask();
+        myAsyncTask.execute(url);
+        try {
+            String s = myAsyncTask.get();
+            return s.equals("OK");
+        } catch (ExecutionException | InterruptedException e) {
+            Log.e(BasicUtil.LOG_TAG, "Error when requestToMyServer. " + e.toString());
+            return false;
+        }
+    }
+
     public static Pair<Pair<String, String>, String> getEstimateForFilm(String pk, String user) {
         String url = "http://109.234.36.127:8000/dasha/getMyEstimateForFilm?film=" + pk;
         if (user != null) {
