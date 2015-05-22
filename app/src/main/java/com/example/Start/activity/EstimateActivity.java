@@ -47,7 +47,7 @@ public class EstimateActivity extends Activity {
 
         int[] to = {R.id.esPoster, R.id.esUserEstimate, R.id.esRusName, R.id.esUserName, R.id.esDate, R.id.esInvisiblePK};
 
-        SimpleAdapter adapter = new EstimateAdapter(this, data, R.layout.estimate_row, from, to);
+        SimpleAdapter adapter = new EstimateAdapter(this, data, R.layout.estimate_row, from, to, "estimate");
         ListView lv = ((ListView) findViewById(R.id.lvSimple));
         lv.setAdapter(adapter);
 

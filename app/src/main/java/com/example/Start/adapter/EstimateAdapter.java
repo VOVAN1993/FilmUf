@@ -19,14 +19,18 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import static com.example.Start.util.BasicUtil.scaleImage;
+
 public class EstimateAdapter extends SimpleAdapter{
 
     private Context context;
+    private final String clazz;
 
     public EstimateAdapter( Context context,
-                           List<? extends Map<String, ?>> data, int resource, String[] from, int[] to) {
+                           List<? extends Map<String, ?>> data, int resource, String[] from, int[] to, String clazz) {
         super(context, data, resource, from, to);
         this.context = context;
+        this.clazz = clazz;
     }
 
     @Override
@@ -37,6 +41,9 @@ public class EstimateAdapter extends SimpleAdapter{
             v.setImageDrawable(context.getResources().getDrawable(R.drawable.blank_wanted_poster));
         } else{
             v.setImageBitmap(NetworkUtil.getImage(split[1], split[0]));
+            if(clazz.equals("estimate")) {
+                scaleImage(v, 220);
+            }
         }
     }
 

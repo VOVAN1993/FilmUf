@@ -53,15 +53,15 @@ public class MainTabActivity extends TabActivity {
         tabs.addTab(spec);
 
         spec = tabs.newTabSpec("tag2");
+        spec.setContent(new Intent().setClass(this, ExpActivity.class));
+        spec.setIndicator("", res.getDrawable(R.drawable.glass32));
+        tabs.addTab(spec);
 
+        spec = tabs.newTabSpec("tag3");
         spec.setContent(new Intent().setClass(this, UserPageActivity.class));
         spec.setIndicator("", res.getDrawable(R.drawable.star32));
         tabs.addTab(spec);
 
-        spec = tabs.newTabSpec("tag3");
-        spec.setContent(new Intent().setClass(this, ExpActivity.class));
-        spec.setIndicator("", res.getDrawable(R.drawable.glass32));
-        tabs.addTab(spec);
 
         spec = tabs.newTabSpec("tag4");
         spec.setContent(new Intent().setClass(this, FilmPageActivity.class));
@@ -80,7 +80,7 @@ public class MainTabActivity extends TabActivity {
         tabs.addTab(spec);
         tabs.getTabWidget().getChildAt(5).setVisibility(View.GONE);
 
-        tabs.setCurrentTab(2);
+        tabs.setCurrentTab(1);
 
         setContentView(tabs);
 
