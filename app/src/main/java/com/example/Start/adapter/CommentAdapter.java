@@ -163,7 +163,7 @@ public class CommentAdapter extends SimpleAdapter{
         // bounding box AND either x/y axis touches it.
         float xScale = ((float) boundBoxInDp) / width;
         float yScale = ((float) boundBoxInDp) / height;
-        float scale = (xScale <= yScale) ? xScale : yScale;
+        float scale = xScale;
 
         // Create a matrix for the scaling and add the scaling data
         Matrix matrix = new Matrix();

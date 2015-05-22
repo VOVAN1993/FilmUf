@@ -2,8 +2,8 @@
 <resources>
     <style name="myRatingBar" parent="@android:style/Widget.RatingBar">
         <item name="android:progressDrawable">@drawable/star_rating</item>
-        <item name="android:minHeight">26dip</item>
-        <item name="android:maxHeight">26dip</item>
+        <item name="android:minHeight">32dip</item>
+        <item name="android:maxHeight">32dip</item>
     </style>
 
     <style name="starYellow">

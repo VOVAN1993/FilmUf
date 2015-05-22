@@ -149,10 +149,11 @@
                                 android:text="(" />
 
                             <TextView
+                                android:id="@+id/fNumRating"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/fNumRating"
-                                android:text="0"/>
+                                android:text="0" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -247,14 +248,34 @@
                 android:layout_marginTop="15dp"
                 android:background="@color/grey1" />
 
-            <EditText
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="50dp"
-                android:background="@drawable/shape"
-                android:gravity="top"
-                android:inputType="textMultiLine" />
+                android:orientation="horizontal">
 
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/shape"
+                    android:gravity="top"
+                    android:inputType="textMultiLine"
+                    android:layout_weight="8"
+                    android:hint="Ваше мнение"
+                    android:minLines="2"
+                    android:singleLine="false"
+                    android:padding="3dp"/>
+
+                <Button
+                    android:id="@+id/fRatingButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:textSize="30dp"
+                    android:layout_weight="1"
+                    android:padding="3dp"
+                    android:layout_gravity="bottom"/>
+            </LinearLayout>
 
             <View
                 android:layout_width="fill_parent"
