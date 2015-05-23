@@ -37,11 +37,11 @@ public class ExpActivity extends Activity {
 
 
     // названия компаний (групп)
-    String[] mygroups = new String[]{"Жанры", "Страна"};
+    String[] mygroups = new String[]{"Жанр", "Страна"};
 
     // названия телефонов (элементов)
-    String[] genres = new String[]{"Комедия", "Триллер", "Боевик", "Драма"};
-    String[] countries = new String[]{"Россия", "США", "Япония"};
+    String[] genres = new String[]{"Comedy", "Thriller", "Action", "Drama"};
+    String[] countries = new String[]{"Russia", "USA", "Japan"};
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
@@ -102,7 +102,9 @@ public class ExpActivity extends Activity {
                 Map<Integer, Boolean> states = adapter.states;
                 Map<Integer, String> mygroup = adapter.mygroup;
                 Map<String, Map<Integer, String>> result = adapter.result;
-
+                EditText viewById = (EditText) findViewById(R.id.search_line);
+                String name = editText.getText().toString();
+                editText.setText("");
                 Map<String, Set<String>> ans = new TreeMap<>();
                 for(Map.Entry<Integer,Boolean> entry : states.entrySet()){
                     if(entry.getValue()){
@@ -117,7 +119,22 @@ public class ExpActivity extends Activity {
                     }
                 }
                 ListFilmsActivity.map.clear();
-                ArrayList<Map<String, String>> search = search(null);
+
+                ArrayList<Map<String, String>> search ;
+                if(name.equals("") && ans.isEmpty()){
+                    search = search(null);
+                }else{
+                    TreeSet<String> t = new TreeSet<String>();
+                    t.add(name);
+                    if(!name.equals("")) {
+                        ans.put("name", t);
+                    }
+                    TreeSet<String> t1 = new TreeSet<String>();
+
+                    t1.add(String.valueOf(selectedMinValue) + "," + String.valueOf(selectedMaxValue));
+                    ans.put("years", t1);
+                    search = search(ans);
+                }
                 ListFilmsActivity.map.put("map", search);
                 MainTabActivity.tabs.setCurrentTab(4);
                 break;
@@ -138,8 +155,42 @@ public class ExpActivity extends Activity {
         }
     }
 
-    private ArrayList<Map<String, String>> search(Map<String, String> map) {
-        return NetworkUtil.requestToMyServer("http://109.234.36.127:8000/dasha/getFilmByCountry/USA");
+    private ArrayList<Map<String, String>> search(Map<String, Set<String>> map) {
+        if(map.containsKey("name")){
+            return NetworkUtil.requestToMyServer("http://109.234.36.127:8000/dasha/getFilmByRusName/"+map.get("name").iterator().next());
+        }
+
+        String base  = "http://109.234.36.127:8000/dasha/getFilmSmart";
+        if(map.containsKey("Страна")){
+            if(base.charAt(base.length()-1)=='t'){
+                base+="?";
+            }
+            base+="countries=";
+            for(String c:map.get("Страна")){
+                base+=c+',';
+            }
+            base = base.substring(0,base.length()-1);
+            base +="&";
+        }
+        if(map.containsKey("Жанр")){
+            if(base.charAt(base.length()-1)=='t'){
+                base+="?";
+            }
+            base+="genres=";
+            for(String c:map.get("Жанр")){
+                base+=c+',';
+            }
+            base = base.substring(0,base.length()-1);
+            base +="&";
+        }
+        if(map.containsKey("years")){
+            if(base.charAt(base.length()-1)=='t'){
+                base+="?";
+            }
+            base+="years=" + map.get("years").iterator().next();
+            base +="&";
+        }
+        return NetworkUtil.requestToMyServer(base.substring(0,base.length()-1));
     }
 
     private RangeSeekBar<Integer> getRangeBar() {
