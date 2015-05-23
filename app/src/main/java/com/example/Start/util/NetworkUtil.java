@@ -254,6 +254,61 @@ public class NetworkUtil {
         }
     }
 
+    public static String getUser(){
+        SQLiteDatabase db = MainTabActivity.dbHelper.getWritableDatabase();
+
+        Cursor c = db.query("films1", null, null, null, null, null,
+                null);
+
+        if (c != null) {
+            c.moveToFirst();
+            String login = c.getString(c.getColumnIndex("login"));
+            return login;
+        }
+        return null;
+    }
+
+    public static void addUser(String password, String name, String age, String sex){
+        String url = "http://109.234.36.127:8000/dasha/addUser?name=" + name + "&age=" + age + "&sex=" + sex;
+        MyAsyncTask myAsyncTask = new MyAsyncTask();
+        myAsyncTask.execute(url);
+        try {
+            String s = myAsyncTask.get();
+            if(s.equals("OK")){
+                ContentValues cv = new ContentValues();
+
+                cv.put("login", name);
+                SQLiteDatabase db = MainTabActivity.dbHelper.getWritableDatabase();
+                long rowID = db.insert("userTable", null, cv);
+                MainTabActivity.dbHelper.close();
+                MainTabActivity.user=name;
+            }
+            return ;
+        } catch (ExecutionException | InterruptedException e) {
+            Log.e(BasicUtil.LOG_TAG, "Error when requestToMyServer. " + e.toString());
+            return;
+        }
+
+    }
+
+    public static boolean containsUser(String name){
+        String url = "http://109.234.36.127:8000/dasha/containsUser?name=" + name;
+        MyAsyncTask myAsyncTask = new MyAsyncTask();
+        myAsyncTask.execute(url);
+        try {
+            String s = myAsyncTask.get();
+            if(s.equals("Yes")){
+                MainTabActivity.user=name;
+                return true;
+            }
+        } catch (ExecutionException | InterruptedException e) {
+            Log.e(BasicUtil.LOG_TAG, "Error when requestToMyServer. " + e.toString());
+            return false;
+        }
+        return false;
+
+    }
+
     public static Bitmap getImageFromByteArray(byte[] image) {
         return BitmapFactory.decodeByteArray(image, 0, image.length);
     }

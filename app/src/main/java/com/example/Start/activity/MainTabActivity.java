@@ -26,9 +26,9 @@ public class MainTabActivity extends TabActivity {
     public static TabHost tabs;
     public static DBHelper dbHelper;
 
-    public static String user = "vova";
+    public static String user;
     public static Bitmap emptyFilmPoster;
-    
+
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,6 +37,8 @@ public class MainTabActivity extends TabActivity {
         Log.d("myLog", "MyTab : oncreate");
         emptyFilmPoster = BitmapFactory.decodeResource(this.getResources(),
                 R.drawable.blank_wanted_poster);
+
+
         dbHelper = new DBHelper(this);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 //        int clearCount = db.delete("tbl_image", null, null);

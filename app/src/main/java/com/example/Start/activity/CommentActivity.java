@@ -36,6 +36,9 @@ public class CommentActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.comment_activity);
+        if(MainTabActivity.user==null){
+            return;
+        }
 
         Set<Comment> commentsByFriends = Request.getCommentsByFriends(new User(MainTabActivity.user));
         ArrayList<Map<String,Object>> data = new ArrayList<>();

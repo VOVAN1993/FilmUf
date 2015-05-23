@@ -8,10 +8,10 @@ import android.util.Log;
 import com.example.Start.util.BasicUtil;
 
 public class DBHelper extends SQLiteOpenHelper {
-
+    private static int DB_VERSION = 2;
     public DBHelper(Context context) {
         // конструктор суперкласса
-        super(context, "myDB", null, 1);
+        super(context, "myDB", null, DB_VERSION);
     }
 
     @Override
@@ -24,7 +24,10 @@ public class DBHelper extends SQLiteOpenHelper {
                 "    image_data BLOB\n" +
                 ");";
 
+
         db.execSQL(createQuery);
+
+
 
         createQuery = "CREATE TABLE films1 (\n" +
                 "    _id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
@@ -47,6 +50,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        String createQuery = "CREATE TABLE userTable (\n" +
+                "    _id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+                "    login VARCHAR(100)\n" +
+                ");";
+        db.execSQL(createQuery);
     }
 }

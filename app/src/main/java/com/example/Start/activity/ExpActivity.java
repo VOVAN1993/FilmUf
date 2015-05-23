@@ -163,6 +163,9 @@ public class ExpActivity extends Activity {
     }
 
     private ArrayList<Map<String, String>> search(Map<String, Set<String>> map) {
+        if(map == null){
+            return NetworkUtil.requestToMyServer("http://109.234.36.127:8000/dasha/getFilmByCountry/USA" );
+        }
         if(map.containsKey("name")){
             return NetworkUtil.requestToMyServer("http://109.234.36.127:8000/dasha/getFilmByRusName/"+map.get("name").iterator().next());
         }
@@ -241,7 +244,7 @@ public class ExpActivity extends Activity {
 
         float dpHeight = displayMetrics.heightPixels / displayMetrics.density;
 
-        float v = BasicUtil.dipToPixels(this, dpHeight/2.5f);
+        float v = BasicUtil.dipToPixels(this, dpHeight/2.9f);
         params.height = (int) v;
         listView.setLayoutParams(params);
         listView.requestLayout();
