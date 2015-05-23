@@ -68,7 +68,7 @@ public class ExpActivity extends Activity {
 
         // Находим наш list
          listView = (ExpandableListView) findViewById(R.id.elvMain);
-        listView.setIndicatorBoundsRelative(width - GetPixelFromDips(100), width - GetPixelFromDips(40));
+        listView.setIndicatorBoundsRelative(width - GetPixelFromDips(98), width - GetPixelFromDips(36));
         //Создаем набор данных для адаптера
         ArrayList<ArrayList<String>> groups = new ArrayList<ArrayList<String>>();
         ArrayList<String> children1 = new ArrayList<String>(Arrays.asList(genres));

@@ -58,13 +58,13 @@ public class MainTabActivity extends TabActivity {
         tabs.addTab(spec);
 
         spec = tabs.newTabSpec("tag3");
-        spec.setContent(new Intent().setClass(this, UserPageActivity.class));
+        spec.setContent(new Intent().setClass(this, RegistrationActivity.class));
         spec.setIndicator("", res.getDrawable(R.drawable.star32));
         tabs.addTab(spec);
 
 
         spec = tabs.newTabSpec("tag4");
-        spec.setContent(new Intent().setClass(this, FilmPageActivity.class));
+        spec.setContent(new Intent().setClass(this, LoginActivity.class));
         spec.setIndicator("", res.getDrawable(R.drawable.house32));
         tabs.addTab(spec);
 

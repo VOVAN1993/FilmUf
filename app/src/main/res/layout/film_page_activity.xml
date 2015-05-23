@@ -19,21 +19,22 @@
                 android:id="@+id/fRL1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center">
+                android:gravity="center"
+                android:layout_marginBottom="20dp">
 
                 <TextView
                     android:id="@+id/twRusName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Hello World, MyActivity"
-                    android:textSize="@dimen/font_size" />
+                    style="@android:style/TextAppearance.Large"/>
 
                 <TextView
                     android:id="@+id/twEngName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/twRusName"
-                    android:textSize="@dimen/font_size" />
+                    style="@android:style/TextAppearance.Medium"/>
 
                 <ImageView
                     android:id="@+id/fBookmark"
@@ -63,11 +64,9 @@
 
                 <ImageView
                     android:id="@+id/fPoster"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
-
-                    android:maxWidth="150dp"
                     android:src="@drawable/blank_wanted_poster" />
 
                 <LinearLayout
@@ -85,32 +84,37 @@
                         <TextView
                             android:id="@+id/twYear"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            style="@android:style/TextAppearance.Medium" />
 
                         <TextView
                             android:id="@+id/fPipe1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_toRightOf="@id/twYear"
-                            android:text=" | " />
+                            android:text=" | "
+                            style="@android:style/TextAppearance.Medium"/>
 
                         <TextView
                             android:id="@+id/twTime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_toRightOf="@id/fPipe1" />
+                            android:layout_toRightOf="@id/fPipe1"
+                            style="@android:style/TextAppearance.Medium"/>
 
                     </RelativeLayout>
 
                     <TextView
                         android:id="@+id/twCountry"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        style="@android:style/TextAppearance.Medium"/>
 
                     <TextView
                         android:id="@+id/twGenres"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        style="@android:style/TextAppearance.Medium"/>
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
@@ -134,7 +138,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_toRightOf="@id/fBigStar"
-                            android:text="0.0" />
+                            android:text="0.0"
+                            style="@android:style/TextAppearance.Large"/>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -146,18 +151,21 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="(" />
+                                android:text="("
+                                style="@android:style/TextAppearance.Medium"/>
 
                             <TextView
                                 android:id="@+id/fNumRating"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="0" />
+                                android:text="0"
+                                style="@android:style/TextAppearance.Medium"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text=")" />
+                                android:text=")"
+                                style="@android:style/TextAppearance.Medium"/>
 
                         </LinearLayout>
 
@@ -165,14 +173,6 @@
 
                 </LinearLayout>
             </RelativeLayout>
-
-            <LinearLayout
-                android:id="@+id/fTagsLL"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-            </LinearLayout>
 
             <View
                 android:layout_width="fill_parent"
@@ -199,7 +199,8 @@
             <TextView
                 android:id="@+id/twTitleRus"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                style="@android:style/TextAppearance.Small"/>
 
             <View
                 android:layout_width="fill_parent"
@@ -277,7 +278,9 @@
                     android:layout_weight="1"
                     android:padding="3dp"
                     android:onClick="onClick"
-                    android:layout_gravity="bottom"/>
+                    android:layout_gravity="bottom"
+                    android:textColor="@color/dark"
+                    android:background="@color/highlighted_text_holo_light"/>
             </LinearLayout>
 
             <View

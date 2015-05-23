@@ -9,6 +9,10 @@
     <string name="more_search">Расширенный поиск</string>
 
     <color name="white">#FFFFFF</color>
+    <color name="dark">#ff404040</color>
+    <color name="dark2">#ee4c4c4c</color>
+    <color name="dark3">#994c4c4c</color>
+
     <color name="grey1">#bebebe</color>
     <color name="grey2">#80bebebe</color>
     <color name="grey3">#50bebebe</color>

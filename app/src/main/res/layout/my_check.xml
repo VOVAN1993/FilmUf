@@ -12,12 +12,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="3dp"
+            android:paddingLeft="20dp"
             android:paddingTop="5dp"
+            android:paddingBottom="3dp"
             android:singleLine="false"
             android:text="tetur"
             android:id="@+id/tw"
-            android:textColor="@color/grey1"
+            android:textColor="@color/dark3"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_weight="1" />
 
