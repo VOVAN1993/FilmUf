@@ -174,7 +174,7 @@ public class FilmPageActivity extends Activity {
         ListView lv = ((ListView) findViewById(R.id.fCommentList));
         lv.setAdapter(sAdapter);
         setListViewHeightBasedOnChildren(lv);
-        sAdapter.notifyDataSetChanged();
+//        sAdapter.notifyDataSetChanged();
     }
     @Override
     protected void onResume() {
