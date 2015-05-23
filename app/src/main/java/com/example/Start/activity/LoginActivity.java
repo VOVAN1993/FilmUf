@@ -1,8 +1,10 @@
 package com.example.Start.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.example.Start.R;
@@ -25,6 +27,10 @@ public class LoginActivity extends Activity {
                 String pass = passView.getText().toString();
                 loginView.setText("");
                 passView.setText("");
+                InputMethodManager imm = (InputMethodManager)getSystemService(
+                        Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(loginView.getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(passView.getWindowToken(), 0);
                 if(login.isEmpty() || pass.isEmpty()) return;
                 boolean b = NetworkUtil.containsUser(login);
                 if(b) {
@@ -32,6 +38,7 @@ public class LoginActivity extends Activity {
                 }
                 break;
             case R.id.inRegButton:
+                MainTabActivity.tabs.setCurrentTab(2);
                 break;
         }
     }

@@ -36,6 +36,25 @@ public class CommentActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.comment_activity);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(BasicUtil.LOG_TAG, "CommentActivity onStart");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(BasicUtil.LOG_TAG,"CommentActivity onReStart");
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         if(MainTabActivity.user==null){
             return;
         }
@@ -67,24 +86,6 @@ public class CommentActivity extends Activity {
                 this, data,R.layout.comment_row,from,to, "comment");
         ListView lv = ((ListView) findViewById(R.id.lvSimple));
         lv.setAdapter(adapter);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d(BasicUtil.LOG_TAG, "CommentActivity onStart");
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.d(BasicUtil.LOG_TAG,"CommentActivity onReStart");
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         Log.d(BasicUtil.LOG_TAG,"CommentActivity onResume");
 
     }

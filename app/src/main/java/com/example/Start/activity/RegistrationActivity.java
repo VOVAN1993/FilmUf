@@ -1,8 +1,10 @@
 package com.example.Start.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -25,10 +27,18 @@ public class RegistrationActivity extends Activity {
                 EditText age = (EditText) findViewById(R.id.regAge);
                 EditText sex = (EditText) findViewById(R.id.regSex);
                 EditText city = (EditText) findViewById(R.id.regCity);
+                InputMethodManager imm = (InputMethodManager)getSystemService(
+                        Context.INPUT_METHOD_SERVICE);
+
                 NetworkUtil.addUser(regPass.getText().toString(),
                         login.getText().toString(),
                         age.getText().toString(),
                         sex.getText().toString());
+                imm.hideSoftInputFromWindow(login.getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(regPass.getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(age.getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(city.getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(sex.getWindowToken(), 0);
                 MainTabActivity.tabs.setCurrentTab(1);
                 break;
         }

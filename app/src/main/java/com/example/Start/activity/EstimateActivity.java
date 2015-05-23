@@ -31,7 +31,29 @@ public class EstimateActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.estimate_activity);
 
-        Set<Estimate> estimatesByFriends = Request.getEstimatesByFriends(new User(name));
+    }
+
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.esPoster:
+                FilmPageActivity.map.clear();
+
+                RelativeLayout parent = ((RelativeLayout) view.getParent());
+                TextView tw = (TextView) parent.findViewById(R.id.esInvisiblePK);
+                String pk = tw.getText().toString();
+                FilmPageActivity.map.put("pk", pk);
+                Drawable drawable = ((ImageView) view).getDrawable();
+                FilmPageActivity.map.put("poster", drawable);
+                FilmPageActivity.previousTab=11;
+                MainTabActivity.tabs.setCurrentTab(5);
+                break;
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Set<Estimate> estimatesByFriends = Request.getEstimatesByFriends(new User(MainTabActivity.user));
         ArrayList<Map<String,Object>> data = new ArrayList<>();
 
         for(Estimate e: estimatesByFriends){
@@ -50,25 +72,6 @@ public class EstimateActivity extends Activity {
         SimpleAdapter adapter = new EstimateAdapter(this, data, R.layout.estimate_row, from, to, "estimate");
         ListView lv = ((ListView) findViewById(R.id.lvSimple));
         lv.setAdapter(adapter);
-
-
-    }
-
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.esPoster:
-                FilmPageActivity.map.clear();
-
-                RelativeLayout parent = ((RelativeLayout) view.getParent());
-                TextView tw = (TextView) parent.findViewById(R.id.esInvisiblePK);
-                String pk = tw.getText().toString();
-                FilmPageActivity.map.put("pk", pk);
-                Drawable drawable = ((ImageView) view).getDrawable();
-                FilmPageActivity.map.put("poster", drawable);
-                FilmPageActivity.previousTab=11;
-                MainTabActivity.tabs.setCurrentTab(5);
-                break;
-        }
     }
 
     @Override
