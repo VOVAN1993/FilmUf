@@ -18,6 +18,7 @@ import org.json.JSONObject;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.regex.Pattern;
 
 public class BasicUtil {
@@ -35,7 +36,25 @@ public class BasicUtil {
             map.put(key,value);
         }
     }
+    public static Map<String, String> jsonToUserInfo(String s) {
+        try {
+            JSONObject jsonObject = new JSONObject(s.replace("\"",""));
+            System.out.println();
+            Map<String, String> map = new TreeMap<>();
+//            {"sex":"M","is_my_user":false,"name":"vova","age":18}
+            map.put("sex", jsonObject.getString("sex"));
+            map.put("name", jsonObject.getString("name"));
+            map.put("age", String.valueOf(jsonObject.getInt("age")));
+            map.put("you_have_friend", String.valueOf(jsonObject.getBoolean("you_have_friend")));
+            map.put("friend_have_you", String.valueOf(jsonObject.getBoolean("friend_have_you")));
+            return map;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
+        return null;
+
+    }
     public static ArrayList<Film> jsonToFilm(String s){
         ArrayList<Film> result = new ArrayList<>();
         try {

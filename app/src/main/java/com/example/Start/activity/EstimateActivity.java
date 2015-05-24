@@ -47,6 +47,15 @@ public class EstimateActivity extends Activity {
                 FilmPageActivity.previousTab=11;
                 MainTabActivity.tabs.setCurrentTab(5);
                 break;
+            case R.id.esAvatar:
+                LinearLayout layout = (LinearLayout) findViewById(R.id.esLinLayInfo);
+                TextView nameTV = (TextView) layout.findViewById(R.id.esUserName);
+                String name = nameTV.getText().toString();
+                UserPageActivity.map.clear();
+                UserPageActivity.map.put("user", name);
+                UserPageActivity.previousTab=11;
+                MainTabActivity.tabs.setCurrentTab(2);
+                break;
         }
     }
 

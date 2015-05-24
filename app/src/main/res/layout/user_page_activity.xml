@@ -128,10 +128,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:adjustViewBounds="true"
-                    android:clickable="true"
                     android:maxHeight="40dp"
                     android:maxWidth="40dp"
-                    android:onClick="onClick"
                     android:src="@drawable/ic_add_friend" />
 
             </RelativeLayout>

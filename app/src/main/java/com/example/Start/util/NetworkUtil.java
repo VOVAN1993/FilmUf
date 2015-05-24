@@ -46,6 +46,48 @@ public class NetworkUtil {
         }
     }
 
+    public static Map<String, String> getUserInfo(String username) {
+        String url = "http://109.234.36.127:8000/dasha/getUserInfo/?user=" + username;
+        if (MainTabActivity.user != null && !MainTabActivity.user.equals("")){
+            url += "&from_name=" +  MainTabActivity.user;
+        }
+        MyAsyncTask myAsyncTask = new MyAsyncTask();
+        myAsyncTask.execute(url);
+        try {
+            String s = myAsyncTask.get();
+            return BasicUtil.jsonToUserInfo(s);
+        }catch (ExecutionException | InterruptedException e){
+            Log.e(BasicUtil.LOG_TAG, "Error when getUserInfo. " + e.toString());
+            return null;
+        }
+    }
+
+    public static boolean addFriend(String user, String userTo){
+        String url = "http://109.234.36.127:8000/dasha/addFriend/?userFrom=" + user + "&userTo=" +userTo;
+        MyAsyncTask myAsyncTask = new MyAsyncTask();
+        myAsyncTask.execute(url);
+        try {
+            String s = myAsyncTask.get();
+            return s.equals("OK");
+        }catch (ExecutionException | InterruptedException e){
+            Log.e(BasicUtil.LOG_TAG, "Error when addFriend. " + e.toString());
+            return false;
+        }
+    }
+
+    public static boolean deleteFriend(String user, String userTo){
+        String url = "http://109.234.36.127:8000/dasha/deleteFriend/?userFrom=" + user + "&userTo=" +userTo;
+        MyAsyncTask myAsyncTask = new MyAsyncTask();
+        myAsyncTask.execute(url);
+        try {
+            String s = myAsyncTask.get();
+            return s.equals("OK");
+        }catch (ExecutionException | InterruptedException e){
+            Log.e(BasicUtil.LOG_TAG, "Error when addFriend. " + e.toString());
+            return false;
+        }
+    }
+
     public static boolean setRating(int value, String user, String pk) {
         String url = "http://109.234.36.127:8000/dasha/setRating?user=" + user + "&film=" + pk + "&value=" + value;
         MyAsyncTask myAsyncTask = new MyAsyncTask();
@@ -60,7 +102,7 @@ public class NetworkUtil {
     }
 
     public static boolean addComment(String comment, String user, String pk) {
-        String url = "http://109.234.36.127:8000/dasha/addComment?user=" + user + "&pk=" + pk + "&comment=" + comment.replace(" ","%20");
+        String url = "http://109.234.36.127:8000/dasha/addComment?user=" + user + "&pk=" + pk + "&comment=" + comment.replace(" ", "%20");
         MyAsyncTask myAsyncTask = new MyAsyncTask();
         myAsyncTask.execute(url);
         try {
@@ -241,7 +283,7 @@ public class NetworkUtil {
                 film.imbdRating = c.isNull(imbdRating) ? "N/A" : ((Double) c.getDouble(imbdRating)).toString();
                 film.poster = c.isNull(poster_link) ? "N/A" : c.getString(poster_link);
 
-                Pair<Pair<String, String>, String> estimateForFilm = getEstimateForFilm(film.pk,user);
+                Pair<Pair<String, String>, String> estimateForFilm = getEstimateForFilm(film.pk, user);
                 film.est_num = estimateForFilm.first.first;
                 film.est_mid = estimateForFilm.first.second;
                 film.myRating = estimateForFilm.second;
@@ -254,7 +296,7 @@ public class NetworkUtil {
         }
     }
 
-    public static String getUser(){
+    public static String getUser() {
         SQLiteDatabase db = MainTabActivity.dbHelper.getWritableDatabase();
 
         Cursor c = db.query("films1", null, null, null, null, null,
@@ -268,22 +310,22 @@ public class NetworkUtil {
         return null;
     }
 
-    public static void addUser(String password, String name, String age, String sex){
+    public static void addUser(String password, String name, String age, String sex) {
         String url = "http://109.234.36.127:8000/dasha/addUser?name=" + name + "&age=" + age + "&sex=" + sex;
         MyAsyncTask myAsyncTask = new MyAsyncTask();
         myAsyncTask.execute(url);
         try {
             String s = myAsyncTask.get();
-            if(s.equals("OK")){
+            if (s.equals("OK")) {
                 ContentValues cv = new ContentValues();
 
                 cv.put("login", name);
                 SQLiteDatabase db = MainTabActivity.dbHelper.getWritableDatabase();
                 long rowID = db.insert("userTable", null, cv);
                 MainTabActivity.dbHelper.close();
-                MainTabActivity.user=name;
+                MainTabActivity.user = name;
             }
-            return ;
+            return;
         } catch (ExecutionException | InterruptedException e) {
             Log.e(BasicUtil.LOG_TAG, "Error when requestToMyServer. " + e.toString());
             return;
@@ -291,14 +333,14 @@ public class NetworkUtil {
 
     }
 
-    public static boolean containsUser(String name){
+    public static boolean containsUser(String name) {
         String url = "http://109.234.36.127:8000/dasha/containsUser?name=" + name;
         MyAsyncTask myAsyncTask = new MyAsyncTask();
         myAsyncTask.execute(url);
         try {
             String s = myAsyncTask.get();
-            if(s.equals("Yes")){
-                MainTabActivity.user=name;
+            if (s.equals("Yes")) {
+                MainTabActivity.user = name;
                 return true;
             }
         } catch (ExecutionException | InterruptedException e) {

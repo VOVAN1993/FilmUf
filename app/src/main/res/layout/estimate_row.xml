@@ -86,6 +86,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/esLinLayInfo"
             android:orientation="horizontal">
 
             <TextView
@@ -114,6 +115,7 @@
                 android:adjustViewBounds="true"
                 android:maxHeight="70dp"
                 android:maxWidth="70dp"
+                android:onClick="onClick"
                 android:src="@drawable/av2"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="18dp"/>

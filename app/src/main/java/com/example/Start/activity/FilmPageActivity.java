@@ -237,6 +237,16 @@ public class FilmPageActivity extends Activity {
 
     public void onClick(View view){
         switch (view.getId()){
+            case R.id.cAvatar:
+                RelativeLayout parent1 = (RelativeLayout) view.getParent();
+                TextView userName = (TextView) parent1.findViewById(R.id.cUserName);
+                String strName = userName.getText().toString();
+                UserPageActivity.map.clear();
+                UserPageActivity.map.put("user", strName);
+
+                UserPageActivity.previousTab=5;
+                MainTabActivity.tabs.setCurrentTab(2);
+                break;
             case R.id.cLike:
 
                 ImageView iv = ((ImageView) view);

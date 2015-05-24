@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:adjustViewBounds="true"
+            android:onClick="onClick"
             android:maxHeight="70dp"
             android:maxWidth="70dp"
             android:src="@drawable/av2" />

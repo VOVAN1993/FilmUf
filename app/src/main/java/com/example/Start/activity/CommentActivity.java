@@ -112,6 +112,15 @@ public class CommentActivity extends Activity {
 
     public void onClick(View view) {
         switch (view.getId()){
+            case R.id.cAvatar:
+                RelativeLayout layout = (RelativeLayout) findViewById(R.id.cUserInfo);
+                TextView nameTV = (TextView) layout.findViewById(R.id.cUserName);
+                String name = nameTV.getText().toString();
+                UserPageActivity.map.clear();
+                UserPageActivity.map.put("user", name);
+                UserPageActivity.previousTab=10;
+                MainTabActivity.tabs.setCurrentTab(2);
+                break;
             case R.id.cLike:
 
                 ImageView iv = ((ImageView) view);
