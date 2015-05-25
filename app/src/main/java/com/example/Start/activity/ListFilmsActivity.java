@@ -71,5 +71,6 @@ public class ListFilmsActivity extends Activity {
 
     @Override
     public void onBackPressed() {
+        MainTabActivity.tabs.setCurrentTab(1);
     }
 }

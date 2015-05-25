@@ -41,8 +41,7 @@
             <TextView
                 android:id="@+id/cRusName"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/font_size" />
+                android:layout_height="wrap_content" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -53,8 +52,7 @@
                 <TextView
                     android:id="@+id/cEngName"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/font_size" />
+                    android:layout_height="wrap_content"/>
 
                 <TextView
                     android:layout_width="wrap_content"

@@ -70,7 +70,7 @@ public class ExpActivity extends Activity {
 
         // Находим наш list
          listView = (ExpandableListView) findViewById(R.id.elvMain);
-        listView.setIndicatorBoundsRelative(width - GetPixelFromDips(98), width - GetPixelFromDips(36));
+        listView.setIndicatorBoundsRelative(width - GetPixelFromDips(98), width - GetPixelFromDips(46));
         //Создаем набор данных для адаптера
         ArrayList<ArrayList<String>> groups = new ArrayList<ArrayList<String>>();
         ArrayList<String> children1 = new ArrayList<String>(Arrays.asList(genres));
@@ -250,7 +250,7 @@ public class ExpActivity extends Activity {
 
         float dpHeight = displayMetrics.heightPixels / displayMetrics.density;
 
-        float v = BasicUtil.dipToPixels(this, dpHeight/2.9f);
+        float v = BasicUtil.dipToPixels(this, dpHeight/3.3f);
         params.height = (int) v;
         listView.setLayoutParams(params);
         listView.requestLayout();

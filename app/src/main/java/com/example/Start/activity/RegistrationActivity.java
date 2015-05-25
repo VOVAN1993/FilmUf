@@ -43,4 +43,9 @@ public class RegistrationActivity extends Activity {
                 break;
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        MainTabActivity.tabs.setCurrentTab(3);
+    }
 }

@@ -4,37 +4,40 @@
     android:layout_height="fill_parent"
     android:layout_marginBottom="60dp">
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <!--android:background="@android:color/background_light">-->
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
             android:orientation="vertical">
 
             <RelativeLayout
                 android:id="@+id/fRL1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="20dp"
+                android:gravity="center">
 
                 <TextView
                     android:id="@+id/twRusName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Hello World, MyActivity"
-                    style="@android:style/TextAppearance.Large"/>
+                    android:textSize="@dimen/headline"
+                    android:layout_marginRight="100dp"/>
 
                 <TextView
                     android:id="@+id/twEngName"
+                    style="@android:style/TextAppearance.Medium"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/twRusName"
-                    style="@android:style/TextAppearance.Medium"/>
+                    android:textSize="@dimen/smallText" />
 
                 <ImageView
                     android:id="@+id/fBookmark"
@@ -42,18 +45,18 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
                     android:clickable="true"
-                    android:src="@drawable/ic_bookmark"
-                    android:tint="#505050" />
+                    android:src="@drawable/ic_bookmark" />
 
                 <ImageView
                     android:id="@+id/fHeart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:layout_toLeftOf="@id/fBookmark"
                     android:clickable="true"
-                    android:src="@drawable/ic_favorites"
-                    android:tint="#505050" />
+                    android:src="@drawable/ic_favorites" />
 
             </RelativeLayout>
 
@@ -83,38 +86,43 @@
 
                         <TextView
                             android:id="@+id/twYear"
+                            style="@android:style/TextAppearance.Medium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@android:style/TextAppearance.Medium" />
+                            android:textSize="@dimen/ordinary" />
 
                         <TextView
                             android:id="@+id/fPipe1"
+                            style="@android:style/TextAppearance.Medium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_toRightOf="@id/twYear"
                             android:text=" | "
-                            style="@android:style/TextAppearance.Medium"/>
+                            android:textSize="@dimen/ordinary" />
 
                         <TextView
                             android:id="@+id/twTime"
+                            style="@android:style/TextAppearance.Medium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_toRightOf="@id/fPipe1"
-                            style="@android:style/TextAppearance.Medium"/>
+                            android:textSize="@dimen/ordinary" />
 
                     </RelativeLayout>
 
                     <TextView
                         android:id="@+id/twCountry"
+                        style="@android:style/TextAppearance.Medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@android:style/TextAppearance.Medium"/>
+                        android:textSize="@dimen/ordinary" />
 
                     <TextView
                         android:id="@+id/twGenres"
+                        style="@android:style/TextAppearance.Medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@android:style/TextAppearance.Medium"/>
+                        android:textSize="@dimen/ordinary" />
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
@@ -126,6 +134,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
                             android:adjustViewBounds="true"
                             android:baselineAlignBottom="true"
                             android:maxHeight="64dp"
@@ -135,37 +144,46 @@
 
                         <TextView
                             android:id="@+id/fRating"
+                            style="@android:style/TextAppearance.Large"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
                             android:layout_toRightOf="@id/fBigStar"
                             android:text="0.0"
-                            style="@android:style/TextAppearance.Large"/>
+                            android:textSize="@dimen/bigEstimate"
+                            android:textStyle="bold" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@id/fRating"
                             android:layout_below="@id/fRating"
+                            android:layout_marginLeft="35dp"
                             android:layout_toRightOf="@id/fBigStar"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            android:paddingTop="10dp">
 
                             <TextView
+                                style="@android:style/TextAppearance.Medium"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="("
-                                style="@android:style/TextAppearance.Medium"/>
+                                android:textSize="@dimen/smallText" />
 
                             <TextView
                                 android:id="@+id/fNumRating"
+                                style="@android:style/TextAppearance.Medium"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="0"
-                                style="@android:style/TextAppearance.Medium"/>
+                                android:textSize="@dimen/smallText" />
 
                             <TextView
+                                style="@android:style/TextAppearance.Medium"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text=")"
-                                style="@android:style/TextAppearance.Medium"/>
+                                android:textSize="@dimen/smallText" />
 
                         </LinearLayout>
 
@@ -186,6 +204,7 @@
                 style="@style/myRatingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:numStars="10"
                 android:stepSize="1.0" />
 
@@ -198,9 +217,10 @@
 
             <TextView
                 android:id="@+id/twTitleRus"
+                style="@android:style/TextAppearance.Small"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                style="@android:style/TextAppearance.Small"/>
+                android:textSize="@dimen/discription" />
 
             <View
                 android:layout_width="fill_parent"
@@ -217,13 +237,17 @@
                     android:id="@+id/director"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Режиссер: " />
+                    android:text="Режиссер: "
+                    android:textColor="@color/dark"
+                    android:textSize="@dimen/ordinary"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/twDirector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/director" />
+                    android:layout_toRightOf="@id/director"
+                    android:textSize="@dimen/ordinary" />
 
                 <TextView
                     android:id="@+id/actor"
@@ -231,23 +255,35 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_below="@id/twDirector"
-                    android:text="В главных ролях: " />
+                    android:text="В главных ролях: "
+                    android:textColor="@color/dark"
+                    android:textSize="@dimen/ordinary"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/twActors"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@id/actor"
-                    android:layout_toRightOf="@id/actor" />
+                    android:layout_toRightOf="@id/actor"
+                    android:textSize="@dimen/ordinary" />
 
             </RelativeLayout>
+        </LinearLayout>
 
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1px"
-                android:layout_marginBottom="15dp"
-                android:layout_marginTop="15dp"
-                android:background="@color/grey1" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/grey1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -255,39 +291,39 @@
                 android:orientation="horizontal">
 
                 <EditText
-
-                    android:layout_width="0dp"
                     android:id="@+id/fEditText"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
+                    android:layout_weight="8"
                     android:background="@drawable/shape"
                     android:gravity="top"
-                    android:inputType="textMultiLine"
-                    android:layout_weight="8"
                     android:hint="Ваше мнение"
+                    android:inputType="textMultiLine"
                     android:minLines="2"
-                    android:singleLine="false"
-                    android:padding="3dp"/>
+                    android:padding="3dp"
+                    android:singleLine="false" />
 
                 <Button
                     android:id="@+id/fRatingButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="+"
-                    android:textSize="30dp"
-                    android:layout_weight="1"
-                    android:padding="3dp"
-                    android:onClick="onClick"
                     android:layout_gravity="bottom"
+                    android:layout_weight="1"
+                    android:background="@color/highlighted_text_holo_light"
+                    android:onClick="onClick"
+                    android:padding="3dp"
+                    android:text="+"
                     android:textColor="@color/dark"
-                    android:background="@color/highlighted_text_holo_light"/>
+                    android:textSize="30dp" />
+
             </LinearLayout>
 
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="1px"
-                android:layout_marginBottom="15dp"
-                android:layout_marginTop="15dp"
+                android:layout_height="1dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="20dp"
                 android:background="@color/grey1" />
 
             <ListView
@@ -295,8 +331,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:divider="@color/grey1"
-                android:dividerHeight="1dp"></ListView>
+                android:dividerHeight="1dp" />
 
         </LinearLayout>
-    </FrameLayout>
+    </LinearLayout>
 </ScrollView>

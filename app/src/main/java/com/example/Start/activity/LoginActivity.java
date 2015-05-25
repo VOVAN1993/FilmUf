@@ -38,8 +38,12 @@ public class LoginActivity extends Activity {
                 }
                 break;
             case R.id.inRegButton:
-                MainTabActivity.tabs.setCurrentTab(2);
+                MainTabActivity.tabs.setCurrentTab(6);
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }

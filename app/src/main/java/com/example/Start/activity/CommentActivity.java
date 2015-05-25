@@ -119,7 +119,7 @@ public class CommentActivity extends Activity {
                 UserPageActivity.map.clear();
                 UserPageActivity.map.put("user", name);
                 UserPageActivity.previousTab=10;
-                MainTabActivity.tabs.setCurrentTab(2);
+                MainTabActivity.tabs.setCurrentTab(7);
                 break;
             case R.id.cLike:
 

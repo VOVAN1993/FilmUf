@@ -54,7 +54,7 @@ public class EstimateActivity extends Activity {
                 UserPageActivity.map.clear();
                 UserPageActivity.map.put("user", name);
                 UserPageActivity.previousTab=11;
-                MainTabActivity.tabs.setCurrentTab(2);
+                MainTabActivity.tabs.setCurrentTab(7);
                 break;
         }
     }

@@ -28,6 +28,7 @@
             android:focusable="false"
             android:text=""
             android:clickable="false"
-            android:id="@+id/cb" />
+            android:id="@+id/cb"
+            android:layout_marginRight="20dp"/>
 
     </LinearLayout>

@@ -60,7 +60,7 @@ public class MainTabActivity extends TabActivity {
         tabs.addTab(spec);
 
         spec = tabs.newTabSpec("tag3");
-        spec.setContent(new Intent().setClass(this, UserPageActivity.class));
+        spec.setContent(new Intent().setClass(this, BookmarkActivity.class));
         spec.setIndicator("", res.getDrawable(R.drawable.star32));
         tabs.addTab(spec);
 
@@ -84,9 +84,15 @@ public class MainTabActivity extends TabActivity {
 
         spec = tabs.newTabSpec("tag7");
         spec.setContent(new Intent().setClass(this, RegistrationActivity.class));
-        spec.setIndicator("", res.getDrawable(R.drawable.star32));
+        spec.setIndicator("", res.getDrawable(R.drawable.house32));
         tabs.addTab(spec);
         tabs.getTabWidget().getChildAt(6).setVisibility(View.GONE);
+
+        spec = tabs.newTabSpec("tag8");
+        spec.setContent(new Intent().setClass(this, UserPageActivity.class));
+        spec.setIndicator("", res.getDrawable(R.drawable.house32));
+        tabs.addTab(spec);
+        tabs.getTabWidget().getChildAt(7).setVisibility(View.GONE);
 
         tabs.setCurrentTab(1);
 

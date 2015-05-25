@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="headline">28sp</dimen>
+    <dimen name="bigEstimate">36sp</dimen>
+    <dimen name="smallText">12sp</dimen>
+    <dimen name="ordinary">16sp</dimen>
+    <dimen name="discription">14sp</dimen>
+    <dimen name="likes">20sp</dimen>
+</resources>

@@ -245,7 +245,7 @@ public class FilmPageActivity extends Activity {
                 UserPageActivity.map.put("user", strName);
 
                 UserPageActivity.previousTab=5;
-                MainTabActivity.tabs.setCurrentTab(2);
+                MainTabActivity.tabs.setCurrentTab(7);
                 break;
             case R.id.cLike:
 
