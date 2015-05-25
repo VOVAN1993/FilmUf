@@ -26,7 +26,7 @@ public class MainTabActivity extends TabActivity {
     public static TabHost tabs;
     public static DBHelper dbHelper;
 
-    public static String user = "vova";
+    public static String user = "new";
     public static Bitmap emptyFilmPoster;
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)

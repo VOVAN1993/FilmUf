@@ -41,9 +41,7 @@ public class EstimateAdapter extends SimpleAdapter{
             v.setImageDrawable(context.getResources().getDrawable(R.drawable.blank_wanted_poster));
         } else{
             v.setImageBitmap(NetworkUtil.getImage(split[1], split[0]));
-            if(clazz.equals("estimate")) {
-                scaleImage(v, 220);
-            }
+            scaleImage(v, 220);
         }
     }
 

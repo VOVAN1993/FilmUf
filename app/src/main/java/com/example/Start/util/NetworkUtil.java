@@ -35,9 +35,13 @@ public class NetworkUtil {
 
     public static ArrayList<Map<String, String>> requestToMyServer(String url) {
         MyAsyncTask myAsyncTask = new MyAsyncTask();
+//        url.replace(" ", "%20");
         myAsyncTask.execute(url);
         try {
             String s = myAsyncTask.get();
+            if(s==null){
+                return null;
+            }
             ArrayList<Film> films = BasicUtil.jsonToFilm(s);
             return BasicUtil.filmsToMaps(films);
         } catch (ExecutionException | InterruptedException e) {

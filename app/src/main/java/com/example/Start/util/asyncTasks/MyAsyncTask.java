@@ -14,7 +14,9 @@ public class MyAsyncTask extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... urls) {
         try {
             Log.d(BasicUtil.LOG_TAG,"Start");
-            String s = NetworkUtil.connectToServer(urls[0]);
+            String url = urls[0];
+            url = url.replace(" ","%20");
+            String s = NetworkUtil.connectToServer(url);
             Log.d(BasicUtil.LOG_TAG, "End");
             return s;
 

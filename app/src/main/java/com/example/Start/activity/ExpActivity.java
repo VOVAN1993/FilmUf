@@ -142,6 +142,7 @@ public class ExpActivity extends Activity {
                     ans.put("years", t1);
                     search = search(ans);
                 }
+                if(search ==null || search.size()==0) return;
                 ListFilmsActivity.map.put("map", search);
                 MainTabActivity.tabs.setCurrentTab(4);
                 break;
@@ -167,7 +168,12 @@ public class ExpActivity extends Activity {
             return NetworkUtil.requestToMyServer("http://109.234.36.127:8000/dasha/getFilmByCountry/USA" );
         }
         if(map.containsKey("name")){
-            return NetworkUtil.requestToMyServer("http://109.234.36.127:8000/dasha/getFilmByRusName/"+map.get("name").iterator().next());
+            ArrayList<Map<String, String>> film = NetworkUtil.requestToMyServer("http://109.234.36.127:8000/dasha/getFilmSmart?name_rus=" + map.get("name").iterator().next());
+            if(film == null || film.isEmpty()){
+                film = NetworkUtil.requestToMyServer("http://109.234.36.127:8000/dasha/getFilmSmart?name=" + map.get("name").iterator().next());
+                return film;
+            }
+            return film;
         }
 
         String base  = "http://109.234.36.127:8000/dasha/getFilmSmart";
