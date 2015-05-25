@@ -15,11 +15,13 @@ public class Film {
     public static String KEY_IMBDRATING = "imbdRating";
     public static String KEY_GENRES = "genres";
     public static String KEY_YEAR = "year";
+    public static String KEY_COUNTRY = "country";
     public static String KEY_PK = "pk";
     public static String KEY_EST_NUM = "est_num";
     public static String KEY_EST_MID = "est_mid";
     public static String KEY_USER_RATING = "userRating";
     public  String name;
+    public  String country;
     public  String name_rus;
     public  String directors;
     public  String actors;
@@ -57,6 +59,7 @@ public class Film {
         BasicUtil.putIfNotNA(map, KEY_IMBDRATING, imbdRating);
         BasicUtil.putIfNotNA(map, KEY_GENRES, genres);
         BasicUtil.putIfNotNA(map, KEY_YEAR, year);
+        BasicUtil.putIfNotNA(map, KEY_COUNTRY, country);
         BasicUtil.putIfNotNA(map, KEY_PK, pk);
         BasicUtil.putIfNotNA(map, KEY_EST_MID, est_mid);
         BasicUtil.putIfNotNA(map, KEY_EST_NUM, est_num);

@@ -381,10 +381,19 @@ public class NetworkUtil {
                 cv.put("imbdRating", new Double(filmmap.get("imbdRating")));
             if (filmmap.get("poster") != null) cv.put("poster", filmmap.get("poster"));
             if (filmmap.get("genres") != null) cv.put("genres", filmmap.get("genres"));
+            if (filmmap.get("country") != null) cv.put("country", filmmap.get("country"));
+
+
             // подключаемся к БД
             SQLiteDatabase db = MainTabActivity.dbHelper.getWritableDatabase();
             long rowID = db.insert("films1", null, cv);
             MainTabActivity.dbHelper.close();
+            Pair<Pair<String, String>, String> estimateForFilm = getEstimateForFilm(filmmap.get("pk"), user);
+            //KEY_EST_NUM = "est_num";
+//            public static String KEY_EST_MID
+            filmmap.put(Film.KEY_EST_NUM, estimateForFilm.first.first);
+            filmmap.put(Film.KEY_EST_MID, estimateForFilm.first.second);
+            filmmap.put(Film.KEY_USER_RATING, estimateForFilm.second);
             return filmmap;
         }
     }

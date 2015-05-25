@@ -83,6 +83,7 @@ public class BasicUtil {
                 film.year = jsonObject.isNull("year")?"N/A":jsonObject.getString("year");
                 film.est_mid = jsonObject.isNull("est_mid")?"N/A":jsonObject.getString("est_mid");
                 film.est_num = jsonObject.isNull("est_num")?"N/A":jsonObject.getString("est_num");
+                film.country = jsonObject.isNull("country")?"N/A":arrayToString(jsonObject.getJSONArray("country"));
 
                 result.add(film);
 

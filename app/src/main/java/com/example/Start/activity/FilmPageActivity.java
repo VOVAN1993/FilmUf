@@ -36,6 +36,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -51,6 +54,8 @@ public class FilmPageActivity extends Activity {
     /**
      * Called when the activity is first created.
      */
+    DecimalFormat formatter = new DecimalFormat("#0.00");
+
     public static Map<String, Object> map = new TreeMap<>();
     public static int previousTab = -1;
     private RatingBar fStars;
@@ -75,7 +80,10 @@ public class FilmPageActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.film_page_activity);
-
+        DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols();
+        otherSymbols.setDecimalSeparator('.');
+        otherSymbols.setGroupingSeparator('.');
+    formatter.setDecimalFormatSymbols(otherSymbols);
         twRusName = (TextView) findViewById(R.id.twRusName);
         twEngName = (TextView) findViewById(R.id.twEngName);
         twYear = (TextView) findViewById(R.id.twYear);
@@ -114,14 +122,15 @@ public class FilmPageActivity extends Activity {
     private void updateRatingForFilm(int value) {
         int i = Integer.parseInt(fNumRating.getText().toString());
         double mid = Double.parseDouble(fRating.getText().toString());
-        int sum = (int) (i * mid);
+        double sum = (i * mid);
         int rating = currentStars;
         sum = sum - rating + value;
         i = rating == 0 ? i : (i - 1);
-        float newRating = sum / (i + 1);
+        double newRating = sum / (i + 1);
         currentStars = value;
         fNumRating.setText(new Integer(i + 1).toString());
-        fRating.setText(new Float(newRating).toString());
+
+        fRating.setText(formatter.format(newRating));
     }
 
     private String cleanName(String name) {
