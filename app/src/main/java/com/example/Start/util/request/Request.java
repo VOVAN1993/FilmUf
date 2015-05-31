@@ -178,6 +178,10 @@ public class Request {
                     JSONObject obj = item.getJSONObject(j);
                     Film film = new Film(obj.getInt("film_id"), obj.getString("film"));
                     film.poster = obj.getString("film_poster");
+                    film.name_rus = obj.getString("film_rus");
+                    film.year = obj.getString("film_year");
+                    film.est_num = obj.getString("film_num");
+                    film.est_mid = obj.getString("film_mid");
                     Estimate c = new Estimate(obj.getString("value"),
                             new User(obj.getString("users")),
                             film,

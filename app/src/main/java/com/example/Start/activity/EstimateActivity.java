@@ -18,6 +18,8 @@ import com.example.Start.util.Estimate;
 import com.example.Start.util.User;
 import com.example.Start.util.request.Request;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
@@ -26,10 +28,12 @@ public class EstimateActivity extends Activity {
     public static String TAG = "myLog";
     private String name = "vova";
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.estimate_activity);
+
 
     }
 
@@ -71,12 +75,17 @@ public class EstimateActivity extends Activity {
 
         String[] from = {Estimate.ESTIMATE_ATTRIBUTE_FILM_POSTER,
                 Estimate.ESTIMATE_ATTRIBUTE_ESTIMATE,
+                Estimate.ESTIMATE_ATTRIBUTE_RATING,
+                Estimate.ESTIMATE_ATTRIBUTE_FILM_RUS,
                 Estimate.ESTIMATE_ATTRIBUTE_FILM,
+                Estimate.ESTIMATE_ATTRIBUTE_FILM_YEAR,
                 Estimate.ESTIMATE_ATTRIBUTE_USER,
                 Estimate.ESTIMATE_ATTRIBUTE_DATE,
                 Estimate.ESTIMATE_ATTRIBUTE_FILM_PK};
 
-        int[] to = {R.id.esPoster, R.id.esUserEstimate, R.id.esRusName, R.id.esUserName, R.id.esDate, R.id.esInvisiblePK};
+        int[] to = {R.id.esPoster, R.id.esUserEstimate,R.id.esRatingMid,
+                    R.id.esRusName, R.id.esEngName,R.id.esYear,R.id.esUserName,
+                    R.id.esDate, R.id.esInvisiblePK};
 
         SimpleAdapter adapter = new EstimateAdapter(this, data, R.layout.estimate_row, from, to, "estimate");
         ListView lv = ((ListView) findViewById(R.id.lvSimple));

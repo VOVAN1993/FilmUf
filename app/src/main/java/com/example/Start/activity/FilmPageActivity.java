@@ -83,7 +83,7 @@ public class FilmPageActivity extends Activity {
         DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols();
         otherSymbols.setDecimalSeparator('.');
         otherSymbols.setGroupingSeparator('.');
-    formatter.setDecimalFormatSymbols(otherSymbols);
+        formatter.setDecimalFormatSymbols(otherSymbols);
         twRusName = (TextView) findViewById(R.id.twRusName);
         twEngName = (TextView) findViewById(R.id.twEngName);
         twYear = (TextView) findViewById(R.id.twYear);

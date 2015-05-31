@@ -70,6 +70,8 @@ public class CommentActivity extends Activity {
         String[] from = {
                 Comment.COMMENT_ATTRIBUTE_FILM_POSTER,
                 Comment.COMMENT_ATTRIBUTE_COMMENT,
+                Comment.COMMENT_ATTRIBUTE_FILM_RUS,
+                Comment.COMMENT_ATTRIBUTE_YEAR,
                 Comment.COMMENT_ATTRIBUTE_DATE,
                 Comment.COMMENT_ATTRIBUTE_FILM,
                 Comment.COMMENT_ATTRIBUTE_USER,
@@ -79,6 +81,7 @@ public class CommentActivity extends Activity {
                 Comment.COMMENT_ATTRIBUTE_DISLIKES};
 
         int[] to = {R.id.cPoster, R.id.cTitleRus,
+                R.id.cRusName, R.id.cYear,
                 R.id.cDate, R.id.cEngName,
                 R.id.cUserName, R.id.invisiblePK,R.id.cInvisibleTVCommentPK, R.id.cLikeNum, R.id.cDislikeNum};
 
