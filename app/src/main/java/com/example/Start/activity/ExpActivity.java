@@ -42,15 +42,23 @@ public class ExpActivity extends Activity {
     String[] mygroups = new String[]{"Жанр", "Страна"};
 
     // названия телефонов (элементов)
-    String[] genres = new String[]{"Comedy", "Thriller", "Action", "Drama"};
-    String[] countries = new String[]{"Russia", "USA", "Japan"};
-
+    String[] genres = new String[]{"Комедия", "Триллер", "Боевик", "Драма"};
+    String[] countries = new String[]{"Россия", "США", "Япония"};
+    Map<String,String> mymap;
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.exp_activity);
 
+        mymap = new TreeMap<>();
+        mymap.put("Комедия", "Comedy");
+        mymap.put("Триллер", "Thriller");
+        mymap.put("Боевик", "Action");
+        mymap.put("Драма", "Drama");
+        mymap.put("Россия", "Russia");
+        mymap.put("США", "USA");
+        mymap.put("Япония", "Japan");
         // обрабатываем ввод в строке поиска
         editText = (EditText) findViewById(R.id.search_line);
         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -183,7 +191,7 @@ public class ExpActivity extends Activity {
             }
             base+="countries=";
             for(String c:map.get("Страна")){
-                base+=c+',';
+                base+=mymap.get(c)+',';
             }
             base = base.substring(0,base.length()-1);
             base +="&";
@@ -194,7 +202,7 @@ public class ExpActivity extends Activity {
             }
             base+="genres=";
             for(String c:map.get("Жанр")){
-                base+=c+',';
+                base+=mymap.get(c)+',';
             }
             base = base.substring(0,base.length()-1);
             base +="&";

@@ -30,7 +30,6 @@ public class Request {
             Set<Comment> ret = parseJSONComment(response);
             return ret;
         } catch (InterruptedException | ExecutionException | JSONException e) {
-            //TODO:?????? handle exceptions
             e.printStackTrace();
         }
         return null;
@@ -190,7 +189,6 @@ public class Request {
                 }
             }
         } catch (InterruptedException | ExecutionException | JSONException e) {
-            //TODO:?????? handle exceptions
             e.printStackTrace();
         }
 
